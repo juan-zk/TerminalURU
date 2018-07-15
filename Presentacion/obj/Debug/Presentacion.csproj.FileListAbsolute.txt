@@ -2,3 +2,8 @@ C:\Users\Juan\Documents\GitHub\TerminalURU\Presentacion\bin\Presentacion.dll
 C:\Users\Juan\Documents\GitHub\TerminalURU\Presentacion\bin\Presentacion.pdb
 C:\Users\Juan\Documents\GitHub\TerminalURU\Presentacion\obj\Debug\Presentacion.dll
 C:\Users\Juan\Documents\GitHub\TerminalURU\Presentacion\obj\Debug\Presentacion.pdb
+C:\Users\Juan\Documents\GitHub\TerminalURU\Presentacion\bin\EntidadesCompartidas.dll
+C:\Users\Juan\Documents\GitHub\TerminalURU\Presentacion\bin\Logica.dll
+C:\Users\Juan\Documents\GitHub\TerminalURU\Presentacion\bin\EntidadesCompartidas.pdb
+C:\Users\Juan\Documents\GitHub\TerminalURU\Presentacion\bin\Logica.pdb
+C:\Users\Juan\Documents\GitHub\TerminalURU\Presentacion\obj\Debug\Presentacion.csprojResolveAssemblyReference.cache
