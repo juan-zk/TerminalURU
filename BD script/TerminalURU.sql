@@ -41,11 +41,29 @@ Create Table Empleados
 	
 )
 go
+
+Create Table Terminales
+(
+	codigo int Not Null Primary Key constraint CHK_codigo check (codigo like '[Aa-Zz][Aa-Zz][Aa-Zz]'),--buscar 
+	ciudad varchar(100),
+	pais varchar(100),
+)
+go
+
+create table FacilidadTerminales
+(
+	codigoTerminal int not null,
+	servicio varchar(100) not null,
+	primary key(codigoTerminal, servicio),
+	foreign key (codigoTerminal) references Terminales(codigo)
+)
+go
+
 Create Table Viajes
 (
 	numViaje int not null Primary Key,
 	nomCompania  varchar(200) not null Foreign Key References Companias(nombre),
-	codTerminal varchar(3) not null Foreign Key References Terminales(codigo),
+	codTerminal int not null Foreign Key References Terminales(codigo),
 	fechaHoraPartida Date,
 	fechaHoraArribo Date,
 	cantidadAsientos int,
@@ -65,13 +83,5 @@ Create Table ViajesNacionales
 	numViaje int Not Null Primary Key Foreign Key References Viajes(numViaje),
 	paradasIntermedias int,
 	
-)
-go
-Create Table Terminales
-(
-	codigo int Not Null Primary Key constraint CHK_codigo check (codigo like '[Aa-Zz][Aa-Zz][Aa-Zz]'),--buscar 
-	ciudad varchar(100),
-	pais varchar(100),
-	Facilidades varchar(100) --???? -- esto va a ser otra tabla, porque es multivaluado
 )
 go
