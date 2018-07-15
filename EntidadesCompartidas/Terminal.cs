@@ -11,7 +11,7 @@ namespace EntidadesCompartidas
        private string Codigo;
        private string Ciudad;
        private string Pais;
-       private string Facilidades;
+       private List<string> Facilidades;
        private int parse;
 
        // Propiedades 
@@ -51,12 +51,12 @@ namespace EntidadesCompartidas
            }
        }
 
-       public string _Facilidades
+       public List<string> _Facilidades
        {
            get { return Facilidades; }
            set
            {
-               if (value.Length > 0)
+               if (value.Count > 0)
                     Facilidades = value;
                else
                    throw new Exception("Debe seleccionar al menos una facilidad");
@@ -64,7 +64,7 @@ namespace EntidadesCompartidas
        }
 
        // Constructor
-       public Terminal(string pCodigo, string pCiudad, string pPais, string pFacilidades)
+       public Terminal(string pCodigo, string pCiudad, string pPais, List<string> pFacilidades)
        {
            _Codigo = pCodigo;
            _Ciudad = pCiudad;
