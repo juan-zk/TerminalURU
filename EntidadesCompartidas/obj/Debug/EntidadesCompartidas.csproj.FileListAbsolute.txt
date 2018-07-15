@@ -1,0 +1,4 @@
+C:\Users\Juan\Documents\GitHub\TerminalURU\EntidadesCompartidas\bin\Debug\EntidadesCompartidas.dll
+C:\Users\Juan\Documents\GitHub\TerminalURU\EntidadesCompartidas\bin\Debug\EntidadesCompartidas.pdb
+C:\Users\Juan\Documents\GitHub\TerminalURU\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.dll
+C:\Users\Juan\Documents\GitHub\TerminalURU\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.pdb

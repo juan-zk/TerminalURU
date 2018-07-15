@@ -1,0 +1,4 @@
+C:\Users\Juan\Documents\GitHub\TerminalURU\Logica\bin\Debug\Logica.dll
+C:\Users\Juan\Documents\GitHub\TerminalURU\Logica\bin\Debug\Logica.pdb
+C:\Users\Juan\Documents\GitHub\TerminalURU\Logica\obj\Debug\Logica.dll
+C:\Users\Juan\Documents\GitHub\TerminalURU\Logica\obj\Debug\Logica.pdb

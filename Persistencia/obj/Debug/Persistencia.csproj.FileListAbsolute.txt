@@ -1,0 +1,4 @@
+C:\Users\Juan\Documents\GitHub\TerminalURU\Persistencia\bin\Debug\Persistencia.dll
+C:\Users\Juan\Documents\GitHub\TerminalURU\Persistencia\bin\Debug\Persistencia.pdb
+C:\Users\Juan\Documents\GitHub\TerminalURU\Persistencia\obj\Debug\Persistencia.dll
+C:\Users\Juan\Documents\GitHub\TerminalURU\Persistencia\obj\Debug\Persistencia.pdb
