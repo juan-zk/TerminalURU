@@ -35,9 +35,9 @@ go
 
 Create Table Empleados
 (
-	cedula int Not Null Primary key,
-	nombreCompleto varchar(10), --hay que usar unique
-	contraseña varchar(30) CHECK (len(contraseña) = 6),
+	cedula varchar(8) Not Null Primary key,
+	nombreCompleto varchar(30), --hay que usar unique
+	pass varchar(30) CHECK (len(pass) > 6),
 	
 )
 go
@@ -67,7 +67,7 @@ Create Table Viajes
 	fechaHoraPartida Date,
 	fechaHoraArribo Date,
 	cantidadAsientos int,
-	cedulaEmpleado int Foreign Key References Empleados(cedula) ---no se desea mantener historico!!
+	cedulaEmpleado varchar(8) Foreign Key References Empleados(cedula) ---no se desea mantener historico!!
 )
 go
 Create Table ViajesInternacionales
@@ -85,3 +85,18 @@ Create Table ViajesNacionales
 	
 )
 go
+
+----------------------SP--------------------------------
+--EMPLEADO
+create proc Logueo
+@cedula varchar(8),
+@pass varchar(30)
+as
+begin
+	select cedula,pass,nombreCompleto from Empleados where cedula=@cedula and pass=@pass
+end
+go
+
+
+insert into Empleados values ('49850767','Juan Acosta','49850767')
+select * from Empleados

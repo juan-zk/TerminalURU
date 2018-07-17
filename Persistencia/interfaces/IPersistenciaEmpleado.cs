@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EntidadesCompartidas;
 
-namespace Persistencia.interfaces
+namespace Persistencia
 {
-    interface IPersistenciaEmpleado
+    public interface IPersistenciaEmpleado
     {
+        Empleado Logueo(string pUsuario, string pPass);
     }
 }

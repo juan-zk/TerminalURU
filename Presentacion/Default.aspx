@@ -25,7 +25,8 @@
             CreateUserText="Registrarse" Font-Names="Century Gothic" Font-Size="Small" 
             ForeColor="#003366" Height="360px" LoginButtonText="Login" 
             RememberMeText="Recordar usuario" TitleText="TerminalURU Login" 
-            UserNameLabelText="Usuario:" Width="415px">
+            UserNameLabelText="Usuario:" Width="415px" 
+            onauthenticate="Login1_Authenticate">
             <InstructionTextStyle Font-Italic="True" ForeColor="Black" />
             <LayoutTemplate>
                 <table cellpadding="0" cellspacing="0" 

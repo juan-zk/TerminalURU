@@ -5,7 +5,10 @@ using System.Text;
 
 namespace Persistencia
 {
-    class FabricaPersistencia
+    public class FabricaPersistencia
     {
+        public static IPersistenciaEmpleado GetPersistenciaEmpleado() {
+            return (PersistenciaEmpleado.GetInstancia());
+        }
     }
 }

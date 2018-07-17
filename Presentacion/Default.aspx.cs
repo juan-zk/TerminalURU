@@ -11,7 +11,17 @@ namespace Presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!IsPostBack)
+            Session["Usuario"] = null;
+        }
 
+        protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex) {  }
         }
 
     }

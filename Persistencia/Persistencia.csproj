@@ -46,6 +46,7 @@
     <Compile Include="clases\PersistenciaTerminal.cs" />
     <Compile Include="clases\PersistenciaViajeInternacional.cs" />
     <Compile Include="clases\PersistenciaViajeNacional.cs" />
+    <Compile Include="Conexion.cs" />
     <Compile Include="FabricaPersistencia.cs" />
     <Compile Include="interfaces\IPersistenciaCompania.cs" />
     <Compile Include="interfaces\IPersistenciaEmpleado.cs" />
