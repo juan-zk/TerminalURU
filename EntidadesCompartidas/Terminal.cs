@@ -47,7 +47,7 @@ namespace EntidadesCompartidas
                if ((value == "Uruguay") || (value == "Argentina") || (value == "Brasil") || (value == "Paraguay"))
                     Pais = value;
                else
-                   throw new Exception(" El pais no pertenece al Merco Sur.");
+                   throw new Exception(" El pais no pertenece al MercoSur.");
            }
        }
 

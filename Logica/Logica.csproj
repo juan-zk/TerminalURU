@@ -40,6 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clases\LogicaCompania.cs" />
+    <Compile Include="clases\LogicaEmpleado.cs" />
+    <Compile Include="clases\LogicaTerminal.cs" />
+    <Compile Include="clases\LogicaViaje.cs" />
+    <Compile Include="FabricaLogica.cs" />
+    <Compile Include="Interfaces\ILogicaCompania.cs" />
+    <Compile Include="Interfaces\ILogicaEmpleado.cs" />
+    <Compile Include="Interfaces\ILogicaTerminal.cs" />
+    <Compile Include="Interfaces\ILogicaViaje.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -52,9 +61,7 @@
       <Name>Persistencia</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
