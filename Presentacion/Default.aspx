@@ -81,7 +81,7 @@
                                             BorderColor="#507CD1" BorderStyle="Solid" BorderWidth="1px" CommandName="Login" 
                                             Font-Bold="True" Font-Names="Century Gothic" Font-Size="Medium" 
                                             ForeColor="#284E98" Text="Login" ValidationGroup="Login1" Width="80%" 
-                                            Height="80%" />
+                                            Height="80%"  />
                                     </td>
                                 </tr>
                                 <tr>

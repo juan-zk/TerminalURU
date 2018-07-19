@@ -19,9 +19,21 @@ namespace Presentacion
         {
             try
             {
+                string usuario = Login1.UserName.Trim();
+                string pass = Login1.Password;
+                EntidadesCompartidas.Empleado emp = Logica.FabricaLogica.GetLogicaEmpleado().Logueo(usuario, pass);
 
+                if (emp == null)
+                {
+                    throw new Exception("Error al iniciar sesion, compruebe los datos");
+                }
+                else
+                {
+                    Session["Usuario"] = emp;
+                    Response.Redirect("~/formEmpleado.aspx");
+                }
             }
-            catch (Exception ex) {  }
+            catch (Exception ex) { Login1.FailureText = ex.Message; }
         }
 
     }
