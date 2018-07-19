@@ -19,7 +19,7 @@ namespace EntidadesCompartidas
            get { return Cedula; }
            set
            {
-               if ((value.Length == 7) && (Int32.TryParse(value, out parse) == true))
+               if ((value.Length == 7 || value.Length==8) && (Int32.TryParse(value, out parse) == true))
                    Cedula = value;
                else
                    throw new Exception("La cedula no debe tener digito verificador y debe tener formato numerico. ");
@@ -34,7 +34,7 @@ namespace EntidadesCompartidas
                if (value.Length == 6)
                     Contraseña = value;
                else
-                   throw new Exception("La contraseña debe tner 6 caracteres");
+                   throw new Exception("La contraseña debe tener 6 caracteres");
            }
        }
 
