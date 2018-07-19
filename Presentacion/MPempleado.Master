@@ -4,13 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<<<<<<< HEAD
     <link href="css/estilos.css" type="text/css" rel="Stylesheet" />
     <title>TerminalURU</title>
-=======
-    <title></title>
-    <link href="css/estilos.css" type="text/css" rel="Stylesheet" />
->>>>>>> 60682c5b1dfe6e38ab007d957bd6ee04698300e1
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <style type="text/css">
@@ -18,15 +13,28 @@
         {
             height: 40px;
         }
+        .style2
+        {
+            height: 32px;
+        }
+        .style3
+        {
+            height: 32px;
+            width: 20%;
+        }
     </style>
 </head>
-<body>
-    <form id="form1" runat="server">
+<body style="margin: 0px;">
+    <form id="form1" runat="server" >
     <div>
         <div style="background-color: #415C71; height: 40px;">
             <table style="width:100%;">
                 <tr>
-                    <td class="style1">
+                    <td class="style1" align="left" colspan="1">
+                        &nbsp;
+                        <asp:ImageButton ID="btnMenu" runat="server" Height="32px" ImageAlign="Top" 
+                            ImageUrl="~/img/menu-icon.png" Width="32px" onclick="btnMenu_Click" />
+&nbsp;<asp:Label ID="Label1" runat="server" Font-Bold="True" ForeColor="White" Text="TerminalURU"></asp:Label>
                     </td>
                     <td class="style1">
                     </td>
@@ -35,27 +43,24 @@
                 </tr>
             </table>
         </div>
-        <table style="width:100%;">
-            <tr>
-                <td>
-                    &nbsp;</td>
-                <td>
+        <table style="width:100%; height: 100%;" frame="void">
+            <tr style="margin: 0px;">
+                <td class="style3">
+                    <asp:Panel ID="pnlMenu" runat="server" BackColor="#415C71" ForeColor="White" style="margin: 0px;" 
+                        Visible="False">
+                        formulario coso<br /> formulario coso 2<br /> formulario coso 3<br /> formulario 
+                        coso 4<br />
+                    </asp:Panel>
+                </td>
+                <td class="style2" width="60%">
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
                 </td>
-                <td>
-                    &nbsp;</td>
+                <td class="style2" width="30%">
+                    </td>
             </tr>
-            <tr>
-                <td>
-                    &nbsp;</td>
-                <td>
-                    &nbsp;</td>
-                <td>
-                    &nbsp;</td>
-            </tr>
-        </table>
+            </table>
         <br />
     </div>
     </form>

@@ -7,3 +7,4 @@ C:\Users\Florencia\Documents\GitHub\TerminalURU\EntidadesCompartidas\bin\Debug\E
 C:\Users\Florencia\Documents\GitHub\TerminalURU\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.dll
 C:\Users\Florencia\Documents\GitHub\TerminalURU\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.pdb
 C:\Users\Florencia\Documents\GitHub\TerminalURU\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.csprojResolveAssemblyReference.cache
+C:\Users\Juan\Documents\GitHub\TerminalURU\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.csprojResolveAssemblyReference.cache

@@ -13,5 +13,15 @@ namespace Presentacion
         {
 
         }
+
+        protected void btnMenu_Click(object sender, ImageClickEventArgs e)
+        {
+            if (pnlMenu.Visible == true)
+                pnlMenu.Visible = false;
+            else
+                pnlMenu.Visible = true;
+            
+        }
+
     }
 }

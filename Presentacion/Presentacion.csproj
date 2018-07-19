@@ -54,6 +54,7 @@
     <Content Include="css\estilos.css" />
     <Content Include="Default.aspx" />
     <Content Include="formEmpleado.aspx" />
+    <Content Include="img\menu-icon.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -106,6 +107,7 @@
   <ItemGroup>
     <Content Include="MPempleado.Master" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
