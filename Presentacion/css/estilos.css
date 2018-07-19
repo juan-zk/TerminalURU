@@ -7,3 +7,19 @@ body
     background-color: #f7f7f7
     
 }
+.title
+{
+    font-size: 20px;
+    font-family: Arial;
+    color: #415C71;
+}
+.btns
+{
+    color: White;
+    background: #4ebaab;
+    width: 230px;
+    height: 40px;
+    font-weight:bold;
+    font-size: 15px;
+    border: 0;
+}

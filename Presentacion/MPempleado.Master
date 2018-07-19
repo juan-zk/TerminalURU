@@ -4,8 +4,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+<<<<<<< HEAD
     <link href="css/estilos.css" type="text/css" rel="Stylesheet" />
     <title>TerminalURU</title>
+=======
+    <title></title>
+    <link href="css/estilos.css" type="text/css" rel="Stylesheet" />
+>>>>>>> 60682c5b1dfe6e38ab007d957bd6ee04698300e1
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <style type="text/css">
