@@ -4,17 +4,54 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <link href="css/estilos.css" type="text/css" rel="Stylesheet" />
+    <title>TerminalURU</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .style1
+        {
+            height: 40px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
-        -master-<br />
+        <div style="background-color: #415C71; height: 40px;">
+            <table style="width:100%;">
+                <tr>
+                    <td class="style1">
+                    </td>
+                    <td class="style1">
+                    </td>
+                    <td class="style1">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <table style="width:100%;">
+            <tr>
+                <td>
+                    &nbsp;</td>
+                <td>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
+                </td>
+                <td>
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+            </tr>
+        </table>
+        <br />
     </div>
     </form>
 </body>
