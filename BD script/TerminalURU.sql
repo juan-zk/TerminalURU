@@ -34,7 +34,7 @@ Create Table Empleados
 (
 	cedula varchar(8) Not Null Primary key,
 	nombreCompleto varchar(30), --hay que usar unique
-	pass varchar(30) CHECK (len(pass) = 6),
+	pass varchar(30) CHECK (len(pass) >= 6),
 	
 )
 go
