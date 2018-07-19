@@ -15,24 +15,30 @@
         {
             height: 23px;
             width: 300px;
-            text-align: left;
+            text-align: center;
         }
         .style18
         {
             height: 23px;
-            width: 299px;
             text-align: center;
         }
-        .style19
+        .style22
         {
             height: 23px;
-            width: 372px;
-            text-align: left;
+            width: 299px;
+            text-align: right;
         }
-        .style20
+        .style23
         {
             height: 23px;
-            width: 372px;
+            width: 368px;
+            text-align: center;
+        }
+        .style24
+        {
+            height: 23px;
+            width: 368px;
+            text-align: left;
         }
     </style>
 </asp:Content>
@@ -44,31 +50,29 @@
         </td>
     </tr>
     <tr>
-        <td class="style18">
+        <td class="style18" colspan="3">
             <asp:Label ID="lblTitle" runat="server" CssClass="title" 
                 style="text-align: left" Text="Mantenimiento de Compañias"></asp:Label>
         </td>
-        <td class="style19" colspan="2">
-            &nbsp;</td>
     </tr>
     <tr>
-        <td class="style18">
+        <td class="style22">
             </td>
-        <td class="style20" colspan="2">
+        <td class="style23" colspan="2">
             </td>
     </tr>
     <tr>
-        <td class="style18">
-            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+        <td class="style22">
+            <asp:TextBox ID="TextBox1" runat="server" style="text-align: left"></asp:TextBox>
         </td>
-        <td class="style20" colspan="2">
+        <td class="style23" colspan="2">
             <asp:Button ID="tnBuscar" runat="server" CssClass="btns" Text="Buscar" />
         </td>
     </tr>
     <tr>
-        <td class="style18">
+        <td class="style22">
             &nbsp;</td>
-        <td class="style19" colspan="2">
+        <td class="style24" colspan="2">
             &nbsp;</td>
     </tr>
     <tr>
@@ -77,53 +81,53 @@
         </td>
     </tr>
     <tr>
-        <td class="style18">
+        <td class="style22">
             </td>
-        <td class="style20" colspan="2">
+        <td class="style23" colspan="2">
             &nbsp;</td>
     </tr>
     <tr>
-        <td class="style18">
+        <td class="style22">
             <asp:Label ID="lblTel" runat="server" Text="Teléfono"></asp:Label>
         </td>
-        <td class="style19" colspan="2">
+        <td class="style24" colspan="2">
             <asp:TextBox ID="txtTel" runat="server" style="text-align: left"></asp:TextBox>
         </td>
     </tr>
     <tr>
-        <td class="style18">
+        <td class="style22">
             &nbsp;</td>
-        <td class="style19" colspan="2">
+        <td class="style24" colspan="2">
             &nbsp;</td>
     </tr>
     <tr>
-        <td class="style18">
+        <td class="style22">
             <asp:Label ID="lblDir" runat="server" Text="Dirección"></asp:Label>
         </td>
-        <td class="style19" colspan="2">
+        <td class="style24" colspan="2">
             <asp:TextBox ID="txtDir" runat="server"></asp:TextBox>
         </td>
     </tr>
     <tr>
-        <td class="style18">
+        <td class="style22">
             &nbsp;</td>
-        <td class="style19" colspan="2">
-            &nbsp;</td>
-    </tr>
-    <tr>
-        <td class="style18">
-            &nbsp;</td>
-        <td class="style19" colspan="2">
+        <td class="style24" colspan="2">
             &nbsp;</td>
     </tr>
     <tr>
-        <td class="style18">
+        <td class="style22">
             &nbsp;</td>
-        <td class="style19" colspan="2">
+        <td class="style24" colspan="2">
             &nbsp;</td>
     </tr>
     <tr>
-        <td class="style18">
+        <td class="style22">
+            &nbsp;</td>
+        <td class="style24" colspan="2">
+            &nbsp;</td>
+    </tr>
+    <tr>
+        <td class="style22">
             <asp:Button ID="btnEliminar" runat="server" CssClass="btns" Text="Eliminar" />
         </td>
         <td class="style16">

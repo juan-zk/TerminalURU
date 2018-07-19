@@ -95,5 +95,68 @@ end
 go
 
 
+/***********************
+	SP DE COMPAÑIAS
+***********************/
+
+-- RETORNA UNA COMPAÑIA
+create proc buscarCompania
+@nombre varchar(200)
+as
+begin
+	select * from Companias where nombre = @nombre;
+end
+go
+
+-- INSERTA UNA COMPAÑIA
+create proc agregarCompania
+@nombre varchar(200),
+@tel int,
+@direccion varchar(200)
+as
+begin
+
+	if exists(select nombre from Companias where nombre = @nombre)
+		return -1 /* sale cuando ya existe la compañia */
+
+	insert into Companias
+	values(@nombre, @direccion, @tel)
+end
+go
+
+-- MODIFICA UNA COMPAÑIA
+create proc modificarCompania
+@nombre varchar(200),
+@tel int,
+@direccion varchar(200)
+as
+begin 
+	declare @respuesta int
+	update Companias 
+	set nombre = @nombre,
+		direccion = @direccion,
+		telefono = @tel
+	where nombre = @nombre
+	set @respuesta = @@ERROR
+	if @respuesta <> 0
+		return -1 /*ERROR SQL*/
+end 
+go
+
+-- ELIMINA UNA COMPAÑIA
+create proc eliminarCompania
+@nombre varchar(200)
+as
+begin 
+	declare @respuesta int
+	delete from Companias where nombre = @nombre
+	set @respuesta = @@ERROR
+	if @respuesta <> 0
+		return -1 /*ERROR SQL*/
+	else return 0
+end 
+go
+
+
 insert into Empleados values ('49850767','Juan Acosta','123456')
 select * from Empleados
