@@ -11,6 +11,14 @@
         {
             height: 70px;
         }
+        .style2
+        {
+            height: 69px;
+        }
+        .style3
+        {
+            height: 75px;
+        }
     </style>
 </head>
 <body bgcolor="#f7f7f7">
@@ -23,69 +31,57 @@
         <asp:Login ID="Login1" runat="server" BackColor="#FFFFFF" BorderColor="Silver" 
             BorderPadding="0" BorderStyle="Solid" BorderWidth="0px" 
             CreateUserText="Registrarse" Font-Names="Century Gothic" Font-Size="Small" 
-            ForeColor="#003366" Height="360px" LoginButtonText="Login" 
+            ForeColor="#003366" Height="500px" LoginButtonText="Login" 
             RememberMeText="Recordar usuario" TitleText="TerminalURU Login" 
-            UserNameLabelText="Usuario:" Width="415px" 
+            UserNameLabelText="Usuario:" Width="350px" 
             onauthenticate="Login1_Authenticate">
             <InstructionTextStyle Font-Italic="True" ForeColor="Black" />
             <LayoutTemplate>
                 <table cellpadding="0" cellspacing="0" 
-                    style="border-collapse:collapse; width: 411px;">
+                    style="border-collapse:collapse; width: 411px; height: 500px;">
                     <tr>
                         <td>
-                            <table cellpadding="0" style="height:360px;width:452px;">
+                            <table cellpadding="0" style="height:501px; width:452px;">
                                 <tr>
-                                    <td align="center" colspan="2" 
-                                        style="color:White;background-color:#415C71;font-size:Medium;font-weight:bold;">
+                                    <td align="center" 
+                                        
+                                        
+                                        style="color:White;background-color:#415C71;font-size:Medium;font-weight:bold;" 
+                                        class="style3">
                                         TerminalURU Login</td>
                                 </tr>
                                 <tr>
-                                    <td align="right">
-                                        <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName" 
-                                            Font-Bold="False">Usuario:</asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="UserName" runat="server" Font-Size="Small"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" 
-                                            ControlToValidate="UserName" 
-                                            ErrorMessage="El nombre de usuario es obligatorio." 
-                                            ToolTip="El nombre de usuario es obligatorio." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
+                                    <td align="center">
+                                        <asp:TextBox ID="UserName" runat="server" Font-Size="Small" Width="90%" placeholder="Usuario" 
+                                            CssClass="txt"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="right">
-                                        <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password" 
-                                            Font-Bold="False">Contraseña:</asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="Password" runat="server" Font-Size="Small" TextMode="Password"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" 
-                                            ControlToValidate="Password" ErrorMessage="La contraseña es obligatoria." 
-                                            ToolTip="La contraseña es obligatoria." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
+                                    <td align="center">
+                                        <asp:TextBox ID="Password" runat="server" Font-Size="Small" TextMode="Password" 
+                                            Width="90%" placeholder="Contraseña" CssClass="txt"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="center" colspan="2">
+                                    <td align="center">
                                         <asp:CheckBox ID="RememberMe" runat="server" Text="Recordar usuario" 
                                             Font-Bold="False" />
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="center" colspan="2" style="color:Red;">
+                                    <td align="center" style="color:Red;">
                                         <asp:Literal ID="FailureText" runat="server" EnableViewState="False"></asp:Literal>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="center" colspan="2" class="style1">
-                                        <asp:Button ID="LoginButton" runat="server" BackColor="White" 
-                                            BorderColor="#507CD1" BorderStyle="Solid" BorderWidth="1px" CommandName="Login" 
-                                            Font-Bold="True" Font-Names="Century Gothic" Font-Size="Medium" 
-                                            ForeColor="#284E98" Text="Login" ValidationGroup="Login1" Width="80%" 
-                                            Height="80%"  />
+                                    <td align="center" class="style1">
+                                        <asp:Button ID="LoginButton" runat="server" 
+                                            CommandName="Login" Text="Login" ValidationGroup="Login1"  
+                                            CssClass="btnLogueo" />
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="center" colspan="2">
+                                    <td align="center">
                                         <asp:HyperLink ID="CreateUserLink" runat="server" Font-Bold="False">Registrarse</asp:HyperLink>
                                     </td>
                                 </tr>

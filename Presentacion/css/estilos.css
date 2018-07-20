@@ -5,8 +5,68 @@ body
     margin: 40;
     padding: 0;
     background-color: #f7f7f7
-    
 }
+/*LOGUEO-----------------------------------------------------------*/
+.btnLogueo{  
+background: White;
+border-color: #4ebaab;
+border-style: solid;
+border-width: 2px;
+font-weight: bold;
+font-family: 'Century Gothic';
+font-size: medium;
+color: #4ebaab;
+height: 90%;
+width: 90%;                                                                           
+}
+.btnLogueo:hover{
+    background: #4ebaab;
+    color:White;
+    transition: all .3s;
+}
+.txt {
+    border:2px solid #deebf2;
+    border-radius:4px;
+    margin: 8px 0;
+    outline: none;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: .3s;
+}
+.txt:focus{
+    border-color: #4ebaab;
+    box-shadow: 0 0 8px 0 dodgerBlue;
+}
+/*-----------------------------------------------------------------*/
+/*MASTER PAGE------------------------------------------------------*/
+.navegacion{
+    width:80%;
+    margin-top: 30px;
+    margin-left: 10%;
+    background: #415C71;
+    color:#fff;
+}
+
+.navegacion li{
+    list-style: none;
+}
+.menu > li{
+    position: relative;
+    display: inline-block;
+}
+
+.menu > li > a{
+    display: block;
+    padding: 15px 20px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu li a:hover{
+    background: #4ebaab;
+    transition: all .3s;
+}
+/*------------------------------------------------------------------*/
 .title
 {
     font-size: 20px;
@@ -23,3 +83,8 @@ body
     font-size: 15px;
     border: 0;
 }
+.btns:hover{
+    background: #6fcec1;
+    transition: all .3s;
+}
+

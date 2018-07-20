@@ -3,7 +3,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>
-    form empleado</p>
+        <asp:ListBox ID="ListBox1" runat="server"></asp:ListBox>
+        <asp:Button ID="Button1" runat="server" Text="Button" />
+    </p>
 <p>
     &nbsp;</p>
 </asp:Content>
