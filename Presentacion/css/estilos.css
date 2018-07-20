@@ -8,16 +8,17 @@ body
 }
 /*LOGUEO-----------------------------------------------------------*/
 .btnLogueo{  
-background: White;
-border-color: #4ebaab;
-border-style: solid;
-border-width: 2px;
-font-weight: bold;
-font-family: 'Century Gothic';
-font-size: medium;
-color: #4ebaab;
-height: 90%;
-width: 90%;                                                                           
+    background: White;
+    border-color: #4ebaab;
+    border-style: solid;
+    border-width: 2px;
+    font-weight: bold;
+    font-family: 'Century Gothic';
+    font-size: medium;
+    color: #4ebaab;
+    height: 90%;
+    width: 90%;      
+
 }
 .btnLogueo:hover{
     background: #4ebaab;
@@ -40,19 +41,20 @@ width: 90%;
 /*-----------------------------------------------------------------*/
 /*MASTER PAGE------------------------------------------------------*/
 .navegacion{
+    margin: 30px auto;
     width:80%;
-    margin-top: 30px;
-    margin-left: 10%;
     background: #415C71;
     color:#fff;
-
-}
-.menu{
-    width: 100%;
 }
 
-.navegacion li{
+.navegacion ul{
     list-style: none;
+}
+
+.menu{
+    width: 80%;
+    padding: 0;
+    margin: 0;
 }
 .menu > li{
     position: relative;
@@ -70,16 +72,27 @@ width: 90%;
     background: #4ebaab;
     transition: all .3s;
 }
+
+/* Submenu*/
+
 .submenu{
     position: absolute;
-    background:#415C71;
-
+    background: #415C71;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .3s;
 }
+
 .submenu li a{
     display: block;
     padding: 15px;
     color: #fff;
-    width: 110%;
+    text-decoration: none;
+}
+
+.menu li:hover .submenu{
+    visibility: visible;
+    opacity: 1;
 }
 .item-r{
     float: right;

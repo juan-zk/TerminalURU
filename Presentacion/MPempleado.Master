@@ -12,9 +12,8 @@
 <body style="margin: 0px;">
     <form id="form1" runat="server" >
     <div>
-        <header>
-                <nav class="navegacion">
-                    <ul class="menu">
+        <nav class="navegacion">
+                   <ul class="menu">
                         <li><a href="#">Inicio</a></li>
                         <li><a href="#">Viajes</a>
                             <ul class="submenu">
@@ -26,13 +25,12 @@
                         <li><a href="ABMCompanias.aspx">Compañias</a></li>
                         <li><a href="#">Empleados</a></li>
 			            <li><a href="#">Usuario</a></li>
-                    </ul>
-                </nav>
-          </header>
+                   </ul>
+        </nav>
+                  
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" >
         
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" >
-        
-            </asp:ContentPlaceHolder>
+        </asp:ContentPlaceHolder>
        
         
         
