@@ -32,10 +32,19 @@
                         </div>                        		            
                    </ul>
         </nav>
+        <table class="tablaForm">
+            <tr>
+                <td>
                   
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" >
         
         </asp:ContentPlaceHolder>
+       
+        
+        
+                </td>
+            </tr>
+        </table>
        
         
         
