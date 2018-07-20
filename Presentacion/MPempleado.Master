@@ -25,10 +25,11 @@
                         <li><a href="ABMCompanias.aspx">Compañias</a></li>
                         <li><a href="#">Empleados</a></li>
                         <div class="item-r">
-                        <asp:Label ID="lblUsuario" runat="server" ForeColor="White">Usuario</asp:Label>
-                        <asp:LinkButton ID="lbtnSalir" runat="server">Salir</asp:LinkButton>
-                        </div>
-                        		            
+                        <asp:Label ID="lblUsuario" runat="server" ForeColor="White" Font-Bold="True" 
+                                Font-Names="Century Gothic">Usuario</asp:Label>
+                        <asp:LinkButton ID="lbtnSalir" runat="server" ForeColor="#4EBAAB" 
+                                PostBackUrl="~/Default.aspx" Font-Names="Century Gothic">Salir</asp:LinkButton>
+                        </div>                        		            
                    </ul>
         </nav>
                   
