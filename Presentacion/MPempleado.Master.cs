@@ -12,9 +12,18 @@ namespace Presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) {
-                lblUsuario.Text = ((Empleado)Session["Usuario"])._NombreCompleto;
+            try
+            {
+
+                if (!IsPostBack)
+                {
+                    if ((Empleado)Session["Usuario"] == null)
+                        Response.Redirect("~/Default.aspx");
+                        
+                    lblUsuario.Text = ((Empleado)Session["Usuario"])._NombreCompleto;
+                }
             }
+            catch (Exception ex) { }
         }
                               
     }
