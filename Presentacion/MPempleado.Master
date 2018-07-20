@@ -24,7 +24,11 @@
                         <li><a href="#">Terminales</a></li>
                         <li><a href="ABMCompanias.aspx">Compañias</a></li>
                         <li><a href="#">Empleados</a></li>
-			            <li><a href="#">Usuario</a></li>
+                        <div class="item-r">
+                        <asp:Label ID="lblUsuario" runat="server" ForeColor="White">Usuario</asp:Label>
+                        <asp:LinkButton ID="lbtnSalir" runat="server">Salir</asp:LinkButton>
+                        </div>
+                        		            
                    </ul>
         </nav>
                   
