@@ -159,4 +159,5 @@ go
 
 
 insert into Empleados values ('49850767','Juan Acosta','123456')
+insert into Empleados values ('12345678','Jose Gervasio Artigas','123456')
 select * from Empleados

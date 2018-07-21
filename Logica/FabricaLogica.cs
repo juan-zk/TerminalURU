@@ -10,5 +10,6 @@ namespace Logica
         public static ILogicaEmpleado GetLogicaEmpleado() {
             return (LogicaEmpleado.GetInstancia());
         }
+        
     }
 }

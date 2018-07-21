@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Logica.Interfaces
+namespace Logica
 {
-    interface ILogicaTerminal
+    public interface ILogicaTerminal
     {
     }
 }
