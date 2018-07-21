@@ -30,7 +30,7 @@ namespace Presentacion
                 else
                 {
                     Session["Usuario"] = emp;
-                    Response.Redirect("~/formEmpleado.aspx");
+                    Response.Redirect("~/Inicio.aspx");
                 }
             }
             catch (Exception ex) { Login1.FailureText = ex.Message; }

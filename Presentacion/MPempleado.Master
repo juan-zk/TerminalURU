@@ -14,16 +14,16 @@
     <div>
         <nav class="navegacion">
                    <ul class="menu">
-                        <li><a href="#">Inicio</a></li>
+                        <li><a href="Inicio.aspx">Inicio</a></li>
                         <li><a href="#">Viajes</a>
                             <ul class="submenu">
-                                <li><a href="#">Internacionales</a></li>
-                                <li><a href="">Nacionales</a></li>
+                                <li><a href="ViajesInter.aspx">Internacionales</a></li>
+                                <li><a href="ViajesNacionales.aspx">Nacionales</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">Terminales</a></li>
+                        <li><a href="ABMterminales.aspx">Terminales</a></li>
                         <li><a href="ABMCompanias.aspx">Compañias</a></li>
-                        <li><a href="#">Empleados</a></li>
+                        <li><a href="ABMempleado.aspx">Empleados</a></li>
                         <div class="item-r">
                         <asp:Label ID="lblUsuario" runat="server" ForeColor="White" Font-Bold="True" 
                                 Font-Names="Century Gothic">Usuario</asp:Label>
