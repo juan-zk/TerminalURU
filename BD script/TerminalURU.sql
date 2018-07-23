@@ -200,19 +200,31 @@ create proc EliminarTerminal
 @codigo int
 as
 begin
-	if not exists (select * from terminales where codigo=@codigo and baja=1)
+	if not exists (select * from terminales where codigo=@codigo)
 		return -1 --no existe terminal
-	
+	if exists (select * from terminales where codigo=@codigo and baja=1)
+		return -1-- existe pero bajado, es lo mismo que no existiera
+			
 	begin tran
 		delete from FacilidadTerminales where codigoTerminal=@codigo
 		if (@@ERROR <> 0)
 			rollback
 			return -2 -- no se puede borrar lista de facilidades
-		delete from Terminales where codigo=@codigo
-		if (@@ERROR <> 0)
-			rollback
-			return -3
 		
+		if exists (select * from Viajes where codTerminal=@codigo)
+			begin
+				update Terminales set baja=1
+				if (@@ERROR<>0)
+					rollback
+					return -3					
+			end
+		else
+			begin
+				delete from Terminales where codigo=@codigo
+				if (@@ERROR <> 0)
+					rollback
+					return -3
+			end
 		commit tran -- si llego aca fue todo ok
 		return 1 -- se elimino
 end

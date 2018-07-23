@@ -96,6 +96,44 @@ namespace Persistencia
             finally { cnn.Close(); }
         }
 
+//------------MODIFICACION---------------------------------------------------------
+        public void Modificar(Terminal t)
+        {
+            SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
+            SqlCommand cmd = new SqlCommand("Modificar", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@codigo", t._Codigo);
+            SqlParameter retorno = new SqlParameter();
+            retorno.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add(retorno);
+
+            SqlTransaction tran = null;
+            try
+            {
+                cnn.Open();
+                cnn.Open();
+                tran = cnn.BeginTransaction();
+                cmd.Transaction = tran;
+                cmd.ExecuteNonQuery();
+
+                int ret = Convert.ToInt32(retorno.Value);
+                if (ret == -1)
+                    throw new Exception("Ese codigo de terminal no existe");
+                else if (ret == -2)
+                    throw new Exception("No se pudo eliminar la terminal (error SQL)");
+
+                PersistenciaFacilidadTerminal.Eliminar(t._Codigo, tran);
+
+                tran.Commit();
+            }
+            catch (Exception ex) 
+            {
+                tran.Rollback();
+                throw ex; 
+            }
+            finally { cnn.Close(); }
+        }
 
     }
 }
