@@ -44,6 +44,7 @@ Create Table Terminales
 	codigo int Not Null Primary Key constraint CHK_codigo check (codigo like '[Aa-Zz][Aa-Zz][Aa-Zz]'),--buscar 
 	ciudad varchar(100),
 	pais varchar(100),
+	baja bit default 0
 )
 go
 
@@ -157,7 +158,69 @@ begin
 end 
 go
 
+---MANEJO DE TERMINALES-----------------------------------
+
+create proc AgregarTerminal
+@codigo int,
+@ciudad varchar(100),
+@pais varchar(100)
+as
+begin
+	if exists (select * from Terminales where codigo=@codigo and baja=0)
+		return -1 -- ya existe esa terminal
+	if not exists (select * from Terminales where codigo=@codigo and baja=1) -- si no existe ni bajado logicamente
+		insert into Terminales (codigo,ciudad,pais) values(@codigo,@ciudad,@pais) -- lo agregamos nomas 
+	if (@@ERROR <> 0) -- si eso salio bien
+		return 1 --retornar 1 es que se agrego una nueva terminal
+	if exists (select * from Terminales where codigo=@codigo and baja=1) -- si llegue tengo que ver al que esta agregado pero bajado
+		update Terminales set baja=0 where codigo=@codigo -- y simplemente subirle la baja logica 
+		if (@@ERROR <> 0) -- si eso salio bien
+		return 2 -- retornar 2 va a querer decir que solo se subio el existente con sus antiguos datos
+end
+go
+
+create proc ModificarTerminal
+@codigo int,
+@ciudad varchar(100),
+@pais varchar(100)
+as
+begin
+	if not exists (select * from Terminales where codigo=@codigo and baja=1)
+		return -1 --no existe la terminal
+		
+	update Terminales set ciudad=@ciudad, pais=@pais where codigo=@codigo
+	if (@@ERROR <> 0)
+		return 1
+	else
+		return -2
+end
+go
+
+create proc EliminarTerminal
+@codigo int
+as
+begin
+	if not exists (select * from terminales where codigo=@codigo and baja=1)
+		return -1 --no existe terminal
+	
+	begin tran
+		delete from FacilidadTerminales where codigoTerminal=@codigo
+		if (@@ERROR <> 0)
+			rollback
+			return -2 -- no se puede borrar lista de facilidades
+		delete from Terminales where codigo=@codigo
+		if (@@ERROR <> 0)
+			rollback
+			return -3
+		
+		commit tran -- si llego aca fue todo ok
+		return 1 -- se elimino
+end
+go
+
+
+----------------------------------------------------------
 
 insert into Empleados values ('49850767','Juan Acosta','123456')
 insert into Empleados values ('12345678','Jose Gervasio Artigas','123456')
-select * from Empleados
+--select * from Empleados
