@@ -32,7 +32,7 @@
         {
             height: 23px;
             width: 368px;
-            text-align: center;
+            text-align: left;
         }
         .style24
         {
@@ -57,15 +57,18 @@
     </tr>
     <tr>
         <td class="style22">
-            </td>
+            &nbsp;</td>
         <td class="style23" colspan="2">
             </td>
     </tr>
     <tr>
         <td class="style22">
-            <asp:TextBox ID="TextBox1" runat="server" style="text-align: left"></asp:TextBox>
+            <asp:Label ID="Label1" runat="server" Text="Nombre"></asp:Label>
         </td>
-        <td class="style23" colspan="2">
+        <td class="style23">
+            <asp:TextBox ID="txtNombre" runat="server" style="text-align: left"></asp:TextBox>
+        </td>
+        <td class="style23">
             <asp:Button ID="tnBuscar" runat="server" CssClass="btns" Text="Buscar" />
         </td>
     </tr>
@@ -128,13 +131,16 @@
     </tr>
     <tr>
         <td class="style22">
-            <asp:Button ID="btnEliminar" runat="server" CssClass="btns" Text="Eliminar" />
+            <asp:Button ID="btnEliminar" runat="server" CssClass="btns" Text="Eliminar" 
+                Width="100%" />
         </td>
         <td class="style16">
-            <asp:Button ID="btnModificar" runat="server" CssClass="btns" Text="Modificar" />
+            <asp:Button ID="btnModificar" runat="server" CssClass="btns" Text="Modificar" 
+                Width="100%" />
         </td>
         <td class="style16">
-            <asp:Button ID="btnAgregar" runat="server" CssClass="btns" Text="Agregar" />
+            <asp:Button ID="btnAgregar" runat="server" CssClass="btns" Text="Agregar" 
+                Width="100%" />
         </td>
     </tr>
 </table>
