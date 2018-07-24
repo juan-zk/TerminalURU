@@ -28,16 +28,16 @@
             width: 299px;
             text-align: right;
         }
-        .style23
+        .style25
         {
             height: 23px;
-            width: 368px;
+            width: 329px;
             text-align: left;
         }
-        .style24
+        .style26
         {
             height: 23px;
-            width: 368px;
+            width: 300px;
             text-align: left;
         }
     </style>
@@ -46,8 +46,7 @@
     <table class="style1">
     <tr>
         <td class="style9" colspan="3">
-            <asp:Label ID="lblMsj" runat="server" style="text-align: center"></asp:Label>
-        </td>
+            &nbsp;</td>
     </tr>
     <tr>
         <td class="style18" colspan="3">
@@ -56,26 +55,32 @@
         </td>
     </tr>
     <tr>
+        <td class="style18" colspan="3">
+            <asp:Label ID="lblMsj" runat="server" style="text-align: center"></asp:Label>
+        </td>
+    </tr>
+    <tr>
         <td class="style22">
             &nbsp;</td>
-        <td class="style23" colspan="2">
+        <td class="style25" colspan="2">
             </td>
     </tr>
     <tr>
         <td class="style22">
             <asp:Label ID="Label1" runat="server" Text="Nombre"></asp:Label>
         </td>
-        <td class="style23">
+        <td class="style26">
             <asp:TextBox ID="txtNombre" runat="server" style="text-align: left"></asp:TextBox>
         </td>
-        <td class="style23">
-            <asp:Button ID="tnBuscar" runat="server" CssClass="btns" Text="Buscar" />
+        <td class="style26">
+            <asp:Button ID="tnBuscar" runat="server" CssClass="btns" Text="Buscar" 
+                onclick="tnBuscar_Click" />
         </td>
     </tr>
     <tr>
         <td class="style22">
             &nbsp;</td>
-        <td class="style24" colspan="2">
+        <td class="style25" colspan="2">
             &nbsp;</td>
     </tr>
     <tr>
@@ -86,61 +91,61 @@
     <tr>
         <td class="style22">
             </td>
-        <td class="style23" colspan="2">
+        <td class="style25" colspan="2">
             &nbsp;</td>
     </tr>
     <tr>
         <td class="style22">
             <asp:Label ID="lblTel" runat="server" Text="Teléfono"></asp:Label>
         </td>
-        <td class="style24" colspan="2">
+        <td class="style25" colspan="2">
             <asp:TextBox ID="txtTel" runat="server" style="text-align: left"></asp:TextBox>
         </td>
     </tr>
     <tr>
         <td class="style22">
             &nbsp;</td>
-        <td class="style24" colspan="2">
+        <td class="style25" colspan="2">
             &nbsp;</td>
     </tr>
     <tr>
         <td class="style22">
             <asp:Label ID="lblDir" runat="server" Text="Dirección"></asp:Label>
         </td>
-        <td class="style24" colspan="2">
+        <td class="style25" colspan="2">
             <asp:TextBox ID="txtDir" runat="server"></asp:TextBox>
         </td>
     </tr>
     <tr>
         <td class="style22">
             &nbsp;</td>
-        <td class="style24" colspan="2">
+        <td class="style25" colspan="2">
             &nbsp;</td>
     </tr>
     <tr>
         <td class="style22">
             &nbsp;</td>
-        <td class="style24" colspan="2">
+        <td class="style25" colspan="2">
             &nbsp;</td>
     </tr>
     <tr>
         <td class="style22">
             &nbsp;</td>
-        <td class="style24" colspan="2">
+        <td class="style25" colspan="2">
             &nbsp;</td>
     </tr>
     <tr>
         <td class="style22">
             <asp:Button ID="btnEliminar" runat="server" CssClass="btns" Text="Eliminar" 
-                Width="100%" />
+                Width="100%" Enabled="False" />
         </td>
         <td class="style16">
             <asp:Button ID="btnModificar" runat="server" CssClass="btns" Text="Modificar" 
-                Width="100%" />
+                Width="100%" Enabled="False" />
         </td>
         <td class="style16">
             <asp:Button ID="btnAgregar" runat="server" CssClass="btns" Text="Agregar" 
-                Width="100%" />
+                Width="100%" Enabled="False" onclick="btnAgregar_Click" />
         </td>
     </tr>
 </table>

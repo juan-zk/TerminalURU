@@ -116,12 +116,16 @@ create proc agregarCompania
 @direccion varchar(200)
 as
 begin
-
+	declare @aux int
 	if exists(select nombre from Companias where nombre = @nombre)
 		return -1 /* sale cuando ya existe la compañia */
 
 	insert into Companias
 	values(@nombre, @direccion, @tel)
+	set @aux=@@ERROR
+	if @aux=0 
+	return 0;
+	else return -2
 end
 go
 
@@ -235,4 +239,10 @@ go
 
 insert into Empleados values ('49850767','Juan Acosta','123456')
 insert into Empleados values ('12345678','Jose Gervasio Artigas','123456')
+insert into Companias values ('TerminalX','Atenea 1526',22003659)
+insert into Companias values ('TerminalA','Asencio 1523',22006659)
+insert into Companias values ('TerminalB','Agraciada 1526',22009659)
+insert into Companias values ('TerminalC','Uruguay 1526',23003659)
+insert into Companias values ('TerminalD','Gimenez 3526',22003759)
 --select * from Empleados
+--select * from Companias
