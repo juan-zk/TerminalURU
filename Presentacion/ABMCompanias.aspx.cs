@@ -39,7 +39,7 @@ namespace Presentacion
 
                 if ((Compañia)Session["compania"] != null)
                 {
-                    txtDir.Text = ((Compañia)Session["compania"])._Nombre;
+                    txtDir.Text = ((Compañia)Session["compania"])._Direccion;
                     txtTel.Text = ((Compañia)Session["compania"])._Telefono.ToString();
                     btnEliminar.Enabled = true;
                     btnModificar.Enabled = true;
@@ -58,8 +58,19 @@ namespace Presentacion
         {
             try
             {
-                Compañia comp = new Compañia(txtNombre.Text, txtDir.Text, Convert.ToInt32(txtTel.Text.Trim()));
+                Compañia comp = new Compañia(txtNombre.Text, txtDir.Text, txtTel.Text.Trim());
                 Logica.FabricaLogica.GetLogicaCompania().Agregar(comp);
+            }
+            catch (Exception ex)
+            { lblMsj.Text = ex.Message; }
+        }
+
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            try
+            {   //no crear objeto nuevo modificar el de session
+                Compañia comp = new Compañia(txtNombre.Text, txtDir.Text, txtTel.Text.Trim());
+                Logica.FabricaLogica.GetLogicaCompania().Modificar(comp);
             }
             catch (Exception ex)
             { lblMsj.Text = ex.Message; }

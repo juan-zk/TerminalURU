@@ -10,7 +10,7 @@ namespace EntidadesCompartidas
        // Atributos 
        private string Nombre;
        private string Direccion;
-       private int Telefono;
+       private string Telefono;
 
        // Propiedades
        public string _Nombre
@@ -37,12 +37,12 @@ namespace EntidadesCompartidas
            }
        }
 
-       public int _Telefono
+       public string _Telefono
        {
            get { return Telefono; }
            set
            {
-               if (value>0)
+               if (value.Length>0)
                    Telefono = value;
                else
                    throw new Exception("El telefono no puede ser vacio.");
@@ -50,7 +50,7 @@ namespace EntidadesCompartidas
        }
 
        // Constructor
-       public Compañia(string pNombre, string pDireccion, int pTelefono)
+       public Compañia(string pNombre, string pDireccion, string pTelefono)
        {
            _Nombre = pNombre;
            _Direccion = pDireccion;

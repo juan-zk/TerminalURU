@@ -11,5 +11,9 @@ namespace Logica
         Compañia Buscar(string pNombre);
 
         void Agregar(Compañia pComp);
+
+        void Modificar(Compañia pComp);
+
+
     }
 }

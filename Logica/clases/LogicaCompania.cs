@@ -26,5 +26,9 @@ namespace Logica
         {
             FabricaPersistencia.GetPersistenciaCompania().Agregar(pComp);
         }
+        public void Modificar(Compañia pComp)
+        {
+            FabricaPersistencia.GetPersistenciaCompania().Modificar(pComp);
+        }
     }
 }

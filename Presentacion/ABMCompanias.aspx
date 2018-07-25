@@ -141,7 +141,7 @@
         </td>
         <td class="style16">
             <asp:Button ID="btnModificar" runat="server" CssClass="btns" Text="Modificar" 
-                Width="100%" Enabled="False" />
+                Width="100%" Enabled="False" onclick="btnModificar_Click" />
         </td>
         <td class="style16">
             <asp:Button ID="btnAgregar" runat="server" CssClass="btns" Text="Agregar" 

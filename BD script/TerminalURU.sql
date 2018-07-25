@@ -26,7 +26,7 @@ Create Table Companias
 (
 	nombre varchar(200) Not Null Primary Key,
 	direccion varchar(200),
-	telefono int unique,
+	telefono varchar(20) unique,
 )
 go
 
@@ -112,7 +112,7 @@ go
 -- INSERTA UNA COMPAÑIA
 create proc agregarCompania
 @nombre varchar(200),
-@tel int,
+@tel varchar(20),
 @direccion varchar(200)
 as
 begin
@@ -132,19 +132,19 @@ go
 -- MODIFICA UNA COMPAÑIA
 create proc modificarCompania
 @nombre varchar(200),
-@tel int,
+@tel varchar(20),
 @direccion varchar(200)
 as
 begin 
 	declare @respuesta int
 	update Companias 
-	set nombre = @nombre,
-		direccion = @direccion,
+	set direccion = @direccion,
 		telefono = @tel
 	where nombre = @nombre
 	set @respuesta = @@ERROR
-	if @respuesta <> 0
-		return -1 /*ERROR SQL*/
+	if @respuesta = 0
+		return 0;
+	else return -1 /*ERROR SQL*/
 end 
 go
 

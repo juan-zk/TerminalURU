@@ -39,7 +39,7 @@ namespace Persistencia
                 {
                     compania = new Compañia((string)lector["nombre"],
                                         (string)lector["direccion"],
-                                        (int)lector["telefono"]);
+                                        (string)lector["telefono"]);
                 }
                 lector.Close();
             }
@@ -79,6 +79,37 @@ namespace Persistencia
                 if (respuesta == 0)
                     throw new Exception("Compañia agregada correctamente.");
 
+            }
+            catch (Exception ex)
+            { throw ex; }
+            finally
+            { cnn.Close(); }
+        }
+
+        /*MODIFICAR*/
+        public void Modificar(Compañia pComp)
+        {
+            SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
+
+            SqlCommand cmd = new SqlCommand("modificarCompania", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@nombre", pComp._Nombre);
+            cmd.Parameters.AddWithValue("@direccion", pComp._Direccion);
+            cmd.Parameters.AddWithValue("@tel", pComp._Telefono);
+   
+
+            SqlParameter resSQL = new SqlParameter();
+            resSQL.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add(resSQL);
+            try
+            {
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+                int respuesta = (int)resSQL.Value;
+                if (respuesta == -1)
+                    throw new Exception("ERROR SQL, no se pudo completar su petición");
+                if (respuesta == 0)
+                    throw new Exception("Compañia modificada correctamente.");
             }
             catch (Exception ex)
             { throw ex; }
