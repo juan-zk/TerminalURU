@@ -76,23 +76,6 @@ body
     transition: all .3s;
 }
 
-/* Submenu*/
-
-.submenu{
-    position: absolute;
-    background: #415C71;
-    visibility: hidden;
-    opacity: 0;
-    transition:  opacity .3s;
-}
-
-.submenu li a{
-    display: block;
-    padding: 15px;
-    color: #fff;
-    text-decoration: none;
-}
-
 .menu li:hover .submenu{
     visibility: visible;
     opacity: 1;

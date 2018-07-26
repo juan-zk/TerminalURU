@@ -12,26 +12,51 @@
 <body style="margin: 0px;">
     <form id="form1" runat="server" >
     <div>
-        <nav class="navegacion">
-                   <ul class="menu">
-                        <li><a href="Inicio.aspx">Inicio</a></li>
-                        <li><a href="#">Viajes</a>
-                            <ul class="submenu">
-                                <li><a href="ViajesInter.aspx">Internacionales</a></li>
-                                <li><a href="ViajesNacionales.aspx">Nacionales</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="ABMterminales.aspx">Terminales</a></li>
-                        <li><a href="ABMCompanias.aspx">Compañias</a></li>
-                        <li><a href="ABMempleado.aspx">Empleados</a></li>
+        <div class="navegacion">
+            <table style="border-style: none; width: 100%;" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="80%">
+                        &nbsp;
+                    <asp:Menu ID="menuPrincipal" Orientation="Horizontal" runat="server" 
+                CssClass="menu" ForeColor="White" StaticEnableDefaultPopOutImage="False" 
+                Width="80%" >
+                <DynamicHoverStyle BackColor="#4EBAAB" />
+                <DynamicMenuItemStyle BackColor="#415C71" 
+                    VerticalPadding="15px" HorizontalPadding="15px" />
+                <DynamicMenuStyle BackColor="#415C71" />
+                <Items>
+                    <asp:MenuItem Text="Inicio" Value="Inicio" NavigateUrl="~/Inicio.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text="Viajes" Value="Viajes">
+                        <asp:MenuItem Text="Internacionales" Value="Internacionales" 
+                            NavigateUrl="~/ViajesInter.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="Nacionales" Value="Nacionales" 
+                            NavigateUrl="~/ViajesNacionales.aspx"></asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Compañias" Value="Compañias" 
+                        NavigateUrl="~/ABMCompanias.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text="Terminales" Value="Terminales" 
+                        NavigateUrl="~/ABMterminales.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text="Empleados" Value="Empleados" 
+                        NavigateUrl="~/ABMempleado.aspx"></asp:MenuItem>
+                </Items>
+                <StaticHoverStyle BackColor="#4EBAAB" />
+                <StaticMenuItemStyle VerticalPadding="15px" Font-Underline="False" 
+                    HorizontalPadding="15px" />
+        </asp:Menu>
+                    </td>
+                    <td width="20%">
                         <div class="item-r">
                         <asp:Label ID="lblUsuario" runat="server" ForeColor="White" Font-Bold="True" 
                                 Font-Names="Century Gothic">Usuario</asp:Label>
                         <asp:LinkButton ID="lbtnSalir" runat="server" ForeColor="#4EBAAB" 
                                 PostBackUrl="~/Default.aspx" Font-Names="Century Gothic">Salir</asp:LinkButton>
-                        </div>                        		            
-                   </ul>
-        </nav>
+            </div>
+                    </td>
+                </tr>
+                </table>
+            
+
+        </div>
         <table class="tablaForm">
             <tr>
                 <td>
