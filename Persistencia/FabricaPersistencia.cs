@@ -10,5 +10,9 @@ namespace Persistencia
         public static IPersistenciaEmpleado GetPersistenciaEmpleado() {
             return (PersistenciaEmpleado.GetInstancia());
         }
+        public static IPersistenciaCompania GetPersistenciaCompania()
+        {
+            return (PersistenciaCompania.GetInstancia());
+        }
     }
 }

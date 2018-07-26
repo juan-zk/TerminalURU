@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EntidadesCompartidas;
 
-namespace Persistencia.interfaces
+namespace Persistencia
 {
-    interface IPersistenciaCompania
+    public interface IPersistenciaCompania
     {
+        Compañia Buscar(string pNombre);
+
+        void Agregar(Compañia pComp);
+
+        void Modificar(Compañia pComp);
     }
 }

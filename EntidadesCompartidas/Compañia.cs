@@ -42,7 +42,7 @@ namespace EntidadesCompartidas
            get { return Telefono; }
            set
            {
-               if (value.Length > 0)
+               if (value.Length>0)
                    Telefono = value;
                else
                    throw new Exception("El telefono no puede ser vacio.");

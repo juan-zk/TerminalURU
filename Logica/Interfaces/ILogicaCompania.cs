@@ -2,10 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EntidadesCompartidas;
 
-namespace Logica.Interface
+namespace Logica
 {
-    interface ILogicaCompania
+    public interface ILogicaCompania
     {
+        Compañia Buscar(string pNombre);
+
+        void Agregar(Compañia pComp);
+
+        void Modificar(Compañia pComp);
+
+
     }
 }

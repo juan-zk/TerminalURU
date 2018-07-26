@@ -26,7 +26,7 @@ Create Table Companias
 (
 	nombre varchar(200) Not Null Primary Key,
 	direccion varchar(200),
-	telefono int unique,
+	telefono varchar(20) unique,
 )
 go
 
@@ -112,35 +112,39 @@ go
 -- INSERTA UNA COMPAÑIA
 create proc agregarCompania
 @nombre varchar(200),
-@tel int,
+@tel varchar(20),
 @direccion varchar(200)
 as
 begin
-
+	declare @aux int
 	if exists(select nombre from Companias where nombre = @nombre)
 		return -1 /* sale cuando ya existe la compañia */
 
 	insert into Companias
 	values(@nombre, @direccion, @tel)
+	set @aux=@@ERROR
+	if @aux=0 
+	return 0;
+	else return -2
 end
 go
 
 -- MODIFICA UNA COMPAÑIA
 create proc modificarCompania
 @nombre varchar(200),
-@tel int,
+@tel varchar(20),
 @direccion varchar(200)
 as
 begin 
 	declare @respuesta int
 	update Companias 
-	set nombre = @nombre,
-		direccion = @direccion,
+	set direccion = @direccion,
 		telefono = @tel
 	where nombre = @nombre
 	set @respuesta = @@ERROR
-	if @respuesta <> 0
-		return -1 /*ERROR SQL*/
+	if @respuesta = 0
+		return 0;
+	else return -1 /*ERROR SQL*/
 end 
 go
 
@@ -235,4 +239,10 @@ go
 
 insert into Empleados values ('49850767','Juan Acosta','123456')
 insert into Empleados values ('12345678','Jose Gervasio Artigas','123456')
+insert into Companias values ('TerminalX','Atenea 1526',22003659)
+insert into Companias values ('TerminalA','Asencio 1523',22006659)
+insert into Companias values ('TerminalB','Agraciada 1526',22009659)
+insert into Companias values ('TerminalC','Uruguay 1526',23003659)
+insert into Companias values ('TerminalD','Gimenez 3526',22003759)
 --select * from Empleados
+--select * from Companias
