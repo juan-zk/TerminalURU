@@ -20,3 +20,14 @@ C:\Users\Florencia\Documents\GitHub\TerminalURU\Presentacion\bin\Persistencia.pd
 C:\Users\Florencia\Documents\GitHub\TerminalURU\Presentacion\obj\Debug\Presentacion.csprojResolveAssemblyReference.cache
 C:\Users\Florencia\Documents\GitHub\TerminalURU\Presentacion\obj\Debug\Presentacion.dll
 C:\Users\Florencia\Documents\GitHub\TerminalURU\Presentacion\obj\Debug\Presentacion.pdb
+C:\Users\fer\Documents\GitHub\TerminalURU\Presentacion\obj\Debug\Presentacion.csprojResolveAssemblyReference.cache
+C:\Users\fer\Documents\GitHub\TerminalURU\Presentacion\obj\Debug\Presentacion.dll
+C:\Users\fer\Documents\GitHub\TerminalURU\Presentacion\bin\Presentacion.dll
+C:\Users\fer\Documents\GitHub\TerminalURU\Presentacion\bin\Presentacion.pdb
+C:\Users\fer\Documents\GitHub\TerminalURU\Presentacion\bin\EntidadesCompartidas.dll
+C:\Users\fer\Documents\GitHub\TerminalURU\Presentacion\bin\Logica.dll
+C:\Users\fer\Documents\GitHub\TerminalURU\Presentacion\bin\Persistencia.dll
+C:\Users\fer\Documents\GitHub\TerminalURU\Presentacion\bin\EntidadesCompartidas.pdb
+C:\Users\fer\Documents\GitHub\TerminalURU\Presentacion\bin\Logica.pdb
+C:\Users\fer\Documents\GitHub\TerminalURU\Presentacion\bin\Persistencia.pdb
+C:\Users\fer\Documents\GitHub\TerminalURU\Presentacion\obj\Debug\Presentacion.pdb

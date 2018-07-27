@@ -12,3 +12,10 @@ C:\Users\Florencia\Documents\GitHub\TerminalURU\Persistencia\bin\Debug\Entidades
 C:\Users\Florencia\Documents\GitHub\TerminalURU\Persistencia\obj\Debug\Persistencia.csprojResolveAssemblyReference.cache
 C:\Users\Florencia\Documents\GitHub\TerminalURU\Persistencia\obj\Debug\Persistencia.dll
 C:\Users\Florencia\Documents\GitHub\TerminalURU\Persistencia\obj\Debug\Persistencia.pdb
+C:\Users\fer\Documents\GitHub\TerminalURU\Persistencia\obj\Debug\Persistencia.csprojResolveAssemblyReference.cache
+C:\Users\fer\Documents\GitHub\TerminalURU\Persistencia\obj\Debug\Persistencia.dll
+C:\Users\fer\Documents\GitHub\TerminalURU\Persistencia\obj\Debug\Persistencia.pdb
+C:\Users\fer\Documents\GitHub\TerminalURU\Persistencia\bin\Debug\Persistencia.dll
+C:\Users\fer\Documents\GitHub\TerminalURU\Persistencia\bin\Debug\Persistencia.pdb
+C:\Users\fer\Documents\GitHub\TerminalURU\Persistencia\bin\Debug\EntidadesCompartidas.dll
+C:\Users\fer\Documents\GitHub\TerminalURU\Persistencia\bin\Debug\EntidadesCompartidas.pdb
