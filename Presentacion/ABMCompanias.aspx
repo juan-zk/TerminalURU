@@ -70,7 +70,8 @@
             <asp:Label ID="Label1" runat="server" Text="Nombre"></asp:Label>
         </td>
         <td class="style26">
-            <asp:TextBox ID="txtNombre" runat="server" style="text-align: left"></asp:TextBox>
+            <asp:TextBox ID="txtNombre" runat="server" style="text-align: left" 
+                CssClass="txt"></asp:TextBox>
         </td>
         <td class="style26">
             <asp:Button ID="tnBuscar" runat="server" CssClass="btns" Text="Buscar" 
@@ -99,7 +100,7 @@
             <asp:Label ID="lblTel" runat="server" Text="Teléfono"></asp:Label>
         </td>
         <td class="style25" colspan="2">
-            <asp:TextBox ID="txtTel" runat="server" style="text-align: left"></asp:TextBox>
+            <asp:TextBox ID="txtTel" runat="server" style="text-align: left" CssClass="txt"></asp:TextBox>
         </td>
     </tr>
     <tr>
@@ -113,7 +114,7 @@
             <asp:Label ID="lblDir" runat="server" Text="Dirección"></asp:Label>
         </td>
         <td class="style25" colspan="2">
-            <asp:TextBox ID="txtDir" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtDir" runat="server" CssClass="txt"></asp:TextBox>
         </td>
     </tr>
     <tr>

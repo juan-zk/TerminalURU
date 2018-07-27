@@ -69,7 +69,7 @@
                 <asp:Label ID="lblNum" runat="server" Text="Número"></asp:Label>
             </td>
             <td class="style22">
-                <asp:TextBox ID="txtNum" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtNum" runat="server" CssClass="txt"></asp:TextBox>
             </td>
             <td class="style12">
                 <asp:Button ID="btnBuscar" runat="server" CssClass="btns" Text="Buscar" />
@@ -97,7 +97,7 @@
                 <asp:Label ID="lblCom" runat="server" Text="Compañia"></asp:Label>
             </td>
             <td class="style12">
-                <asp:TextBox ID="txtCompania" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtCompania" runat="server" CssClass="txt"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -111,7 +111,7 @@
                 <asp:Label ID="lblDestino" runat="server" Text="Destino"></asp:Label>
             </td>
             <td class="style12">
-                <asp:TextBox ID="txtTerminal" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtTerminal" runat="server" CssClass="txt"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -126,7 +126,7 @@
                     Text="Fecha de Partida"></asp:Label>
             </td>
             <td class="style12">
-                <asp:TextBox ID="txtFechaPartida" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtFechaPartida" runat="server" CssClass="txt"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -140,7 +140,7 @@
                 <asp:Label ID="lblFarribo" runat="server" Text="Fecha de Arribo"></asp:Label>
             </td>
             <td class="style12">
-                <asp:TextBox ID="txtFechaArribo" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtFechaArribo" runat="server" CssClass="txt"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -154,7 +154,7 @@
                 <asp:Label ID="lblCAsientos" runat="server" Text="Cantidad de Asientos"></asp:Label>
             </td>
             <td class="style12">
-                <asp:TextBox ID="txtCantidadAsientos" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtCantidadAsientos" runat="server" CssClass="txt"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -168,7 +168,7 @@
                 <asp:Label ID="lblUltEmpleado" runat="server" Text="Último Empleado"></asp:Label>
             </td>
             <td class="style12">
-                <asp:TextBox ID="txtEmpleado" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtEmpleado" runat="server" CssClass="txt"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -182,7 +182,7 @@
                 <asp:Label ID="lblDoc" runat="server" Text="Documentación"></asp:Label>
             </td>
             <td class="style12">
-                <asp:TextBox ID="txtDocumentacion" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtDocumentacion" runat="server" CssClass="txt"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -217,4 +217,5 @@
             </td>
         </tr>
     </table>
+    <br />
 </asp:Content>
