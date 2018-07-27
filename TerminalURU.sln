@@ -9,6 +9,27 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logica", "Logica\Logica.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntidadesCompartidas", "EntidadesCompartidas\EntidadesCompartidas.csproj", "{0A9A30AC-9EBE-4DAD-A41D-7499E8F221B7}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SitioConsulta", "SitioConsulta\", "{7FF16A2D-9976-4975-BB43-6B353860B283}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/SitioConsulta"
+		Debug.AspNetCompiler.PhysicalPath = "SitioConsulta\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\SitioConsulta\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/SitioConsulta"
+		Release.AspNetCompiler.PhysicalPath = "SitioConsulta\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\SitioConsulta\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "57575"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +52,10 @@ Global
 		{0A9A30AC-9EBE-4DAD-A41D-7499E8F221B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A9A30AC-9EBE-4DAD-A41D-7499E8F221B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A9A30AC-9EBE-4DAD-A41D-7499E8F221B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FF16A2D-9976-4975-BB43-6B353860B283}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FF16A2D-9976-4975-BB43-6B353860B283}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FF16A2D-9976-4975-BB43-6B353860B283}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FF16A2D-9976-4975-BB43-6B353860B283}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
