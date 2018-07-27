@@ -44,7 +44,7 @@
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table class="style1">
+    <table align="center" width="100%">
     <tr>
         <td class="style9" colspan="3">
             &nbsp;</td>
@@ -71,7 +71,8 @@
             <asp:Label ID="Label1" runat="server" Text="Cedula:"></asp:Label>
         </td>
         <td class="style26">
-            <asp:TextBox ID="txtCedula" runat="server" style="text-align: left"></asp:TextBox>
+            <asp:TextBox ID="txtCedula" runat="server" style="text-align: left" 
+                CssClass="txt"></asp:TextBox>
         </td>
         <td class="style26">
             <asp:Button ID="btnBuscar" runat="server" CssClass="btns" Text="Buscar" 
@@ -100,7 +101,8 @@
             <asp:Label ID="lblTel" runat="server" Text="Contraseña:"></asp:Label>
         </td>
         <td class="style25" colspan="2">
-            <asp:TextBox ID="txtContraseña" runat="server" style="text-align: left"></asp:TextBox>
+            <asp:TextBox ID="txtContraseña" runat="server" style="text-align: left" 
+                CssClass="txt"></asp:TextBox>
         </td>
     </tr>
     <tr>
@@ -114,7 +116,7 @@
             <asp:Label ID="lblDir" runat="server" Text="Nombre Completo:"></asp:Label>
         </td>
         <td class="style25" colspan="2">
-            <asp:TextBox ID="txtNombreCompleto" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtNombreCompleto" runat="server" CssClass="txt"></asp:TextBox>
         </td>
     </tr>
     <tr>
@@ -148,6 +150,14 @@
             <asp:Button ID="btnAgregar" runat="server" CssClass="btns" Text="Agregar" 
                 Width="100%" Enabled="False" onclick="btnAgregar_Click" />
         </td>
+    </tr>
+    <tr>
+        <td class="style22">
+            &nbsp;</td>
+        <td class="style16">
+            &nbsp;</td>
+        <td class="style16">
+            &nbsp;</td>
     </tr>
 </table>
 </asp:Content>

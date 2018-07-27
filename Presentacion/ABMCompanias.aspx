@@ -43,7 +43,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table class="style1">
+    <table align="center" width="100%">
     <tr>
         <td class="style9" colspan="3">
             &nbsp;</td>
@@ -99,7 +99,7 @@
         <td class="style22">
             <asp:Label ID="lblTel" runat="server" Text="Teléfono"></asp:Label>
         </td>
-        <td class="style25" colspan="2">
+        <td class="style25" colspan="2" align="center">
             <asp:TextBox ID="txtTel" runat="server" style="text-align: left" CssClass="txt"></asp:TextBox>
         </td>
     </tr>
@@ -148,6 +148,14 @@
             <asp:Button ID="btnAgregar" runat="server" CssClass="btns" Text="Agregar" 
                 Width="100%" Enabled="False" onclick="btnAgregar_Click" />
         </td>
+    </tr>
+    <tr>
+        <td class="style22">
+            &nbsp;</td>
+        <td class="style16">
+            &nbsp;</td>
+        <td>
+            &nbsp;</td>
     </tr>
 </table>
 </asp:Content>
