@@ -26,7 +26,7 @@ body
     color:White;
     transition: all .3s;
 }
-.txt {
+#textbox {
     border:2px solid #deebf2;
     border-radius:4px;
     margin: 8px 0;

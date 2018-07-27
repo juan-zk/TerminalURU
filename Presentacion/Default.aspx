@@ -11,10 +11,6 @@
         {
             height: 70px;
         }
-        .style2
-        {
-            height: 69px;
-        }
         .style3
         {
             height: 75px;
@@ -51,13 +47,13 @@
                                         TerminalURU Login</td>
                                 </tr>
                                 <tr>
-                                    <td align="center">
+                                    <td align="center" valign="bottom">
                                         <asp:TextBox ID="UserName" runat="server" Font-Size="Small" Width="90%" placeholder="Usuario" 
                                             CssClass="txt"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="center">
+                                    <td align="center" valign="middle">
                                         <asp:TextBox ID="Password" runat="server" Font-Size="Small" TextMode="Password" 
                                             Width="90%" placeholder="Contraseña" CssClass="txt"></asp:TextBox>
                                     </td>
@@ -82,8 +78,7 @@
                                 </tr>
                                 <tr>
                                     <td align="center">
-                                        <asp:HyperLink ID="CreateUserLink" runat="server" Font-Bold="False">Registrarse</asp:HyperLink>
-                                    </td>
+                                        &nbsp;</td>
                                 </tr>
                             </table>
                         </td>
