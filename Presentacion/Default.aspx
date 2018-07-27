@@ -53,7 +53,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="center" valign="middle">
+                                    <td align="center" valign="bottom">
                                         <asp:TextBox ID="Password" runat="server" Font-Size="Small" TextMode="Password" 
                                             Width="90%" placeholder="Contraseña" CssClass="txt"></asp:TextBox>
                                     </td>

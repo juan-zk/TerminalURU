@@ -13,5 +13,17 @@ namespace Presentacion
         {
 
         }
+
+        protected void btnBorraFacilidad_Click(object sender, EventArgs e)
+        {
+            lstFacilidad.Items.Remove(lstFacilidad.SelectedItem);
+        }
+
+        protected void btnAgregaFacilidad_Click(object sender, EventArgs e)
+        {
+            if (txtFacilidad.Text != "")
+                lstFacilidad.Items.Add(txtFacilidad.Text);
+            txtFacilidad.Text = "";
+        }
     }
 }

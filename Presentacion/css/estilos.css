@@ -26,19 +26,7 @@ body
     color:White;
     transition: all .3s;
 }
-.txt {
-    border:2px solid #deebf2;
-    border-radius:4px;
-    margin: 8px 0;
-    outline: none;
-    padding: 8px;
-    box-sizing: border-box;
-    transition: .3s;
-}
-.txt:focus{
-    border-color: #4ebaab;
-    box-shadow: 0 0 8px 0 dodgerBlue;
-}
+
 /*-----------------------------------------------------------------*/
 /*MASTER PAGE------------------------------------------------------*/
 .navegacion{
@@ -93,6 +81,7 @@ body
     background: #fff;
 }
 /*------------------------------------------------------------------*/
+/*-------FORMS -----------------------------------*/
 .title
 {
     font-size: 20px;
@@ -114,4 +103,45 @@ body
     background: #6fcec1;
     transition: all .3s;
 }
+.txt {
+    border:2px solid #deebf2;
+    border-radius:4px;
+    margin: 2px 0;
+    outline: none;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: .3s;
+}
+.txt:focus{
+    border-color: #4ebaab;
+    box-shadow: 0 0 8px 0 dodgerBlue;
+}
 
+.btnA{
+    color: White;
+    margin: 2px 0;
+    border-radius:4px;
+    background: #4ebaab;
+    border: 0;
+    font-weight:bold;
+    font-size: 15px;
+    padding: 8px;
+}
+.btnA:hover{
+    background: #6fcec1;
+    transition: all .3s;
+}
+
+.btnQ{
+    color: White;
+    margin: 2px 0;
+    border-radius:4px;
+    background: #bf4444;
+    border: 0;
+    font-weight:bold;
+    font-size: 15px;
+}
+.btnQ:hover{
+    background: #d65959;
+    transition: all .3s
+}
