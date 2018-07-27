@@ -360,6 +360,43 @@ begin
 end
 
 go
+
+-- ELIMINA UN VIAJE INTER
+create proc eliminarViajeInter
+--alter proc eliminarAdmin
+@numero int
+as
+begin
+	
+	declare @resultado int
+	
+	if not exists (select * from Viajes where numViaje=@numero)
+	return -1 --no existe viaje
+		
+	begin tran
+		delete from Viajes where numViaje = @numero
+		set @resultado = @@ERROR
+		if @resultado <> 0
+		begin
+			rollback
+			return -2 /*error al eliminar un viaje*/
+		end
+		else
+		delete from viajesInternaionales where numViaje = @numero
+		set @resultado = @@ERROR
+		if @resultado <> 0
+		begin
+			rollback
+			return -3 /*error al eliminar un viaje inter*/
+		end
+		
+		else
+		begin
+			commit tran
+			return 1 --todo ok
+		end
+end
+go
 ----------------------------------------------------------
 
 insert into Empleados values ('49850767','Juan Acosta','123456')
