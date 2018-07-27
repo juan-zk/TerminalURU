@@ -41,7 +41,7 @@ go
 
 Create Table Terminales
 (
-	codigo int Not Null Primary Key constraint CHK_codigo check (codigo like '[Aa-Zz][Aa-Zz][Aa-Zz]'),--buscar 
+	codigo varchar(3) Not Null Primary Key constraint CHK_codigo check (codigo like '[Aa-Zz][Aa-Zz][Aa-Zz]'),--buscar 
 	ciudad varchar(100),
 	pais varchar(100),
 	baja bit default 0
@@ -50,7 +50,7 @@ go
 
 create table FacilidadTerminales
 (
-	codigoTerminal int not null,
+	codigoTerminal varchar(3) not null,
 	servicio varchar(100) not null,
 	primary key(codigoTerminal, servicio),
 	foreign key (codigoTerminal) references Terminales(codigo)
@@ -61,7 +61,7 @@ Create Table Viajes
 (
 	numViaje int not null Primary Key,
 	nomCompania  varchar(200) not null Foreign Key References Companias(nombre),
-	codTerminal int not null Foreign Key References Terminales(codigo),
+	codTerminal varchar(3) not null Foreign Key References Terminales(codigo),
 	fechaHoraPartida Date,
 	fechaHoraArribo Date,
 	cantidadAsientos int,
@@ -165,7 +165,7 @@ go
 ---MANEJO DE TERMINALES-----------------------------------
 
 create proc AgregarTerminal
-@codigo int,
+@codigo varchar(3),
 @ciudad varchar(100),
 @pais varchar(100)
 as
@@ -184,7 +184,7 @@ end
 go
 
 create proc ModificarTerminal
-@codigo int,
+@codigo varchar(3),
 @ciudad varchar(100),
 @pais varchar(100)
 as
@@ -201,7 +201,7 @@ end
 go
 
 create proc EliminarTerminal
-@codigo int
+@codigo varchar(3)
 as
 begin
 	if not exists (select * from terminales where codigo=@codigo)
@@ -231,6 +231,76 @@ begin
 			end
 		commit tran -- si llego aca fue todo ok
 		return 1 -- se elimino
+end
+go
+--------MANEJO VIAJES INTERNACIONALES-------------------
+
+-- RETORNA UN VIAJE INTER
+create proc buscarViajeInter
+@numero int
+as
+begin
+	select	v.numViaje as 'numero',
+			v.nomCompania as 'nombreCompañia',
+			v.codTerminal as 'codigoTerminal',
+			v.fechaHoraPartida as 'fechaHoraPartida',
+			v.fechaHoraArribo as 'fechaHoraArribo',
+			v.cantidadAsientos as 'cantidadAsientos',
+			v.cedulaEmpleado as 'cedulaEmpleado',
+			vi.servicioAbordo as 'servicioAbordo',
+			vi.documentacion as 'documentacion' 
+	from viajes v join viajesInternacionales vi
+	on (v.numViaje = vi.numViaje) and vi.numViaje=@numero
+end
+go
+
+-- INSERTA UN VIAJE INTER
+create proc agregarViajeInter
+@numero int,
+@nombreCompania varchar(200),
+@codTerminal varchar(3),
+@fechaHoraPartida date,
+@fechaHoraArribo date,
+@cantidadAsientos int,
+@cedulaEmpleado varchar(8),
+@servicioAbordo bit,
+@documentacion varchar(300)
+as
+begin
+	declare @resultado int
+
+	if exists (select * from Viajes where numViaje=@numero)
+		return -1 -- error ya existe viaje
+		
+	if not exists (select * from Companias where nombre=@nombreCompania)
+		return -2 -- error no existe compañia
+		
+	if not exists (select * from Terminales where codigo=@codTerminal)
+		return -3 -- error no existe terminal
+		
+	if not exists (select * from Empleados where cedula=@cedulaEmpleado)
+		return -4 -- error no existe empleado
+		
+	begin tran
+		insert into Viajes values (@numero, @nombreCompania, @codTerminal, @fechaHoraPartida, @fechaHoraArribo, @cantidadAsientos, @cedulaEmpleado)
+		set @resultado = @@ERROR
+		if @resultado <> 0
+		begin
+			rollback
+			return -5 /*error al insertar viaje*/
+		end
+		insert into viajesInternacionales values(@numero, @servicioAbordo, @documentacion)
+		set @resultado = @@ERROR
+		if @resultado <> 0
+		begin
+			rollback
+			return -6 /*error al insertar viaje internacional*/
+		end
+		else
+		begin
+			commit tran
+			return 1
+		end
 end
 go
 
