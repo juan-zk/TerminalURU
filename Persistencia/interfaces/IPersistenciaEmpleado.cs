@@ -9,5 +9,11 @@ namespace Persistencia
     public interface IPersistenciaEmpleado
     {
         Empleado Logueo(string pUsuario, string pPass);
+
+        Empleado Buscar(string pCedula);
+
+        void Agregar(Empleado pEmp);
+
+        void Modificar(Empleado pEmp); 
     }
 }

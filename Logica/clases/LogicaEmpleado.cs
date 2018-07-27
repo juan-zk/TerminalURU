@@ -22,5 +22,18 @@ namespace Logica
         public Empleado Logueo(string pUsuario, string pPass) {
             return FabricaPersistencia.GetPersistenciaEmpleado().Logueo(pUsuario,pPass);
         }
+
+        public Empleado Buscar(string pCedula)
+        { return FabricaPersistencia.GetPersistenciaEmpleado().Buscar(pCedula); }
+
+        public void Agregar(Empleado pEmp)
+        {
+            FabricaPersistencia.GetPersistenciaEmpleado().Agregar(pEmp);
+        }
+
+        public void Modificar(Empleado pEmp)
+        {
+            FabricaPersistencia.GetPersistenciaEmpleado().Modificar(pEmp);
+        }
     }
 }

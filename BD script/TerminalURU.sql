@@ -94,7 +94,33 @@ begin
 	select cedula,pass,nombreCompleto from Empleados where cedula=@cedula and pass=@pass
 end
 go
+Create Proc BuscarEmpleado @Cedula varchar(200) as
+begin
+	select * from Empleados where cedula = @Cedula
+end
+go
+Create Proc AgregarEmpleado  @Cedula varchar(200),@Contraseña varchar(200),@NombreCompleto varchar(200) as
+declare @aux int
+if exists(select cedula from Empleados where cedula = @Cedula)
+return -1
 
+insert into Empleados values(@Cedula,@NombreCompleto,@Contraseña)
+set @aux=@@ERROR
+	if @aux=0 
+	return 0;
+	else return -2
+go
+Create Proc ModificarEmpleado @Cedula varchar(200), @Contraseña varchar(200), @NombreCompleto varchar(200) as
+begin
+declare @respuesta int
+update Empleados set nombreCompleto = @NombreCompleto, pass = @Contraseña where cedula = @Cedula
+set @respuesta = @@ERROR
+	if @respuesta = 0
+		return 0;
+	else return -1
+
+end
+go
 
 /***********************
 	SP DE COMPAÑIAS
@@ -304,7 +330,99 @@ begin
 end
 go
 
+-- MODIFICA UN VIAJE INTER
+create proc modificarViajeInter
+@numero int,
+@nombreCompania varchar(200),
+@codTerminal varchar(3),
+@fechaHoraPartida date,
+@fechaHoraArribo date,
+@cantidadAsientos int,
+@cedulaEmpleado varchar(8),
+@servicioAbordo bit,
+@documentacion varchar(300)
+as
+begin
+	
+	declare @resultado int
+		
+	if not exists (select * from Viajes where numViaje=@numero)
+	return -1--no existe el viaje
+	
+	if not exists (select * from Companias where nombre=@nombreCompania)
+		return -2 -- error no existe compañia
+		
+	if not exists (select * from Terminales where codigo=@codTerminal)
+		return -3 -- error no existe terminal
+		
+	if not exists (select * from Empleados where cedula=@cedulaEmpleado)
+		return -4 -- error no existe empleado
 
+	begin tran
+		update Viajes set nomCompania=@nombreCompania,
+						  codTerminal = @codTerminal,
+						  fechaHoraPartida=@fechaHoraPartida,
+						  fechaHoraArribo=@fechaHoraArribo,
+						  cantidadAsientos=@cantidadAsientos,
+						  cedulaEmpleado=@cedulaEmpleado
+		set @resultado = @@ERROR
+		if @resultado <> 0
+		begin
+			rollback
+			return -5 /*error al modificar viaje*/
+		end
+		update viajesInternacionales set servicioAbordo=@servicioAbordo, documentacion=@documentacion where numViaje = @numero
+		set @resultado = @@ERROR
+		if @resultado <> 0
+		begin
+			rollback
+			return -6 /*error al modificar viaje inter*/
+		end
+		else
+		begin
+			commit tran
+			return 1 --todo ok
+		end
+end
+
+go
+
+-- ELIMINA UN VIAJE INTER
+create proc eliminarViajeInter
+--alter proc eliminarAdmin
+@numero int
+as
+begin
+	
+	declare @resultado int
+	
+	if not exists (select * from Viajes where numViaje=@numero)
+	return -1 --no existe viaje
+		
+	begin tran
+		delete from Viajes where numViaje = @numero
+		set @resultado = @@ERROR
+		if @resultado <> 0
+		begin
+			rollback
+			return -2 /*error al eliminar un viaje*/
+		end
+		else
+		delete from viajesInternaionales where numViaje = @numero
+		set @resultado = @@ERROR
+		if @resultado <> 0
+		begin
+			rollback
+			return -3 /*error al eliminar un viaje inter*/
+		end
+		
+		else
+		begin
+			commit tran
+			return 1 --todo ok
+		end
+end
+go
 ----------------------------------------------------------
 
 insert into Empleados values ('49850767','Juan Acosta','123456')
@@ -316,3 +434,5 @@ insert into Companias values ('TerminalC','Uruguay 1526',23003659)
 insert into Companias values ('TerminalD','Gimenez 3526',22003759)
 --select * from Empleados
 --select * from Companias
+go
+
