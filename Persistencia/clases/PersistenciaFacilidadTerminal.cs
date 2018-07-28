@@ -39,7 +39,7 @@ namespace Persistencia
 
         internal static void Eliminar(string cod, SqlTransaction tran)
         {
-            SqlCommand cmd = new SqlCommand("EliminarFacilidad", tran.Connection);
+            SqlCommand cmd = new SqlCommand("EliminarFacilidades", tran.Connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@codigo", cod);
 
@@ -59,6 +59,36 @@ namespace Persistencia
                     throw new Exception("Problemas con la lista de facilidades. Error de SQL");
             }
             catch (Exception ex) { throw ex; }
+        }
+
+        internal static List<string> CargarFacilidades(string cod)
+        {
+            List<string> f = null;
+            SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
+            SqlCommand cmd = new SqlCommand("ListarFacilidades", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@codigo",cod);
+            SqlParameter retorno = new SqlParameter();
+            retorno.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add(retorno);
+
+            try
+            {
+                cnn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    f = new List<string>();
+                    while (dr.Read())
+                    {
+                        f.Add((string)dr[0]);
+                    }
+                }
+            }
+            catch (Exception ex) { throw ex; }
+            finally { cnn.Close(); }
+
+            return f;
         }
     }
 }

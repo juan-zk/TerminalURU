@@ -9,6 +9,31 @@ namespace Presentacion
 {
     public partial class ABMterminales : System.Web.UI.Page
     {
+        void LimpiarCampos() {
+            txtCodigo.Text = "";
+            txtCodigo.Enabled = true;
+            ddlPais.Enabled = false;
+            txtCiudad.Text = "";
+            txtCiudad.Enabled = false;
+            lstFacilidad.Items.Clear();
+            lstFacilidad.Enabled = false;
+            txtFacilidad.Text = "";
+            txtFacilidad.Enabled = false;
+            btnEliminar.Enabled = false;
+            btnModificar.Enabled = false;
+            btnAgregar.Enabled = false;
+        }
+        void CamposAgregar() {
+            txtCodigo.Enabled = false;
+            ddlPais.Enabled = true;
+            txtCiudad.Enabled = true;
+            lstFacilidad.Enabled = true;
+            txtFacilidad.Enabled = true;
+            btnEliminar.Enabled = false;
+            btnModificar.Enabled = false;
+            btnAgregar.Enabled = true;
+        }
+        
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -25,5 +50,6 @@ namespace Presentacion
                 lstFacilidad.Items.Add(txtFacilidad.Text);
             txtFacilidad.Text = "";
         }
+
     }
 }

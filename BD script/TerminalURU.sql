@@ -203,9 +203,9 @@ begin
 	if (@@ERROR <> 0) -- si eso salio bien
 		return 1 --retornar 1 es que se agrego una nueva terminal
 	if exists (select * from Terminales where codigo=@codigo and baja=1) -- si llegue tengo que ver al que esta agregado pero bajado
-		update Terminales set baja=0 where codigo=@codigo -- y simplemente subirle la baja logica 
+		update Terminales set pais=@pais, ciudad=@ciudad, baja=0 where codigo=@codigo -- y simplemente subirle la baja logica 
 		if (@@ERROR <> 0) -- si eso salio bien
-		return 2 -- retornar 2 va a querer decir que solo se subio el existente con sus antiguos datos
+		return 2 -- retornar 2 va a querer decir que solo se subio el existente 
 end
 go
 
@@ -259,6 +259,49 @@ begin
 		return 1 -- se elimino
 end
 go
+
+create proc BuscarTerminal
+@codigo varchar(3)
+as
+begin
+	select codigo,ciudad,pais from Terminales where codigo=@codigo
+end
+go
+
+create proc AgregarFacilidad
+@codigo varchar(3),
+@servicio varchar(100)
+as
+begin
+	insert into FacilidadTerminales (codigoTerminal,servicio) values (@codigo,@servicio)
+	if (@@ERROR <> 0)
+		return -1
+	else
+		return 1
+end
+go
+
+create proc EliminarFacilidades
+@codigo varchar(3)
+as
+begin
+	delete from FacilidadTerminales where codigoTerminal=@codigo
+	if (@@ERROR <> 0)
+		return -1
+	else
+		return 1
+end
+go
+
+create proc ListarFacilidades
+@codigo varchar(3)
+as
+begin
+	select servicio from FacilidadTerminales where codigoTerminal=@codigo
+end
+go
+
+
 --------MANEJO VIAJES INTERNACIONALES-------------------
 
 -- RETORNA UN VIAJE INTER

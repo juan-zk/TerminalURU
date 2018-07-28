@@ -61,28 +61,32 @@
         </td>
     </tr>
     <tr>
-        <td class="style22">
+        <td class="style22" width="33%">
             &nbsp;</td>
-        <td class="style25" colspan="2">
+        <td class="style25" align="center" width="33%">
+            </td>
+        <td class="style25" align="left" width="33%">
             </td>
     </tr>
     <tr>
-        <td class="style22">
+        <td class="style22" width="33%">
             <asp:Label ID="Label1" runat="server" Text="Cedula:"></asp:Label>
         </td>
-        <td class="style26">
+        <td class="style26" align="center" width="33%">
             <asp:TextBox ID="txtCedula" runat="server" style="text-align: left" 
                 CssClass="txt"></asp:TextBox>
         </td>
-        <td class="style26">
+        <td class="style26" align="left" width="33%">
             <asp:Button ID="btnBuscar" runat="server" CssClass="btns" Text="Buscar" 
                 onclick="tnBuscar_Click" />
         </td>
     </tr>
     <tr>
-        <td class="style22">
+        <td class="style22" width="33%">
             &nbsp;</td>
-        <td class="style25" colspan="2">
+        <td class="style25" align="center" width="33%">
+            &nbsp;</td>
+        <td class="style25" align="left" width="33%">
             &nbsp;</td>
     </tr>
     <tr>
@@ -91,72 +95,78 @@
         </td>
     </tr>
     <tr>
-        <td class="style22">
+        <td class="style22" align="right" width="33%">
             </td>
-        <td class="style25" colspan="2">
+        <td class="style25" align="center" width="33%">
+            &nbsp;</td>
+        <td class="style25" align="left" width="33%">
             &nbsp;</td>
     </tr>
     <tr>
-        <td class="style22">
+        <td class="style22" align="right" width="33%">
             <asp:Label ID="lblTel" runat="server" Text="Contraseña:"></asp:Label>
         </td>
-        <td class="style25" colspan="2">
+        <td class="style25" align="center" width="33%">
             <asp:TextBox ID="txtContraseña" runat="server" style="text-align: left" 
                 CssClass="txt"></asp:TextBox>
         </td>
-    </tr>
-    <tr>
-        <td class="style22">
-            &nbsp;</td>
-        <td class="style25" colspan="2">
+        <td class="style25" align="left" width="33%">
             &nbsp;</td>
     </tr>
     <tr>
-        <td class="style22">
+        <td class="style22" align="right" width="33%">
+            &nbsp;</td>
+        <td class="style25" align="center" width="33%">
+            &nbsp;</td>
+        <td class="style25" align="left" width="33%">
+            &nbsp;</td>
+    </tr>
+    <tr>
+        <td class="style22" align="right" width="33%">
             <asp:Label ID="lblDir" runat="server" Text="Nombre Completo:"></asp:Label>
         </td>
-        <td class="style25" colspan="2">
+        <td class="style25" align="center" width="33%">
             <asp:TextBox ID="txtNombreCompleto" runat="server" CssClass="txt"></asp:TextBox>
         </td>
-    </tr>
-    <tr>
-        <td class="style22">
-            &nbsp;</td>
-        <td class="style25" colspan="2">
+        <td class="style25" align="left" width="33%">
             &nbsp;</td>
     </tr>
     <tr>
-        <td class="style22">
+        <td class="style22" align="right" width="33%">
             &nbsp;</td>
-        <td class="style25" colspan="2">
+        <td class="style25" align="center" width="33%">
             &nbsp;</td>
-    </tr>
-    <tr>
-        <td class="style22">
-            &nbsp;</td>
-        <td class="style25" colspan="2">
+        <td class="style25" align="left" width="33%">
             &nbsp;</td>
     </tr>
     <tr>
-        <td class="style22">
+        <td class="style22" align="right" width="33%">
+            &nbsp;</td>
+        <td class="style16" align="center" width="33%">
+            &nbsp;</td>
+        <td class="style16" align="left" width="33%">
+            &nbsp;</td>
+    </tr>
+    <tr>
+        <td class="style22" align="right" width="33%">
             <asp:Button ID="btnEliminar" runat="server" CssClass="btns" Text="Eliminar" 
-                Width="100%" Enabled="False" onclick="btnEliminar_Click" />
+                Enabled="False" onclick="btnEliminar_Click" />
         </td>
-        <td class="style16">
+        <td class="style16" align="center" width="33%">
             <asp:Button ID="btnModificar" runat="server" CssClass="btns" Text="Modificar" 
-                Width="100%" Enabled="False" onclick="btnModificar_Click" />
+                Enabled="False" onclick="btnModificar_Click" />
         </td>
-        <td class="style16">
+        <td class="style16" align="left" width="33%">
             <asp:Button ID="btnAgregar" runat="server" CssClass="btns" Text="Agregar" 
-                Width="100%" Enabled="False" onclick="btnAgregar_Click" />
+                Enabled="False" onclick="btnAgregar_Click" />
         </td>
     </tr>
     <tr>
-        <td class="style22">
+        <td class="style22" align="right" width="33%">
             &nbsp;</td>
-        <td class="style16">
+        <td class="style16" align="center" width="33%">
             &nbsp;</td>
-        <td class="style16">
+        <td class="style16" align="left" width="33%">
             &nbsp;</td>
     </tr>
 </table>

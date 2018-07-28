@@ -9,22 +9,22 @@ using System.Data.SqlClient;
 
 namespace Persistencia
 {
-    internal class PersistenciaTerminal
+    internal class PersistenciaTerminal : IPersistenciaTerminal
     {
         //singleton
         public static PersistenciaTerminal _instancia = null;
         public PersistenciaTerminal() { }
-        public static PersistenciaTerminal GetInsancia() 
+        public static PersistenciaTerminal GetInsancia()
         {
             if (_instancia == null)
                 _instancia = new PersistenciaTerminal();
             return _instancia;
         }
-//------------------ALTA------------------------------------------------------------------------------------------
-        public void Agregar(Terminal t) 
+        //------------------ALTA------------------------------------------------------------------------------------------
+        public void Agregar(Terminal t)
         {
             SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
-            SqlCommand cmd = new SqlCommand("AgregarTerminal",cnn);
+            SqlCommand cmd = new SqlCommand("AgregarTerminal", cnn);
             cmd.Parameters.AddWithValue("@codigo", t._Codigo);
             cmd.Parameters.AddWithValue("@ciudad", t._Ciudad);
             cmd.Parameters.AddWithValue("@pais", t._Pais);
@@ -36,7 +36,7 @@ namespace Persistencia
             SqlTransaction tran = null;
 
             //voy a crear un bool auxiliar por si se realizo un levante de baja de una terminal ya existente
-            bool levantado=false;
+            
             try
             {
                 cnn.Open();
@@ -49,9 +49,7 @@ namespace Persistencia
                     throw new Exception("Ese codigo de terminal ya existe");
                 else if (ret == -2)
                     throw new Exception("No se pudo agregar la terminal (error SQL)");
-                else if (ret == 2)
-                    levantado = true;
-
+                
                 foreach (string fac in t._Facilidades)
                 {
                     PersistenciaFacilidadTerminal.Agregar(fac, t._Codigo, tran);
@@ -61,24 +59,23 @@ namespace Persistencia
                 tran.Commit();
                 throw new Exception("Existio antes una terminal con ese codigo, se creo con sus antiguos datos pero con los nuevos servicios que se agregaron");
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                if (!levantado) //si el error no fue porque se habia levantado la baja
-                    tran.Rollback(); //si rompio en algun lado va a venir aca a hacer rollback 
-                    //SOLO HACE EL ROLLBACK SI EL ERROR FUE POR ALGO DISTINTO A QUE YA EXISTIA
 
-                throw ex; 
+                tran.Rollback();
+
+                throw ex;
             }
             finally { cnn.Close(); }
         }
-//------------------BAJA--------------------------------------------------------------------
-        public void Eliminar(Terminal t) 
+        //------------------BAJA--------------------------------------------------------------------
+        public void Eliminar(Terminal t)
         {
             SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
             SqlCommand cmd = new SqlCommand("EliminarTerminal", cnn);
             cmd.Parameters.AddWithValue("@codigo", t._Codigo);
             SqlParameter retorno = new SqlParameter();
-            retorno.Direction=ParameterDirection.ReturnValue;
+            retorno.Direction = ParameterDirection.ReturnValue;
             cmd.Parameters.Add(retorno);
 
             try
@@ -96,7 +93,7 @@ namespace Persistencia
             finally { cnn.Close(); }
         }
 
-//------------MODIFICACION---------------------------------------------------------
+        //------------MODIFICACION---------------------------------------------------------
         public void Modificar(Terminal t)
         {
             SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
@@ -127,12 +124,37 @@ namespace Persistencia
 
                 tran.Commit();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 tran.Rollback();
-                throw ex; 
+                throw ex;
             }
             finally { cnn.Close(); }
+        }
+
+        //--------BUSCAR--------------------------------------------------------------
+        public Terminal Buscar(string cod)
+        {
+            Terminal t = null;
+            SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
+            SqlCommand cmd = new SqlCommand("BuscarTerminal", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@codigo", cod);
+            DataSet ds = new DataSet();
+
+            try
+            {
+                cnn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    dr.Read();
+                    t = new Terminal((string)dr[0], (string)dr[1], (string)dr[2], PersistenciaFacilidadTerminal.CargarFacilidades((string)dr[0]));
+                }
+            }
+            catch (Exception ex) { throw ex; }
+
+            return t;
         }
 
     }
