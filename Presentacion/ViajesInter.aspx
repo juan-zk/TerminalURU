@@ -72,7 +72,8 @@
                 <asp:TextBox ID="txtNum" runat="server" CssClass="txt"></asp:TextBox>
             </td>
             <td class="style12">
-                <asp:Button ID="btnBuscar" runat="server" CssClass="btns" Text="Buscar" />
+                <asp:Button ID="btnBuscar" runat="server" CssClass="btns" Text="Buscar" 
+                    onclick="btnBuscar_Click" />
             </td>
         </tr>
         <tr>

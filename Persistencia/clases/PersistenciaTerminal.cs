@@ -14,7 +14,7 @@ namespace Persistencia
         //singleton
         public static PersistenciaTerminal _instancia = null;
         public PersistenciaTerminal() { }
-        public static PersistenciaTerminal GetInsancia()
+        public static PersistenciaTerminal GetInstancia()
         {
             if (_instancia == null)
                 _instancia = new PersistenciaTerminal();

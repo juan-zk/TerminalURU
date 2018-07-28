@@ -8,32 +8,29 @@ namespace EntidadesCompartidas
    public class ViajesInternacionales:Viaje
     {
        // Atributo
-       private int ServicioBordo;
+       private bool ServicioBordo;
        private string Documentacion;
 
        // Propiedades
-       public int _ServicioBordo
+       public bool _ServicioBordo
        {
            get { return ServicioBordo; }
-           set
-           {
-               if (value == 1)
-                   ServicioBordo = 1;
-               else if (value == 2)
-                   ServicioBordo = 2;
-               else
-                   throw new Exception("Debe seleccionar una de las opciones");
-           }
+           set { ServicioBordo = value; }
        }
 
        public string _Documentacion
        {
            get { return Documentacion; }
-           set { Documentacion = value; }
+           set 
+           {
+               if (value.Length != 0)
+                   Documentacion = value;
+               else throw new Exception("Documentacion no puede ser vacia.");
+           }
        }
 
        //Constructor 
-       public ViajesInternacionales(int pNumViaje, Compañia pCom, Terminal pTer, DateTime pFechaPartida, DateTime pFechaArribo, int pCantidadAsientos, Empleado pEmp, int pServicioBordo, string pDocumentacion)
+       public ViajesInternacionales(int pNumViaje, Compañia pCom, Terminal pTer, DateTime pFechaPartida, DateTime pFechaArribo, int pCantidadAsientos, Empleado pEmp, bool pServicioBordo, string pDocumentacion)
            : base(pNumViaje, pCom, pTer, pFechaPartida, pFechaArribo, pCantidadAsientos, pEmp)
        {
            _ServicioBordo = pServicioBordo;

@@ -14,5 +14,13 @@ namespace Persistencia
         {
             return (PersistenciaCompania.GetInstancia());
         }
+        public static IPersistenciaViajeInternacional GetPersistenciaViajeInternacional()
+        {
+            return (PersistenciaViajeInternacional.GetInstancia());
+        }
+        public static IPersistenciaTerminal GetPersistenciaTerminal()
+        {
+            return (PersistenciaTerminal.GetInstancia());
+        }
     }
 }

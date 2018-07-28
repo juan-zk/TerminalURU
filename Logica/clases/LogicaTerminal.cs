@@ -21,7 +21,19 @@ namespace Logica
 
         public void Agregar(Terminal t) 
         {
-            
+            FabricaPersistencia.GetPersistenciaTerminal().Agregar(t);
+        }
+        public void Modificar(Terminal t)
+        {
+            FabricaPersistencia.GetPersistenciaTerminal().Modificar(t);
+        }
+        public void Eliminar(Terminal t)
+        {
+            FabricaPersistencia.GetPersistenciaTerminal().Eliminar(t);
+        }
+        public Terminal Buscar(string pCodigo)
+        {
+            return FabricaPersistencia.GetPersistenciaTerminal().Buscar(pCodigo);
         }
 
     }
