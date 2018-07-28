@@ -32,7 +32,9 @@ namespace Presentacion
                     txtCantidadAsientos.Text = ((ViajesInternacionales)Session["viajeInter"])._CantidadAsientos.ToString();
                     txtEmpleado.Text = ((ViajesInternacionales)Session["viajeInter"])._Emp._Cedula;
                     txtDocumentacion.Text = ((ViajesInternacionales)Session["viajeInter"])._Documentacion;
-
+                    if (((ViajesInternacionales)Session["viajeInter"])._ServicioBordo == true)
+                    { chkServicioBordo.Checked = true; }
+                    else { chkServicioBordo.Checked = false; }
                     btnEliminar.Enabled = true;
                     btnModificar.Enabled = true;
                 }

@@ -197,7 +197,8 @@
                 <asp:Label ID="lblSB" runat="server" Text="Servicio a Bordo"></asp:Label>
             </td>
             <td class="style12">
-                <input id="chkServicioBordo" type="checkbox" /></td>
+                <asp:CheckBox ID="chkServicioBordo" runat="server" />
+            </td>
         </tr>
         <tr>
             <td class="style10" colspan="3">

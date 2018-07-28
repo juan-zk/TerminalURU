@@ -193,6 +193,15 @@ namespace Presentacion {
         protected global::System.Web.UI.WebControls.Label lblSB;
         
         /// <summary>
+        /// Control chkServicioBordo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkServicioBordo;
+        
+        /// <summary>
         /// Control btnEliminar.
         /// </summary>
         /// <remarks>
