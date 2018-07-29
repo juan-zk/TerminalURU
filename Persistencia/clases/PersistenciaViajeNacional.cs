@@ -35,7 +35,7 @@ namespace Persistencia
 
                 while (lector.Read())
                 {
-                    Compañia compania = FabricaPersistencia.GetPersistenciaCompania().Buscar((string)lector["nomCompania"]);
+                    Compania compania = FabricaPersistencia.GetPersistenciaCompania().Buscar((string)lector["nomCompania"]);
                     Terminal terminal = FabricaPersistencia.GetPersistenciaTerminal().Buscar((string)lector["codTerminal"]);
                     Empleado empleado = FabricaPersistencia.GetPersistenciaEmpleado().Buscar((string)lector["cedulaEmpleado"]);
 

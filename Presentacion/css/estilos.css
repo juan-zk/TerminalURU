@@ -103,6 +103,16 @@ body
     background: #6fcec1;
     transition: all .3s;
 }
+.btns:disabled{
+    color: Black;
+    background: #dbdbdb;
+    width: 230px;
+    height: 40px;
+    font-weight:bold;
+    font-size: 15px;
+    border: 0;
+    border-radius: 4px;
+}
 .txt {
     border:2px solid #deebf2;
     border-radius:4px;

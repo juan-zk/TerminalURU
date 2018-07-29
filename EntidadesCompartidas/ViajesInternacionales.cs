@@ -30,7 +30,7 @@ namespace EntidadesCompartidas
        }
 
        //Constructor 
-       public ViajesInternacionales(int pNumViaje, Compañia pCom, Terminal pTer, DateTime pFechaPartida, DateTime pFechaArribo, int pCantidadAsientos, Empleado pEmp, bool pServicioBordo, string pDocumentacion)
+       public ViajesInternacionales(int pNumViaje, Compania pCom, Terminal pTer, DateTime pFechaPartida, DateTime pFechaArribo, int pCantidadAsientos, Empleado pEmp, bool pServicioBordo, string pDocumentacion)
            : base(pNumViaje, pCom, pTer, pFechaPartida, pFechaArribo, pCantidadAsientos, pEmp)
        {
            _ServicioBordo = pServicioBordo;

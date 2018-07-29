@@ -25,6 +25,7 @@ namespace Persistencia
         {
             SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
             SqlCommand cmd = new SqlCommand("AgregarTerminal", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@codigo", t._Codigo);
             cmd.Parameters.AddWithValue("@ciudad", t._Ciudad);
             cmd.Parameters.AddWithValue("@pais", t._Pais);
@@ -34,8 +35,6 @@ namespace Persistencia
             cmd.Parameters.Add(retorno);
 
             SqlTransaction tran = null;
-
-            //voy a crear un bool auxiliar por si se realizo un levante de baja de una terminal ya existente
             
             try
             {
@@ -57,7 +56,7 @@ namespace Persistencia
 
                 //si llego aca sin romper es porque salio todo ok, entonces...
                 tran.Commit();
-                throw new Exception("Existio antes una terminal con ese codigo, se creo con sus antiguos datos pero con los nuevos servicios que se agregaron");
+                
             }
             catch (Exception ex)
             {
@@ -73,6 +72,7 @@ namespace Persistencia
         {
             SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
             SqlCommand cmd = new SqlCommand("EliminarTerminal", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@codigo", t._Codigo);
             SqlParameter retorno = new SqlParameter();
             retorno.Direction = ParameterDirection.ReturnValue;
@@ -97,10 +97,12 @@ namespace Persistencia
         public void Modificar(Terminal t)
         {
             SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
-            SqlCommand cmd = new SqlCommand("Modificar", cnn);
+            SqlCommand cmd = new SqlCommand("ModificarTerminal", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@codigo", t._Codigo);
+            cmd.Parameters.AddWithValue("@ciudad", t._Ciudad);
+            cmd.Parameters.AddWithValue("@pais", t._Pais);
             SqlParameter retorno = new SqlParameter();
             retorno.Direction = ParameterDirection.ReturnValue;
             cmd.Parameters.Add(retorno);
@@ -108,7 +110,6 @@ namespace Persistencia
             SqlTransaction tran = null;
             try
             {
-                cnn.Open();
                 cnn.Open();
                 tran = cnn.BeginTransaction();
                 cmd.Transaction = tran;
@@ -120,7 +121,7 @@ namespace Persistencia
                 else if (ret == -2)
                     throw new Exception("No se pudo eliminar la terminal (error SQL)");
 
-                PersistenciaFacilidadTerminal.Eliminar(t._Codigo, tran);
+                PersistenciaFacilidadTerminal.Modificar(t, tran);
 
                 tran.Commit();
             }
@@ -135,12 +136,13 @@ namespace Persistencia
         //--------BUSCAR--------------------------------------------------------------
         public Terminal Buscar(string cod)
         {
-            Terminal t = null;
+            
             SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
             SqlCommand cmd = new SqlCommand("BuscarTerminal", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@codigo", cod);
-            DataSet ds = new DataSet();
+
+            Terminal terminal = null;
 
             try
             {
@@ -149,12 +151,19 @@ namespace Persistencia
                 if (dr.HasRows)
                 {
                     dr.Read();
-                    t = new Terminal((string)dr[0], (string)dr[1], (string)dr[2], PersistenciaFacilidadTerminal.CargarFacilidades((string)dr[0]));
+                    string codigo = (string)dr[0];
+                    string ciudad = (string)dr[1];
+                    string pais = (string)dr[2];
+                    List<string> facilidades = PersistenciaFacilidadTerminal.CargarFacilidades((string)dr[0]);
+
+                    terminal = new Terminal(codigo, ciudad, pais, facilidades);
                 }
+                dr.Close();
             }
             catch (Exception ex) { throw ex; }
+            finally { cnn.Close(); }
 
-            return t;
+            return terminal;
         }
 
     }

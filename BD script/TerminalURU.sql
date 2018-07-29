@@ -248,16 +248,17 @@ create proc ModificarTerminal
 @pais varchar(100)
 as
 begin
-	if not exists (select * from Terminales where codigo=@codigo and baja=1)
+	if not exists (select * from Terminales where codigo=@codigo and baja=0)
 		return -1 --no existe la terminal
 		
 	update Terminales set ciudad=@ciudad, pais=@pais where codigo=@codigo
 	if (@@ERROR <> 0)
-		return 1
-	else
 		return -2
+	else
+		return 1
 end
 go
+
 
 create proc EliminarTerminal
 @codigo varchar(3)
@@ -267,31 +268,41 @@ begin
 		return -1 --no existe terminal
 	if exists (select * from terminales where codigo=@codigo and baja=1)
 		return -1-- existe pero bajado, es lo mismo que no existiera
-			
+		
 	begin tran
 		delete from FacilidadTerminales where codigoTerminal=@codigo
-		if (@@ERROR <> 0)
+		if (@@error<>0)
+			begin
 			rollback
-			return -2 -- no se puede borrar lista de facilidades
+			return -2 --no se puede borrar lista de facilidades
+			end
 		
 		if exists (select * from Viajes where codTerminal=@codigo)
 			begin
-				update Terminales set baja=1
-				if (@@ERROR<>0)
-					rollback
-					return -3					
-			end
-		else
-			begin
-				delete from Terminales where codigo=@codigo
+				update Terminales set baja=1 where codigo=@codigo
 				if (@@ERROR <> 0)
+					begin
 					rollback
-					return -3
+					return -3 --error al borrar logicamente
+					end
 			end
-		commit tran -- si llego aca fue todo ok
-		return 1 -- se elimino
+			
+		if not exists (select * from Viajes where codTerminal=@codigo)
+			begin
+			delete from Terminales where codigo=@codigo
+			if (@@ERROR <> 0)
+					begin
+					rollback
+					return -3 --error al borrar logicamente
+					end
+			end
+			
+			commit
+			return 1 --borrado correctamente
 end
 go
+
+--exec EliminarTerminal 'abc'
 
 create proc BuscarTerminal
 @codigo varchar(3)
@@ -513,12 +524,14 @@ insert into Companias values ('CompañiaD','Gimenez 3526',22003759)
 insert into Terminales values ('ABC','Montevideo','Uruguay', 0)
 insert into Terminales values ('ABD','Montevideo','Uruguay', 0)
 insert into Terminales values ('ABJ','Montevideo','Uruguay', 0)
-insert into Terminales values ('AHJ','Montevideo','Uruguay', 0)
 insert into Terminales values ('Abf','Montevideo','Uruguay', 0)
 insert into Terminales values ('ACT','Montevideo','Uruguay', 0)
+insert into FacilidadTerminales values ('ABC','servicio random')
+insert into FacilidadTerminales values ('ABC','otro servicio')
 insert into FacilidadTerminales values ('ACT','emails')
 insert into FacilidadTerminales values ('ABJ','emails')
 insert into FacilidadTerminales values ('ABD','emails')
+insert into FacilidadTerminales values ('Abf','emails')
 insert into Viajes values (1,'CompañiaA','ABD', '2018/09/15', '2018/09/25', 46, '12336678')
 insert into Viajes values (2,'CompañiaX','ABC', '2018/09/15', '2018/09/25', 26, '49850767')
 insert into Viajes values (3,'CompañiaC','ACT', '2018/09/15', '2018/09/25', 56, '52345678')
@@ -531,4 +544,6 @@ insert into ViajesInternacionales values (1, 0, 'Viaje Internacional chequeado')
 --select * from Empleados
 --select * from Companias
 go
+
+
 

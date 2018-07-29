@@ -37,11 +37,11 @@ namespace Presentacion
                     throw new Exception("Debe completar el campo de busqueda");
                 Session["compania"] = Logica.FabricaLogica.GetLogicaCompania().Buscar(txtNombre.Text.Trim());
 
-                if ((Compañia)Session["compania"] != null)
+                if ((Compania)Session["compania"] != null)
                 {
-                    txtDir.Text = ((Compañia)Session["compania"])._Direccion;
-                    txtTel.Text = ((Compañia)Session["compania"])._Telefono.ToString();
-                    btnEliminar.Enabled = true;
+                    txtDir.Text = ((Compania)Session["compania"])._Direccion;
+                    txtTel.Text = ((Compania)Session["compania"])._Telefono.ToString();
+                    btnEliminar.Enabled = true; //esto esta mal
                     btnModificar.Enabled = true;
                 }
                 else
@@ -58,7 +58,7 @@ namespace Presentacion
         {
             try
             {
-                Compañia comp = new Compañia(txtNombre.Text, txtDir.Text, txtTel.Text.Trim());
+                Compania comp = new Compania(txtNombre.Text, txtDir.Text, txtTel.Text.Trim()); //esto esta mal, hay que usar el de sesion, por algo se guardo ahi
                 Logica.FabricaLogica.GetLogicaCompania().Agregar(comp);
             }
             catch (Exception ex)
@@ -69,7 +69,7 @@ namespace Presentacion
         {
             try
             {   //no crear objeto nuevo modificar el de session
-                Compañia comp = new Compañia(txtNombre.Text, txtDir.Text, txtTel.Text.Trim());
+                Compania comp = new Compania(txtNombre.Text, txtDir.Text, txtTel.Text.Trim());
                 Logica.FabricaLogica.GetLogicaCompania().Modificar(comp);
             }
             catch (Exception ex)

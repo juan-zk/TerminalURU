@@ -19,7 +19,7 @@ namespace EntidadesCompartidas
        }
 
        //Constructor 
-       public ViajesNacionales(int pNumViaje, Compañia pCom, Terminal pTer, DateTime pFechaPartida, DateTime pFechaArribo, int pCantidadAsientos, Empleado pEmp, int pParadasIntermedias)
+       public ViajesNacionales(int pNumViaje, Compania pCom, Terminal pTer, DateTime pFechaPartida, DateTime pFechaArribo, int pCantidadAsientos, Empleado pEmp, int pParadasIntermedias)
            : base(pNumViaje, pCom, pTer, pFechaPartida, pFechaArribo, pCantidadAsientos, pEmp)
        {
            _ParadasIntermedias = pParadasIntermedias;
