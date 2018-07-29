@@ -70,7 +70,7 @@ namespace Presentacion
         {
             if (txtFacilidad.Text != "")
                 lstFacilidad.Items.Add(txtFacilidad.Text);
-            txtFacilidad.Text = "";
+                txtFacilidad.Text = "";
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -103,8 +103,12 @@ namespace Presentacion
         }
 
         protected void btnLimpiar_Click(object sender, EventArgs e)
-        { 
-            LimpiarCampos();
+        {
+            try
+            {
+                LimpiarCampos();
+            }
+            catch (Exception ex) { lblMsj.Text = ex.Message; }
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
