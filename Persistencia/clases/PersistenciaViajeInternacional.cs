@@ -58,5 +58,136 @@ namespace Persistencia
             finally { cnn.Close(); }
             return viajeInter;
         }
+
+        /*MODIFICAR*/
+        public void Modificar(ViajesInternacionales pViaje)
+        {
+            SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
+
+            SqlCommand cmd = new SqlCommand("modificarViajeInter", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@numero", pViaje._NumViaje);
+            cmd.Parameters.AddWithValue("@nombreCompania", pViaje._Com._Nombre);
+            cmd.Parameters.AddWithValue("@codTerminal", pViaje._Ter._Codigo);
+            cmd.Parameters.AddWithValue("@fechaHoraPartida", pViaje._FechaPartida);
+            cmd.Parameters.AddWithValue("@fechaHoraArribo", pViaje._FechaArribo);
+            cmd.Parameters.AddWithValue("@cantidadAsientos", pViaje._CantidadAsientos);
+            cmd.Parameters.AddWithValue("@cedulaEmpleado", pViaje._Emp._Cedula);
+            cmd.Parameters.AddWithValue("@servicioAbordo", pViaje._ServicioBordo);
+            cmd.Parameters.AddWithValue("@documentacion", pViaje._Documentacion);
+
+
+            SqlParameter resSQL = new SqlParameter();
+            resSQL.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add(resSQL);
+            try
+            {
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+                int respuesta = (int)resSQL.Value;
+                if (respuesta == -1)
+                    throw new Exception("No existe el viaje");
+                if (respuesta == -2)
+                    throw new Exception("No existe la compañia ingresada");
+                if (respuesta == -3)
+                    throw new Exception("No existe la terminal ingresada");
+                if (respuesta == -4)
+                    throw new Exception("No existe el empleado ingresado");
+                if (respuesta == -5)
+                    throw new Exception("ERROR al modificar el viaje");
+                if (respuesta == -6)
+                    throw new Exception("ERROR al modificar el viaje internacional");
+                if (respuesta == 1)
+                    throw new Exception("Viaje modificado correctamente.");
+            }
+            catch (Exception ex)
+            { throw ex; }
+            finally
+            { cnn.Close(); }
+        }
+
+        /*ELIMINAR*/
+        public void Eliminar(ViajesInternacionales pViaje)
+        {
+            SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
+            SqlCommand cmd = new SqlCommand("eliminarViajeInter", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@numero", pViaje._NumViaje);
+
+            SqlParameter resSQL = new SqlParameter();
+            resSQL.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add(resSQL);
+
+            try
+            {
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+
+                int res = (int)resSQL.Value;
+                if (res == -1)
+                    throw new Exception("No existe el viaje");
+                if (res == -2)
+                    throw new Exception("ERROR al eliminar el viaje");
+                if (res == -3)
+                    throw new Exception("ERROR al eliminar viaje internacional");
+                if (res == 1)
+                    throw new Exception("Viaje eliminado correctamente");
+            }
+            catch (Exception ex)
+            { throw ex; }
+            finally
+            { cnn.Close(); }
+        }
+
+        /*AGREGAR*/
+        public void Agregar(ViajesInternacionales pViaje)
+        {
+            SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
+
+            SqlCommand cmd = new SqlCommand("agregarViajeInter", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@numero", pViaje._NumViaje);
+            cmd.Parameters.AddWithValue("@nombreCompania", pViaje._Com._Nombre);
+            cmd.Parameters.AddWithValue("@codTerminal", pViaje._Ter._Codigo);
+            cmd.Parameters.AddWithValue("@fechaHoraPartida", pViaje._FechaPartida);
+            cmd.Parameters.AddWithValue("@fechaHoraArribo", pViaje._FechaArribo);
+            cmd.Parameters.AddWithValue("@cantidadAsientos", pViaje._CantidadAsientos);
+            cmd.Parameters.AddWithValue("@cedulaEmpleado", pViaje._Emp._Cedula);
+            cmd.Parameters.AddWithValue("@servicioAbordo", pViaje._ServicioBordo);
+            cmd.Parameters.AddWithValue("@documentacion", pViaje._Documentacion);
+
+
+            SqlParameter resSQL = new SqlParameter();
+            resSQL.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add(resSQL);
+            int respuesta;
+
+            try
+            {
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+                respuesta = (int)resSQL.Value;
+
+                if (respuesta == -1)
+                    throw new Exception("Ya existe el viaje ingresado");
+                if (respuesta == -2)
+                    throw new Exception("No existe la compañia ingresada");
+                if (respuesta == -3)
+                    throw new Exception("No existe la terminal ingresada");
+                if (respuesta == -4)
+                    throw new Exception("No existe el empleado ingresado");
+                if (respuesta == -5)
+                    throw new Exception("ERROR al modificar el viaje");
+                if (respuesta == -6)
+                    throw new Exception("ERROR al modificar el viaje internacional");
+                if (respuesta == 1)
+                    throw new Exception("Viaje modificado correctamente.");
+
+            }
+            catch (Exception ex)
+            { throw ex; }
+            finally
+            { cnn.Close(); }
+        }
     }
 }

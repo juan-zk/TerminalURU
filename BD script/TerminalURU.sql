@@ -432,7 +432,7 @@ go
 
 -- ELIMINA UN VIAJE INTER
 create proc eliminarViajeInter
---alter proc eliminarAdmin
+--alter proc eliminarViajeInter
 @numero int
 as
 begin
@@ -443,22 +443,21 @@ begin
 	return -1 --no existe viaje
 		
 	begin tran
+		delete from ViajesInternacionales where numViaje = @numero
+		set @resultado = @@ERROR
+		if @resultado <> 0
+		begin
+			rollback
+			return -2 /*error al eliminar un viaje inter*/
+		end
+		else
 		delete from Viajes where numViaje = @numero
 		set @resultado = @@ERROR
 		if @resultado <> 0
 		begin
 			rollback
-			return -2 /*error al eliminar un viaje*/
+			return -3 /*error al eliminar un viaje*/
 		end
-		else
-		delete from viajesInternaionales where numViaje = @numero
-		set @resultado = @@ERROR
-		if @resultado <> 0
-		begin
-			rollback
-			return -3 /*error al eliminar un viaje inter*/
-		end
-		
 		else
 		begin
 			commit tran
