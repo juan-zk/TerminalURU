@@ -207,15 +207,15 @@
         <tr>
             <td class="style22">
                 <asp:Button ID="btnEliminar" runat="server" CssClass="btns" Text="Eliminar" 
-                    Width="100%" />
+                    Width="100%" onclick="btnEliminar_Click" />
             </td>
             <td class="style22">
                 <asp:Button ID="btnModificar" runat="server" CssClass="btns" Text="Modificar" 
-                    Width="100%" />
+                    Width="100%" onclick="btnModificar_Click" />
             </td>
             <td class="style12">
                 <asp:Button ID="btnAgregar" runat="server" CssClass="btns" Text="Agregar" 
-                    Width="100%" />
+                    Width="100%" onclick="btnAgregar_Click" />
             </td>
         </tr>
     </table>

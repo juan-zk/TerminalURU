@@ -97,7 +97,7 @@ namespace EntidadesCompartidas
            _NumViaje = pNumViaje;
            _Com = pCom;
            _Ter = pTer;
-           _FechaPartida = FechaPartida;
+           _FechaPartida = pFechaPartida;
            _FechaArribo = pFechaArribo;
            _CantidadAsientos = pCantidadAsientos;
            _Emp = pEmp;

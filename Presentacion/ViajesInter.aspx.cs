@@ -10,6 +10,20 @@ namespace Presentacion
 {
     public partial class ViajesInter : System.Web.UI.Page
     {
+        void Limpiar()
+        {
+            txtCompania.Text = "";
+            txtEmpleado.Text = "";
+            txtFechaPartida.Text = "";
+            txtFechaArribo.Text = "";
+            txtDocumentacion.Text = "";
+            txtTerminal.Text = "";
+            txtCantidadAsientos.Text = "";
+            chkServicioBordo.Checked = false;
+            btnAgregar.Enabled = false;
+            btnModificar.Enabled = false;
+            btnEliminar.Enabled = false;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             lblMsj.Text = "";
@@ -43,6 +57,60 @@ namespace Presentacion
                     btnAgregar.Enabled = true;
                     lblMsj.Text = "No existe el viaje internacional, si desea puede agregarlo.";
                 }
+            }
+            catch (Exception ex)
+            { lblMsj.Text = ex.Message; }
+        }
+
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ((ViajesInternacionales)Session["viajeInter"])._Com = Logica.FabricaLogica.GetLogicaCompania().Buscar(txtCompania.Text);
+                ((ViajesInternacionales)Session["viajeInter"])._Emp = Logica.FabricaLogica.GetLogicaEmpleado().Buscar(txtEmpleado.Text);
+                ((ViajesInternacionales)Session["viajeInter"])._Ter = Logica.FabricaLogica.GetLogicaTerminales().Buscar(txtTerminal.Text);
+                ((ViajesInternacionales)Session["viajeInter"])._ServicioBordo = chkServicioBordo.Checked;
+                ((ViajesInternacionales)Session["viajeInter"])._FechaPartida = Convert.ToDateTime(txtFechaPartida.Text);
+                ((ViajesInternacionales)Session["viajeInter"])._FechaArribo = Convert.ToDateTime(txtFechaArribo.Text);
+                ((ViajesInternacionales)Session["viajeInter"])._CantidadAsientos = Convert.ToInt32(txtCantidadAsientos.Text);
+                ((ViajesInternacionales)Session["viajeInter"])._Documentacion = txtDocumentacion.Text;
+                Limpiar();
+                Logica.FabricaLogica.GetLogicaViajes().Modificar((ViajesInternacionales)Session["viajeInter"]);
+                
+            }
+            catch (Exception ex)
+            { lblMsj.Text = ex.Message; }
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Limpiar();
+                Logica.FabricaLogica.GetLogicaViajes().Eliminar((ViajesInternacionales)Session["viajeInter"]);
+
+            }
+            catch (Exception ex)
+            { lblMsj.Text = ex.Message; }
+        }
+
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //arreglar xq no existe numViaje en viajesinter
+                ((ViajesInternacionales)Session["viajeInter"])._NumViaje = Convert.ToInt32(txtNum.Text);
+                ((ViajesInternacionales)Session["viajeInter"])._Com = Logica.FabricaLogica.GetLogicaCompania().Buscar(txtCompania.Text);
+                ((ViajesInternacionales)Session["viajeInter"])._Emp = Logica.FabricaLogica.GetLogicaEmpleado().Buscar(txtEmpleado.Text);
+                ((ViajesInternacionales)Session["viajeInter"])._Ter = Logica.FabricaLogica.GetLogicaTerminales().Buscar(txtTerminal.Text);
+                ((ViajesInternacionales)Session["viajeInter"])._ServicioBordo = chkServicioBordo.Checked;
+                ((ViajesInternacionales)Session["viajeInter"])._FechaPartida = Convert.ToDateTime(txtFechaPartida.Text);
+                ((ViajesInternacionales)Session["viajeInter"])._FechaArribo = Convert.ToDateTime(txtFechaArribo.Text);
+                ((ViajesInternacionales)Session["viajeInter"])._CantidadAsientos = Convert.ToInt32(txtCantidadAsientos.Text);
+                ((ViajesInternacionales)Session["viajeInter"])._Documentacion = txtDocumentacion.Text;
+                Limpiar();
+                Logica.FabricaLogica.GetLogicaViajes().Agregar((ViajesInternacionales)Session["viajeInter"]);
+
             }
             catch (Exception ex)
             { lblMsj.Text = ex.Message; }
