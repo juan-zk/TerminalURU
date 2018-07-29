@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EntidadesCompartidas
 {
-   public class Compañia
+   public class Compania
     {
        // Atributos 
        private string Nombre;
@@ -50,7 +50,7 @@ namespace EntidadesCompartidas
        }
 
        // Constructor
-       public Compañia(string pNombre, string pDireccion, string pTelefono)
+       public Compania(string pNombre, string pDireccion, string pTelefono)
        {
            _Nombre = pNombre;
            _Direccion = pDireccion;

@@ -69,7 +69,7 @@ namespace Presentacion
         {
             try
             {
-                Empleado emp = new Empleado(txtCedula.Text, txtContraseña.Text, txtNombreCompleto.Text);
+                Empleado emp = new Empleado(txtCedula.Text, txtContraseña.Text, txtNombreCompleto.Text); //hay que crear un nuevo emplead, hay que usar el que pasaste a session
                 
                 Logica.FabricaLogica.GetLogicaEmpleado().Modificar(emp);
             }

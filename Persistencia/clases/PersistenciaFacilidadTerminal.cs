@@ -63,7 +63,7 @@ namespace Persistencia
 
         internal static List<string> CargarFacilidades(string cod)
         {
-            List<string> f = null;
+            List<string> f = new List<string>();
             SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
             SqlCommand cmd = new SqlCommand("ListarFacilidades", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -78,7 +78,6 @@ namespace Persistencia
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.HasRows)
                 {
-                    f = new List<string>();
                     while (dr.Read())
                     {
                         f.Add((string)dr[0]);
@@ -89,6 +88,20 @@ namespace Persistencia
             finally { cnn.Close(); }
 
             return f;
+        }
+
+        internal static void Modificar(Terminal t, SqlTransaction tran)
+        {
+
+            try
+            {
+                Eliminar(t._Codigo, tran);
+                foreach (string fac in t._Facilidades)
+                {
+                    Agregar(fac, t._Codigo, tran);
+                }
+            }
+            catch (Exception ex) { throw ex; }
         }
     }
 }

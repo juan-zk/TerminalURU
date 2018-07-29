@@ -8,11 +8,11 @@ namespace Logica
 {
     public interface ILogicaCompania
     {
-        Compañia Buscar(string pNombre);
+        Compania Buscar(string pNombre);
 
-        void Agregar(Compañia pComp);
+        void Agregar(Compania pComp);
 
-        void Modificar(Compañia pComp);
+        void Modificar(Compania pComp);
 
 
     }

@@ -21,9 +21,9 @@ namespace Persistencia
         }
 
         /*BUSCAR*/
-        public Compañia Buscar(string nombre)
+        public Compania Buscar(string nombre)
         {
-            Compañia compania = null;
+            Compania compania = null;
 
             SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
 
@@ -37,7 +37,7 @@ namespace Persistencia
 
                 while (lector.Read())
                 {
-                    compania = new Compañia((string)lector["nombre"],
+                    compania = new Compania((string)lector["nombre"],
                                         (string)lector["direccion"],
                                         (string)lector["telefono"]);
                 }
@@ -50,7 +50,7 @@ namespace Persistencia
         }
 
         /*AGREGAR*/
-        public void Agregar(Compañia compania)
+        public void Agregar(Compania compania)
         {
             SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
 
@@ -87,7 +87,7 @@ namespace Persistencia
         }
 
         /*MODIFICAR*/
-        public void Modificar(Compañia pComp)
+        public void Modificar(Compania pComp)
         {
             SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
 

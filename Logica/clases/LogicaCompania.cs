@@ -19,14 +19,14 @@ namespace Logica
             return _instancia;
         }
 
-        public Compañia Buscar(string pNombre) {
+        public Compania Buscar(string pNombre) {
             return FabricaPersistencia.GetPersistenciaCompania().Buscar(pNombre);
         }
-        public void Agregar(Compañia pComp)
+        public void Agregar(Compania pComp)
         {
             FabricaPersistencia.GetPersistenciaCompania().Agregar(pComp);
         }
-        public void Modificar(Compañia pComp)
+        public void Modificar(Compania pComp)
         {
             FabricaPersistencia.GetPersistenciaCompania().Modificar(pComp);
         }

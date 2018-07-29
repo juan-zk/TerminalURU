@@ -55,7 +55,8 @@
                 <asp:TextBox ID="txtCodigo" runat="server" CssClass="txt" Width="100%" ></asp:TextBox>
             </td>
             <td width="33%">
-                <asp:Button ID="btnBuscar" runat="server" CssClass="btns" Text="Buscar" />
+                <asp:Button ID="btnBuscar" runat="server" CssClass="btns" Text="Buscar" 
+                    onclick="btnBuscar_Click" />
             </td>
         </tr>
         <tr>
@@ -64,7 +65,8 @@
             <td align="center" class="style2">
                 &nbsp;</td>
             <td width="33%">
-                <asp:Button ID="btnLimpiar" runat="server" CssClass="btns" Text="Limpiar" />
+                <asp:Button ID="btnLimpiar" runat="server" CssClass="btns" Text="Limpiar" 
+                    onclick="btnLimpiar_Click" />
             </td>
         </tr>
         <tr>
@@ -151,15 +153,15 @@
         <tr>
             <td align="right" width="33%">
                 <asp:Button ID="btnEliminar" runat="server" CssClass="btns" Text="Eliminar" 
-                    Enabled="False" />
+                    Enabled="False" onclick="btnEliminar_Click" />
             </td>
             <td align="center" class="style2">
                 <asp:Button ID="btnModificar" runat="server" CssClass="btns" Text="Modificar" 
-                    Enabled="False" />
+                    Enabled="False" onclick="btnModificar_Click" />
             </td>
             <td width="33%">
                 <asp:Button ID="btnAgregar" runat="server" CssClass="btns" Text="Agregar" 
-                    Enabled="False" />
+                    Enabled="False" onclick="btnAgregar_Click" />
             </td>
         </tr>
         <tr>

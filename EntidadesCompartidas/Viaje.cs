@@ -9,7 +9,7 @@ namespace EntidadesCompartidas
     {
        // Atributos
        private int NumViaje;
-       private Compañia Com;
+       private Compania Com;
        private Terminal Ter;
        private DateTime FechaPartida;
        private DateTime FechaArribo;
@@ -29,7 +29,7 @@ namespace EntidadesCompartidas
            }
        }
 
-       public Compañia _Com
+       public Compania _Com
        {
            get { return Com; }
            set
@@ -92,7 +92,7 @@ namespace EntidadesCompartidas
        }
 
        // Constructor
-       public Viaje(int pNumViaje, Compañia pCom, Terminal pTer, DateTime pFechaPartida, DateTime pFechaArribo, int pCantidadAsientos, Empleado pEmp)
+       public Viaje(int pNumViaje, Compania pCom, Terminal pTer, DateTime pFechaPartida, DateTime pFechaArribo, int pCantidadAsientos, Empleado pEmp)
        {
            _NumViaje = pNumViaje;
            _Com = pCom;
