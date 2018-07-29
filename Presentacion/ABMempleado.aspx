@@ -2,11 +2,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
 
-    .style1
-    {
-        width: 901px;
-        height: 69px;
-    }
         .style9
         {
             height: 23px;
@@ -87,12 +82,13 @@
         <td class="style25" align="center" width="33%">
             &nbsp;</td>
         <td class="style25" align="left" width="33%">
-            &nbsp;</td>
+                <asp:Button ID="btnLimpiar" runat="server" CssClass="btns" Text="Limpiar" 
+                onclick="btnLimpiar_Click" />
+            </td>
     </tr>
     <tr>
         <td class="style9" colspan="3">
-            <hr style="height: 8px; width: 991px" />
-        </td>
+            &nbsp;</td>
     </tr>
     <tr>
         <td class="style22" align="right" width="33%">
@@ -111,7 +107,8 @@
                 CssClass="txt"></asp:TextBox>
         </td>
         <td class="style25" align="left" width="33%">
-            &nbsp;</td>
+            <asp:Button ID="btnBaja" runat="server" onclick="btnBaja_Click" Text="Baja" />
+        </td>
     </tr>
     <tr>
         <td class="style22" align="right" width="33%">

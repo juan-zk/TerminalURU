@@ -159,7 +159,7 @@
             </td>
             <td width="33%">
                 <asp:Button ID="btnAgregar" runat="server" CssClass="btns" Text="Agregar" 
-                    Enabled="False" />
+                    Enabled="False" onclick="btnAgregar_Click" />
             </td>
         </tr>
         <tr>

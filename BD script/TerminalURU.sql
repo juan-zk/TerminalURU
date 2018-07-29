@@ -35,7 +35,7 @@ Create Table Empleados
 	cedula varchar(8) Not Null Primary key,
 	nombreCompleto varchar(30), --hay que usar unique
 	pass varchar(30) CHECK (len(pass) >= 6),
-	
+	baja bit
 )
 go
 
@@ -94,22 +94,25 @@ begin
 	select cedula,pass,nombreCompleto from Empleados where cedula=@cedula and pass=@pass
 end
 go
+
 Create Proc BuscarEmpleado @Cedula varchar(200) as
 begin
 	select * from Empleados where cedula = @Cedula
 end
 go
-Create Proc AgregarEmpleado  @Cedula varchar(200),@Contraseña varchar(200),@NombreCompleto varchar(200) as
+
+Create Proc AgregarEmpleado  @Cedula varchar(200),@Contraseña varchar(200),@NombreCompleto varchar(200), @Baja bit as
 declare @aux int
 if exists(select cedula from Empleados where cedula = @Cedula)
 return -1
 
-insert into Empleados values(@Cedula,@NombreCompleto,@Contraseña)
+insert into Empleados values(@Cedula,@NombreCompleto,@Contraseña,@Baja)
 set @aux=@@ERROR
 	if @aux=0 
 	return 0;
 	else return -2
 go
+
 Create Proc ModificarEmpleado @Cedula varchar(200), @Contraseña varchar(200), @NombreCompleto varchar(200) as
 begin
 declare @respuesta int
@@ -119,6 +122,36 @@ set @respuesta = @@ERROR
 		return 0;
 	else return -1
 
+end
+go
+Create Proc BajaEmpleado @Cedula varchar(200), @Contraseña varchar(200), @NombreCompleto varchar(200) as
+begin 
+	declare @respuesta int
+update Empleados set baja = 1 where cedula = @cedula
+set @respuesta = @@ERROR
+	if @respuesta = 0
+		return 0;
+	else return -1
+
+end
+go
+Create Proc BorrarEmpleado @Cedula varchar (200) as
+begin
+	declare @Error int
+	declare @Ced int
+	select @Ced = vi.cedulaEmpleado from Viajes vi where vi.cedulaEmpleado = @Cedula 
+	if @Ced is not null
+	return -2
+	set @Ced = null
+	select @Ced = cedula from Empleados where cedula = @Cedula
+	if @Ced is null
+	return -1
+	
+	delete Empleados where cedula = @Cedula
+	set @Error = @@ERROR
+	if @Error <> 0
+	return -3
+	return 0 
 end
 go
 
@@ -467,11 +500,11 @@ end
 go
 ----------------------------------------------------------
 
-insert into Empleados values ('49850767','Juan Acosta','123456')
-insert into Empleados values ('12345678','Jose Gervasio Artigas','123456')
-insert into Empleados values ('12336678','Enrique Perez','123456')
-insert into Empleados values ('52345678','Laura Perez','123456')
-insert into Empleados values ('49345678','Cinthia Acosta','123456')
+insert into Empleados values ('49850767','Juan Acosta','123456',0)
+insert into Empleados values ('12345678','Jose Gervasio Artigas','123456',0)
+insert into Empleados values ('12336678','Enrique Perez','123456',0)
+insert into Empleados values ('52345678','Laura Perez','123456',0)
+insert into Empleados values ('49345678','Cinthia Acosta','123456',0)
 insert into Companias values ('CompañiaX','Atenea 1526',22003659)
 insert into Companias values ('CompañiaA','Asencio 1523',22006659)
 insert into Companias values ('CompañiaB','Agraciada 1526',22009659)

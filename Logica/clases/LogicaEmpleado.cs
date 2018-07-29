@@ -35,5 +35,14 @@ namespace Logica
         {
             FabricaPersistencia.GetPersistenciaEmpleado().Modificar(pEmp);
         }
+        public void Baja(Empleado pEmp)
+        {
+            FabricaPersistencia.GetPersistenciaEmpleado().Baja(pEmp);
+        }
+
+        public void Borrar(string pCedula)
+        {
+            FabricaPersistencia.GetPersistenciaEmpleado().Borrar(pCedula);
+        }
     }
 }

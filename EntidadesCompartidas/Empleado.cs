@@ -11,7 +11,7 @@ namespace EntidadesCompartidas
        private string Cedula;
        private string Contraseña;
        private string NombreCompleto;
-       
+       private bool Baja;
       
        // Propiedades
        public string _Cedula
@@ -52,12 +52,19 @@ namespace EntidadesCompartidas
            }
        }
 
+       public bool _Baja
+       {
+           get { return Baja; }
+           set { Baja = value; }
+       }
+
        // Constructor
-       public Empleado(string pCedula, string pContraseña, string pNombreCompleto)
+       public Empleado(string pCedula, string pContraseña, string pNombreCompleto, bool pBaja)
        {
            _Cedula = pCedula;
            _Contraseña = pContraseña;
            _NombreCompleto = pNombreCompleto;
+           _Baja = pBaja;
        }
     }
 }

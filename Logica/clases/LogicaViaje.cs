@@ -37,5 +37,27 @@ namespace Logica
         {
             FabricaPersistencia.GetPersistenciaViajeInternacional().Agregar(pViaje);
         }
+
+       // VIAJES NACIONALES
+        
+        public ViajesNacionales BuscarViaje(int pNumero)
+        { 
+            return FabricaPersistencia.GetPersistenciaViajeNacional().BuscarViaje(pNumero); 
+        }
+
+        public void AgregarViaje(ViajesNacionales pViaje)
+        { 
+            FabricaPersistencia.GetPersistenciaViajeNacional().AgregarViaje(pViaje); 
+        }
+
+        public void ModificarViaje(ViajesNacionales pViaje)
+        {
+            FabricaPersistencia.GetPersistenciaViajeNacional().ModificarViaje(pViaje);
+        }
+
+        public void EliminarViaje(ViajesNacionales pViaje)
+        {
+            FabricaPersistencia.GetPersistenciaViajeNacional().EliminarViaje(pViaje);
+        }
     }
 }
