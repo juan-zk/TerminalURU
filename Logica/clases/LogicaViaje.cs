@@ -23,6 +23,11 @@ namespace Logica
             return FabricaPersistencia.GetPersistenciaViajeInternacional().Buscar(pNumero);
         }
 
+        public List<ViajesInternacionales> Listar()
+        {
+            return FabricaPersistencia.GetPersistenciaViajeInternacional().Listar();
+        }
+
         public void Modificar(ViajesInternacionales pViaje)
         {
             FabricaPersistencia.GetPersistenciaViajeInternacional().Modificar(pViaje);
@@ -35,6 +40,15 @@ namespace Logica
 
         public void Agregar(ViajesInternacionales pViaje)
         {
+            var list = Listar();
+            foreach (ViajesInternacionales vi in list)
+            {
+                if (vi._Ter._Codigo == pViaje._Ter._Codigo && vi._FechaPartida.Hour-pViaje._FechaPartida.Hour<2)
+                {
+                    throw new Exception("No puede haber un viaje al mismo destino con la misma hora de salida, al menos 2 hrs de diferencia.");
+                }
+            }
+
             FabricaPersistencia.GetPersistenciaViajeInternacional().Agregar(pViaje);
         }
 

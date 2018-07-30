@@ -20,6 +20,43 @@ namespace Persistencia
             return _instancia;
         }
 
+        public List<ViajesInternacionales> Listar()
+        {
+
+            List<ViajesInternacionales> resp = new List<ViajesInternacionales>();
+            ViajesInternacionales viajeInter;
+            SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
+            SqlCommand cmd = new SqlCommand("ListarViajesInter", cnn); 
+            cmd.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                cnn.Open();
+                SqlDataReader lector = cmd.ExecuteReader(); 
+                while (lector.Read()) 
+                {
+                    Compania compania = FabricaPersistencia.GetPersistenciaCompania().Buscar((string)lector["nomCompania"]);
+                    Terminal terminal = FabricaPersistencia.GetPersistenciaTerminal().Buscar((string)lector["codTerminal"]);
+                    Empleado empleado = FabricaPersistencia.GetPersistenciaEmpleado().Buscar((string)lector["cedulaEmpleado"]);
+
+                    viajeInter = new ViajesInternacionales((int)lector["numViaje"],
+                                        compania,
+                                        terminal,
+                                        (DateTime)lector["fechaHoraPartida"],
+                                        (DateTime)lector["fechaHoraArribo"],
+                                        (int)lector["cantidadAsientos"],
+                                        empleado,
+                                        (bool)lector["servicioAbordo"],
+                                        (string)lector["documentacion"]);
+                    resp.Add(viajeInter);
+
+                }
+                lector.Close();
+            }
+            catch (Exception ex) { throw ex; }
+            finally { cnn.Close(); }
+            return resp;
+        }
+
         /*BUSCAR*/
         public ViajesInternacionales Buscar(int pNumero)
         {

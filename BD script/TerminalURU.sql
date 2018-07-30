@@ -312,9 +312,24 @@ begin
 end
 go
 
-
 --------MANEJO VIAJES INTERNACIONALES-------------------
 
+create proc ListarViajesInter
+as
+begin
+	select	v.numViaje,
+			v.nomCompania,
+			v.codTerminal,
+			v.fechaHoraPartida,
+			v.fechaHoraArribo,
+			v.cantidadAsientos,
+			v.cedulaEmpleado,
+			vi.servicioAbordo,
+			vi.documentacion
+	from viajes v join viajesInternacionales vi
+	on (v.numViaje = vi.numViaje)
+end
+go
 -- RETORNA UN VIAJE INTER
 create proc buscarViajeInter
 @numero int
@@ -474,6 +489,22 @@ begin
 			commit tran
 			return 1 --todo ok
 		end
+end
+go
+-----------MANEJO VIAJES NACIONALES-----------
+create proc ListarViajesNacionales
+as
+begin
+	select	v.numViaje,
+			v.nomCompania,
+			v.codTerminal,
+			v.fechaHoraPartida,
+			v.fechaHoraArribo,
+			v.cantidadAsientos,
+			v.cedulaEmpleado,
+			vn.paradasIntermedias
+	from viajes v join viajesNacionales vn
+	on (v.numViaje = vn.numViaje)
 end
 go
 ----------------------------------------------------------

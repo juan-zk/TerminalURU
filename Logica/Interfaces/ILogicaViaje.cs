@@ -10,6 +10,8 @@ namespace Logica
     {
         ViajesInternacionales Buscar(int pNumero);
 
+        List<ViajesInternacionales> Listar();
+
         void Modificar(ViajesInternacionales pViaje);
 
         void Eliminar(ViajesInternacionales pViaje);
