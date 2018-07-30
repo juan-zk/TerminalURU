@@ -41,13 +41,14 @@ namespace Presentacion
 
                 if ((ViajesNacionales)Session["ViajesNacionales"] != null)
                 {
-                   /* txtCompania.Text = ((ViajesNacionales)Session["ViajesNacional"])._Com._Nombre;
-                    txtTerminal.Text = ((ViajesNacionales)Session["ViajesNacional"])._Ter._Codigo;
-                    txtFechaPartida.Text = ((ViajesNacionales)Session["ViajesNacional"])._FechaPartida.ToString();
-                    txtFechaArribo.Text = ((ViajesNacionales)Session["ViajesNacional"])._FechaArribo.ToString();
-                    txtCantidadAsientos.Text = ((ViajesNacionales)Session["ViajesNacional"])._CantidadAsientos.ToString();
-                    txtEmpleado.Text = ((ViajesNacionales)Session["ViajesNacional"])._Emp._Cedula;*/
-                   
+                    /* txtCompania.Text = ((ViajesNacionales)Session["ViajesNacional"])._Com._Nombre;
+                     txtTerminal.Text = ((ViajesNacionales)Session["ViajesNacional"])._Ter._Codigo;
+                     txtFechaPartida.Text = ((ViajesNacionales)Session["ViajesNacional"])._FechaPartida.ToString();
+                     txtFechaArribo.Text = ((ViajesNacionales)Session["ViajesNacional"])._FechaArribo.ToString();
+                     txtCantidadAsientos.Text = ((ViajesNacionales)Session["ViajesNacional"])._CantidadAsientos.ToString();
+                     txtEmpleado.Text = ((ViajesNacionales)Session["ViajesNacional"])._Emp._Cedula;
+                     Falta paradas intermedias*/
+
                 }
                 else
                 {
@@ -71,7 +72,7 @@ namespace Presentacion
                   ((ViajesNacionales)Session["ViajesNacionales"])._FechaPartida = Convert.ToDateTime(txtFechaPartida.Text);
                   ((ViajesNacionales)Session["ViajesNacionales"])._FechaArribo = Convert.ToDateTime(txtFechaArribo.Text);
                   ((ViajesNacionales)Session["ViajesNacionales"])._CantidadAsientos = Convert.ToInt32(txtCantidadAsientos.Text);
-
+                  ((ViajesNacionales)Session["ViajesNacionales"])._ParadasIntermedias = Convert.ToInt32(ddParadas.SelectedValue);
                   Logica.FabricaLogica.GetLogicaViajes().AgregarViaje((ViajesNacionales)Session["ViajesNacionales"]);*/
 
 
@@ -93,6 +94,7 @@ namespace Presentacion
                   ((ViajesNacionales)Session["ViajesNacionales"])._FechaPartida = Convert.ToDateTime(txtFechaPartida.Text);
                   ((ViajesNacionales)Session["ViajesNacionales"])._FechaArribo = Convert.ToDateTime(txtFechaArribo.Text);
                   ((ViajesNacionales)Session["ViajesNacionales"])._CantidadAsientos = Convert.ToInt32(txtCantidadAsientos.Text);
+                  ((ViajesNacionales)Session["ViajesNacionales"])._ParadasIntermedias = Convert.ToInt32(ddParadas.SelectedValue);
 
                   Logica.FabricaLogica.GetLogicaViajes().ModificarViaje((ViajesNacionales)Session["ViajesNacionales"]);*/
 
