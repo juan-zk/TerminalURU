@@ -16,5 +16,16 @@ namespace Logica
 
         void Agregar(ViajesInternacionales pViaje);
 
+        //  VIAJES NACIONALES
+
+        ViajesNacionales BuscarViaje(int pNumero);
+
+        void ModificarViaje(ViajesNacionales pViaje);
+
+        void EliminarViaje(ViajesNacionales pViaje);
+
+        void AgregarViaje(ViajesNacionales pViaje);
+
+
     }
 }

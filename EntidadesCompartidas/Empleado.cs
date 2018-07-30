@@ -11,7 +11,7 @@ namespace EntidadesCompartidas
        private string Cedula;
        private string Contraseña;
        private string NombreCompleto;
-       
+   
       
        // Propiedades
        public string _Cedula
@@ -52,12 +52,15 @@ namespace EntidadesCompartidas
            }
        }
 
+     
+
        // Constructor
        public Empleado(string pCedula, string pContraseña, string pNombreCompleto)
        {
            _Cedula = pCedula;
            _Contraseña = pContraseña;
            _NombreCompleto = pNombreCompleto;
+           
        }
     }
 }

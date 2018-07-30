@@ -15,5 +15,9 @@ namespace Logica
         void Agregar(Empleado pEmp);
 
         void Modificar(Empleado pEmp);
+
+        void Baja(Empleado pEmp);
+
+        void Borrar(string pCedula);
     }
 }
