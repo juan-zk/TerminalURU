@@ -41,10 +41,13 @@ namespace Logica
         public void Agregar(ViajesInternacionales pViaje)
         {
             var list = Listar();
+            TimeSpan dif;
             foreach (ViajesInternacionales vi in list)
             {
-                if (vi._Ter._Codigo == pViaje._Ter._Codigo && vi._FechaPartida.Hour-pViaje._FechaPartida.Hour<2)
+                if (vi._Ter._Codigo == pViaje._Ter._Codigo && vi._FechaPartida.Date == pViaje._FechaPartida.Date)
                 {
+                    dif = vi._FechaPartida.TimeOfDay.Subtract(pViaje._FechaPartida.TimeOfDay);
+                    if(dif.TotalHours<2 && dif.TotalHours>-2)
                     throw new Exception("No puede haber un viaje al mismo destino con la misma hora de salida, al menos 2 hrs de diferencia.");
                 }
             }

@@ -44,11 +44,10 @@ namespace Presentacion
         {
             try
             {
-                Limpiar();
                 if (String.IsNullOrEmpty(txtNum.Text))
                         throw new Exception("Debe completar el campo de busqueda");
                     Session["viajeInter"] = Logica.FabricaLogica.GetLogicaViajes().Buscar(Convert.ToInt32(txtNum.Text.Trim()));
-
+                    
                 if ((ViajesInternacionales)Session["viajeInter"] != null)
                 {
                     txtCompania.Text = ((ViajesInternacionales)Session["viajeInter"])._Com._Nombre;
@@ -66,6 +65,7 @@ namespace Presentacion
                 }
                 else
                 {
+                    Limpiar();
                     btnAgregar.Enabled = true;
                     lblMsj.Text = "No existe el viaje internacional, si desea puede agregarlo.";
                 }
