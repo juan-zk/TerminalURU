@@ -24,15 +24,27 @@ namespace Presentacion
             btnModificar.Enabled = false;
             btnEliminar.Enabled = false;
         }
+        bool ControlVacio()
+        {
+            var vacio = false;
+            if (String.IsNullOrEmpty(txtCompania.Text) || String.IsNullOrEmpty(txtEmpleado.Text) || String.IsNullOrEmpty(txtFechaPartida.Text) || String.IsNullOrEmpty(txtFechaArribo.Text) || String.IsNullOrEmpty(txtDocumentacion.Text) || String.IsNullOrEmpty(txtTerminal.Text) || String.IsNullOrEmpty(txtCantidadAsientos.Text))
+                vacio = true;
+            return vacio;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             lblMsj.Text = "";
+            if (!IsPostBack)
+            {
+                Limpiar();
+            }
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             try
             {
+                Limpiar();
                 if (String.IsNullOrEmpty(txtNum.Text))
                         throw new Exception("Debe completar el campo de busqueda");
                     Session["viajeInter"] = Logica.FabricaLogica.GetLogicaViajes().Buscar(Convert.ToInt32(txtNum.Text.Trim()));
@@ -66,11 +78,13 @@ namespace Presentacion
         {
             try
             {
+                if (ControlVacio())
+                    throw new Exception("Debe completar todos los campos");
                 ((ViajesInternacionales)Session["viajeInter"])._Com = Logica.FabricaLogica.GetLogicaCompania().Buscar(txtCompania.Text);
                 ((ViajesInternacionales)Session["viajeInter"])._Emp = Logica.FabricaLogica.GetLogicaEmpleado().Buscar(txtEmpleado.Text);
                 ((ViajesInternacionales)Session["viajeInter"])._Ter = Logica.FabricaLogica.GetLogicaTerminales().Buscar(txtTerminal.Text);
                 ((ViajesInternacionales)Session["viajeInter"])._ServicioBordo = chkServicioBordo.Checked;
-                ((ViajesInternacionales)Session["viajeInter"])._FechaPartida = Convert.ToDateTime(txtFechaPartida.Text);
+                ((ViajesInternacionales)Session["viajeInter"])._FechaPartida = Convert.ToDateTime(txtFechaPartida.Text.ToString());
                 ((ViajesInternacionales)Session["viajeInter"])._FechaArribo = Convert.ToDateTime(txtFechaArribo.Text);
                 ((ViajesInternacionales)Session["viajeInter"])._CantidadAsientos = Convert.ToInt32(txtCantidadAsientos.Text);
                 ((ViajesInternacionales)Session["viajeInter"])._Documentacion = txtDocumentacion.Text;
@@ -98,18 +112,21 @@ namespace Presentacion
         {
             try
             {
-                //arreglar xq no existe numViaje en viajesinter
-                ((ViajesInternacionales)Session["viajeInter"])._NumViaje = Convert.ToInt32(txtNum.Text);
-                ((ViajesInternacionales)Session["viajeInter"])._Com = Logica.FabricaLogica.GetLogicaCompania().Buscar(txtCompania.Text);
-                ((ViajesInternacionales)Session["viajeInter"])._Emp = Logica.FabricaLogica.GetLogicaEmpleado().Buscar(txtEmpleado.Text);
-                ((ViajesInternacionales)Session["viajeInter"])._Ter = Logica.FabricaLogica.GetLogicaTerminales().Buscar(txtTerminal.Text);
-                ((ViajesInternacionales)Session["viajeInter"])._ServicioBordo = chkServicioBordo.Checked;
-                ((ViajesInternacionales)Session["viajeInter"])._FechaPartida = Convert.ToDateTime(txtFechaPartida.Text);
-                ((ViajesInternacionales)Session["viajeInter"])._FechaArribo = Convert.ToDateTime(txtFechaArribo.Text);
-                ((ViajesInternacionales)Session["viajeInter"])._CantidadAsientos = Convert.ToInt32(txtCantidadAsientos.Text);
-                ((ViajesInternacionales)Session["viajeInter"])._Documentacion = txtDocumentacion.Text;
+                if (ControlVacio())
+                    throw new Exception("Debe completar todos los campos");
+                Compania compania = Logica.FabricaLogica.GetLogicaCompania().Buscar(txtCompania.Text);
+                if (compania == null)
+                    throw new Exception("La compañia ingresada no se encuentra registrada");
+                Empleado empleado = Logica.FabricaLogica.GetLogicaEmpleado().Buscar(txtEmpleado.Text);
+                if (empleado == null)
+                    throw new Exception("El empleado ingresado no se encuentra registrado");
+                Terminal terminal = Logica.FabricaLogica.GetLogicaTerminales().Buscar(txtTerminal.Text);
+                if (terminal == null)
+                    throw new Exception("La terminal ingresada no se encuentra registrada");
+                ViajesInternacionales viajeInter = new ViajesInternacionales(Convert.ToInt32(txtNum.Text), compania, terminal, Convert.ToDateTime(txtFechaPartida.Text), Convert.ToDateTime(txtFechaArribo.Text), Convert.ToInt32(txtCantidadAsientos.Text), empleado, chkServicioBordo.Checked, txtDocumentacion.Text);
+
                 Limpiar();
-                Logica.FabricaLogica.GetLogicaViajes().Agregar((ViajesInternacionales)Session["viajeInter"]);
+                Logica.FabricaLogica.GetLogicaViajes().Agregar(viajeInter);
 
             }
             catch (Exception ex)

@@ -62,8 +62,8 @@ Create Table Viajes
 	numViaje int not null Primary Key,
 	nomCompania  varchar(200) not null Foreign Key References Companias(nombre),
 	codTerminal varchar(3) not null Foreign Key References Terminales(codigo),
-	fechaHoraPartida Date,
-	fechaHoraArribo Date,
+	fechaHoraPartida datetime,
+	fechaHoraArribo datetime,
 	cantidadAsientos int,
 	cedulaEmpleado varchar(8) Foreign Key References Empleados(cedula) ---no se desea mantener historico!!
 )
@@ -499,10 +499,12 @@ insert into FacilidadTerminales values ('ACT','emails')
 insert into FacilidadTerminales values ('ABJ','emails')
 insert into FacilidadTerminales values ('ABD','emails')
 insert into FacilidadTerminales values ('Abf','emails')
-insert into Viajes values (1,'CompañiaA','ABD', '2018/09/15', '2018/09/25', 46, '12336678')
-insert into Viajes values (2,'CompañiaX','ABC', '2018/09/15', '2018/09/25', 26, '49850767')
-insert into Viajes values (3,'CompañiaC','ACT', '2018/09/15', '2018/09/25', 56, '52345678')
-insert into Viajes values (4,'CompañiaD','ABC', '2018/09/15', '2018/09/25', 56, '49345678')
+insert into Viajes values (1,'CompañiaA','ABD', '15-09-2018 13:00', '25-09-2018 14:00', 46, '12336678')
+insert into Viajes values (2,'CompañiaX','ABC', '30-09-2018 16:00:00', '25-10-2018 17:00:00', 26, '49850767')
+insert into Viajes values (3,'CompañiaC','ACT', '20-12-2018 19:00:00', '25-12-2018 20:00:00', 56, '52345678')
+insert into Viajes values (4,'CompañiaD','ABC', '05-10-2018 13:00:00', '07-10-2018 12:00:00', 56, '49345678')
+insert into Viajes values (5,'CompañiaD','ABC', '12-10-2018 17:30:00', '15-10-2018 16:30:00', 56, '49345678')
+insert into ViajesInternacionales values (5, 1, 'Viaje Internacional chequeado')
 insert into ViajesInternacionales values (4, 1, 'Viaje Internacional chequeado')
 insert into ViajesInternacionales values (3, 1, 'Viaje Internacional chequeado')
 insert into ViajesInternacionales values (2, 0, 'Viaje Internacional chequeado')
@@ -510,6 +512,7 @@ insert into ViajesInternacionales values (1, 0, 'Viaje Internacional chequeado')
 
 --select * from Empleados
 --select * from Companias
+--select *from Viajes
 go
 
 

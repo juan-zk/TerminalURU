@@ -181,7 +181,7 @@ namespace Persistencia
                 if (respuesta == -6)
                     throw new Exception("ERROR al modificar el viaje internacional");
                 if (respuesta == 1)
-                    throw new Exception("Viaje modificado correctamente.");
+                    throw new Exception("Viaje agregado correctamente.");
 
             }
             catch (Exception ex)
