@@ -97,25 +97,38 @@ go
 
 Create Proc BuscarEmpleado @Cedula varchar(200) as
 begin
+	
+	 select * from Empleados where  cedula = @Cedula and baja=1
+		return -2 -- ya existe el empleado pero fue dado de baja*/
+		
 	select * from Empleados where cedula = @Cedula
 end
 go
+ 
+Create Proc AgregarEmpleado  @Cedula varchar(200),@Contraseña varchar(200),@NombreCompleto varchar(200) as
+begin
 
-Create Proc AgregarEmpleado  @Cedula varchar(200),@Contraseña varchar(200),@NombreCompleto varchar(200), @Baja bit as
-declare @aux int
-if exists(select cedula from Empleados where cedula = @Cedula)
-return -1
+if exists(select * from Empleados where cedula = @Cedula and baja = 0)
+return -1 --ya existe el empleado
 
-insert into Empleados values(@Cedula,@NombreCompleto,@Contraseña,@Baja)
-set @aux=@@ERROR
-	if @aux=0 
-	return 0;
-	else return -2
+if not exists (select * from Empleados where cedula = @Cedula and baja = 1)
+
+insert into Empleados(cedula,nombreCompleto,pass) values(@Cedula,@NombreCompleto,@Contraseña)--agrego
+if (@@ERROR <> 0) -- si eso salio bien
+		return 1 --retornar 1 es que se agrego un empelado
+		
+if exists(select * from Empleados where cedula = @Cedula and baja =1)
+update Empleados set cedula= @Cedula, nombreCompleto = @NombreCompleto, pass= @Contraseña, baja = 0 where cedula = @Cedula
+if (@@ERROR <> 0)
+return 2
+end
 go
 
 Create Proc ModificarEmpleado @Cedula varchar(200), @Contraseña varchar(200), @NombreCompleto varchar(200) as
 begin
 declare @respuesta int
+if not exists (select * from Empleados where cedula=@Cedula and baja=0)
+		return -1 --no existe la terminal
 update Empleados set nombreCompleto = @NombreCompleto, pass = @Contraseña where cedula = @Cedula
 set @respuesta = @@ERROR
 	if @respuesta = 0
@@ -308,6 +321,7 @@ create proc BuscarTerminal
 @codigo varchar(3)
 as
 begin
+	
 	select codigo,ciudad,pais from Terminales where codigo=@codigo
 end
 go

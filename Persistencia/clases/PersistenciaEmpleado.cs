@@ -37,7 +37,7 @@ namespace Persistencia
                 if (dr.HasRows)
                 {
                     dr.Read();
-                    e = new Empleado((string)dr[0], (string)dr[1], (string)dr[2],false);
+                    e = new Empleado((string)dr[0], (string)dr[1], (string)dr[2]);
                 }
             }
             catch (Exception ex) { throw ex; }
@@ -63,8 +63,8 @@ namespace Persistencia
                     string NombreCompleto = (string)lector[1];
                     string Contraseña = (string)lector[2];
                     
-                    bool baja = (bool)lector[3];
-                    resp = new Empleado(cedula, Contraseña, NombreCompleto, baja);
+                   
+                    resp = new Empleado(cedula, Contraseña, NombreCompleto);
                 }
                 lector.Close();
             }
@@ -82,7 +82,6 @@ namespace Persistencia
             cmd.Parameters.AddWithValue("@Cedula", emp._Cedula);
             cmd.Parameters.AddWithValue("@Contraseña", emp._Contraseña);
             cmd.Parameters.AddWithValue("@NombreCompleto", emp._NombreCompleto);
-            cmd.Parameters.AddWithValue("@Baja", emp._Baja);
             SqlParameter ret = new SqlParameter();
             ret.Direction = ParameterDirection.ReturnValue;
             cmd.Parameters.Add(ret);
@@ -95,11 +94,11 @@ namespace Persistencia
                 {
                     throw new Exception(" la cedula del empleado ya existe");
                 }
-                if (resultado == -2)
+                if (resultado == 2)
                 {
-                    throw new Exception("Error sql.");
+                    throw new Exception("Empleado  RE-Insertado correctamente");
                 }
-                if (resultado == 0)
+                if (resultado == 1)
                 {
                     throw new Exception("Empleado Agregado correctamente.");
                 }

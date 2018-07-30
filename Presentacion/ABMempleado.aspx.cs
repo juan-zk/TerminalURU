@@ -79,8 +79,7 @@ namespace Presentacion
             try
             {
 
-                Empleado emp = new Empleado(txtCedula.Text, txtContraseña.Text, txtNombreCompleto.Text, false);
- //hay que crear un nuevo emplead, hay que usar el que pasaste a session
+                Empleado emp = new Empleado(txtCedula.Text, txtContraseña.Text, txtNombreCompleto.Text);
             
 
                 Logica.FabricaLogica.GetLogicaEmpleado().Modificar(emp);
@@ -96,7 +95,7 @@ namespace Presentacion
                
              
                
-                    Empleado emp2 = new Empleado(txtCedula.Text, txtContraseña.Text, txtNombreCompleto.Text, false);
+                    Empleado emp2 = new Empleado(txtCedula.Text, txtContraseña.Text, txtNombreCompleto.Text);
 
                     Logica.FabricaLogica.GetLogicaEmpleado().Agregar(emp2);
                     txtCedula.Text = "";
@@ -117,7 +116,7 @@ namespace Presentacion
         {
             try
             {
-                Empleado emp = new Empleado(txtCedula.Text, txtContraseña.Text, txtNombreCompleto.Text, false);
+                Empleado emp = new Empleado(txtCedula.Text, txtContraseña.Text, txtNombreCompleto.Text);
 
                 Logica.FabricaLogica.GetLogicaEmpleado().Baja(emp);
                 lblMensaje.Text = "Empleado dado de baja correctamente";
