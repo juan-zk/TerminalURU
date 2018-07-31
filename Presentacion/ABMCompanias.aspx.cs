@@ -32,7 +32,6 @@ namespace Presentacion
         {
             try
             {
-                Limpiar();
                 if (String.IsNullOrEmpty(txtNombre.Text))
                     throw new Exception("Debe completar el campo de busqueda");
                 Session["compania"] = Logica.FabricaLogica.GetLogicaCompania().Buscar(txtNombre.Text.Trim());
@@ -41,11 +40,12 @@ namespace Presentacion
                 {
                     txtDir.Text = ((Compania)Session["compania"])._Direccion;
                     txtTel.Text = ((Compania)Session["compania"])._Telefono.ToString();
-                    btnEliminar.Enabled = true; //esto esta mal
+                    btnEliminar.Enabled = true;
                     btnModificar.Enabled = true;
                 }
                 else
                 {
+                    Limpiar();
                     btnAgregar.Enabled = true;
                     lblMsj.Text = "No existe la compañia, si desea puede agregarla.";
                 }
@@ -58,8 +58,9 @@ namespace Presentacion
         {
             try
             {
-                Compania comp = new Compania(txtNombre.Text, txtDir.Text, txtTel.Text.Trim()); //esto esta mal, hay que usar el de sesion, por algo se guardo ahi
+                Compania comp = new Compania(txtNombre.Text, txtDir.Text, txtTel.Text.Trim());
                 Logica.FabricaLogica.GetLogicaCompania().Agregar(comp);
+                Limpiar();
             }
             catch (Exception ex)
             { lblMsj.Text = ex.Message; }
@@ -68,9 +69,11 @@ namespace Presentacion
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             try
-            {   //no crear objeto nuevo modificar el de session
-                Compania comp = new Compania(txtNombre.Text, txtDir.Text, txtTel.Text.Trim());
-                Logica.FabricaLogica.GetLogicaCompania().Modificar(comp);
+            {   
+                ((Compania)Session["compania"])._Nombre = txtNombre.Text;
+                ((Compania)Session["compania"])._Direccion = txtDir.Text;
+                ((Compania)Session["compania"])._Telefono = txtTel.Text.Trim();
+                Logica.FabricaLogica.GetLogicaCompania().Modificar((Compania)Session["compania"]);
             }
             catch (Exception ex)
             { lblMsj.Text = ex.Message; }

@@ -27,15 +27,16 @@ Create Table Companias
 	nombre varchar(200) Not Null Primary Key,
 	direccion varchar(200),
 	telefono varchar(20) unique,
+	baja bit default 0
 )
 go
 
 Create Table Empleados
 (
 	cedula varchar(8) Not Null Primary key,
-	nombreCompleto varchar(30), --hay que usar unique
+	nombreCompleto varchar(30), 
 	pass varchar(30) CHECK (len(pass) >= 6),
-	
+	baja bit default 0
 )
 go
 
@@ -94,7 +95,7 @@ begin
 	select cedula,pass,nombreCompleto from Empleados where cedula=@cedula and pass=@pass and baja =0
 end
 go
-Create Proc BuscarEmpleado @Cedula varchar(200) as
+Create Proc BuscarEmpleado @cedula varchar(200) as
 begin
 	select * from Empleados where cedula = @Cedula and baja =0
 end
@@ -104,7 +105,7 @@ declare @aux int
 if exists(select cedula from Empleados where cedula = @Cedula)
 return -1
 
-insert into Empleados values(@Cedula,@NombreCompleto,@Contraseña)
+insert into Empleados(cedula, nombreCompleto, pass) values(@Cedula,@NombreCompleto,@Contraseña)
 set @aux=@@ERROR
 	if @aux=0 
 	return 0;
@@ -146,8 +147,7 @@ begin
 	if exists(select nombre from Companias where nombre = @nombre)
 		return -1 /* sale cuando ya existe la compañia */
 
-	insert into Companias
-	values(@nombre, @direccion, @tel)
+	insert into Companias(nombre, direccion, telefono) values(@nombre, @direccion, @tel)
 	set @aux=@@ERROR
 	if @aux=0 
 	return 0;
@@ -175,17 +175,40 @@ end
 go
 
 -- ELIMINA UNA COMPAÑIA
-create proc eliminarCompania
+create proc EliminarCompania
 @nombre varchar(200)
 as
-begin 
-	declare @respuesta int
-	delete from Companias where nombre = @nombre
-	set @respuesta = @@ERROR
-	if @respuesta <> 0
-		return -1 /*ERROR SQL*/
-	else return 0
-end 
+begin
+	if not exists (select * from companias where nombre=@nombre)
+		return -1 --no existe compania
+	if exists (select * from companias where nombre=@nombre and baja=1)
+		return -1-- existe pero bajado, es lo mismo que no existiera
+		
+	begin tran
+		
+		if exists (select * from Viajes where nomCompania=@nombre)
+			begin
+				update companias set baja=1 where nombre=@nombre
+				if (@@ERROR <> 0)
+					begin
+					rollback
+					return -3 --error al borrar logicamente
+					end
+			end
+			
+		if not exists (select * from Viajes where nomCompania=@nombre)
+			begin
+			delete from companias where nombre=@nombre
+			if (@@ERROR <> 0)
+					begin
+					rollback
+					return -3 --error al borrar logicamente
+					end
+			end
+			
+			commit
+			return 1 --borrado correctamente
+end
 go
 
 ---MANEJO DE TERMINALES-----------------------------------
@@ -509,16 +532,16 @@ end
 go
 ----------------------------------------------------------
 
-insert into Empleados values ('49850767','Juan Acosta','123456')
-insert into Empleados values ('12345678','Jose Gervasio Artigas','123456')
-insert into Empleados values ('12336678','Enrique Perez','123456')
-insert into Empleados values ('52345678','Laura Perez','123456')
-insert into Empleados values ('49345678','Cinthia Acosta','123456')
-insert into Companias values ('CompañiaX','Atenea 1526',22003659)
-insert into Companias values ('CompañiaA','Asencio 1523',22006659)
-insert into Companias values ('CompañiaB','Agraciada 1526',22009659)
-insert into Companias values ('CompañiaC','Uruguay 1526',23003659)
-insert into Companias values ('CompañiaD','Gimenez 3526',22003759)
+insert into Empleados values ('49850767','Juan Acosta','123456', 0)
+insert into Empleados values ('12345678','Jose Gervasio Artigas','123456', 0)
+insert into Empleados values ('12336678','Enrique Perez','123456', 0)
+insert into Empleados values ('52345678','Laura Perez','123456', 0)
+insert into Empleados values ('49345678','Cinthia Acosta','123456', 0)
+insert into Companias values ('CompañiaX','Atenea 1526',22003659, 0)
+insert into Companias values ('CompañiaA','Asencio 1523',22006659, 0)
+insert into Companias values ('CompañiaB','Agraciada 1526',22009659, 0)
+insert into Companias values ('CompañiaC','Uruguay 1526',23003659, 0)
+insert into Companias values ('CompañiaD','Gimenez 3526',22003759, 0)
 insert into Terminales values ('ABC','Montevideo','Uruguay', 0)
 insert into Terminales values ('ABD','Montevideo','Uruguay', 0)
 insert into Terminales values ('ABJ','Montevideo','Uruguay', 0)

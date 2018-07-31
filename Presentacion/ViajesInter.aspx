@@ -124,7 +124,7 @@
         <tr>
             <td class="style4" colspan="2">
                 <asp:Label ID="lblFPart" runat="server" style="text-align: left" 
-                    Text="Fecha de Partida"></asp:Label>
+                    Text="Fecha de Partida dd/mm/aaaa hh:mm(24hrs)"></asp:Label>
             </td>
             <td class="style12">
                 <asp:TextBox ID="txtFechaPartida" runat="server" CssClass="txt"></asp:TextBox>
@@ -138,7 +138,8 @@
         </tr>
         <tr>
             <td class="style4" colspan="2">
-                <asp:Label ID="lblFarribo" runat="server" Text="Fecha de Arribo"></asp:Label>
+                <asp:Label ID="lblFarribo" runat="server" 
+                    Text="Fecha de Arribo dd/mm/aaaa hh:mm(24hrs)"></asp:Label>
             </td>
             <td class="style12">
                 <asp:TextBox ID="txtFechaArribo" runat="server" CssClass="txt"></asp:TextBox>
