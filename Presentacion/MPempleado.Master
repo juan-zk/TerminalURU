@@ -30,7 +30,7 @@
                         <asp:MenuItem Text="Internacionales" Value="Internacionales" 
                             NavigateUrl="~/ViajesInter.aspx"></asp:MenuItem>
                         <asp:MenuItem Text="Nacionales" Value="Nacionales" 
-                            NavigateUrl="~/ViajesNacionales.aspx"></asp:MenuItem>
+                            NavigateUrl="~/ViajesNac.aspx"></asp:MenuItem>
                     </asp:MenuItem>
                     <asp:MenuItem Text="Compañias" Value="Compañias" 
                         NavigateUrl="~/ABMCompanias.aspx"></asp:MenuItem>

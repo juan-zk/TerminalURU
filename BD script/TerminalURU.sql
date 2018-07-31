@@ -91,12 +91,12 @@ create proc Logueo
 @pass varchar(30)
 as
 begin
-	select cedula,pass,nombreCompleto from Empleados where cedula=@cedula and pass=@pass
+	select cedula,pass,nombreCompleto from Empleados where cedula=@cedula and pass=@pass and baja =0
 end
 go
 Create Proc BuscarEmpleado @Cedula varchar(200) as
 begin
-	select * from Empleados where cedula = @Cedula
+	select * from Empleados where cedula = @Cedula and baja =0
 end
 go
 Create Proc AgregarEmpleado  @Cedula varchar(200),@Contraseña varchar(200),@NombreCompleto varchar(200) as
@@ -275,7 +275,7 @@ create proc BuscarTerminal
 @codigo varchar(3)
 as
 begin
-	select codigo,ciudad,pais from Terminales where codigo=@codigo
+	select codigo,ciudad,pais from Terminales where codigo=@codigo and baja=0
 end
 go
 

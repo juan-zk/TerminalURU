@@ -107,7 +107,8 @@
                 CssClass="txt"></asp:TextBox>
         </td>
         <td class="style25" align="left" width="33%">
-            <asp:Button ID="btnBaja" runat="server" onclick="btnBaja_Click" Text="Baja" />
+            <asp:Button ID="btnBaja" runat="server" onclick="btnBaja_Click" Text="Baja" 
+                CssClass="btns" />
         </td>
     </tr>
     <tr>

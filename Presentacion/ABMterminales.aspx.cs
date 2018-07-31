@@ -83,11 +83,13 @@ namespace Presentacion
                 if (t == null)
                 {
                     CamposAgregar();
+
                     lblMsj.Text = "No existe terminal con ese codigo, ingrese los datos para agregar una";
                 }
                 else
                 {
                     CamposBajaModi();
+
                     Session["TerminalBuscada"] = t;
                     txtCiudad.Text = t._Ciudad;
                     ddlPais.SelectedValue = t._Pais;
