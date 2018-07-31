@@ -10,7 +10,7 @@
 namespace Presentacion {
     
     
-    public partial class ViajesNacionales {
+    public partial class ViajesNac {
         
         /// <summary>
         /// Control lblTitle.

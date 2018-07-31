@@ -58,7 +58,7 @@
     <Content Include="Inicio.aspx" />
     <Content Include="img\menu-icon.png" />
     <Content Include="ViajesInter.aspx" />
-    <Content Include="ViajesNacionales.aspx" />
+    <Content Include="ViajesNac.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -118,12 +118,12 @@
     <Compile Include="ViajesInter.aspx.designer.cs">
       <DependentUpon>ViajesInter.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ViajesNacionales.aspx.cs">
-      <DependentUpon>ViajesNacionales.aspx</DependentUpon>
+    <Compile Include="ViajesNac.aspx.cs">
+      <DependentUpon>ViajesNac.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ViajesNacionales.aspx.designer.cs">
-      <DependentUpon>ViajesNacionales.aspx</DependentUpon>
+    <Compile Include="ViajesNac.aspx.designer.cs">
+      <DependentUpon>ViajesNac.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

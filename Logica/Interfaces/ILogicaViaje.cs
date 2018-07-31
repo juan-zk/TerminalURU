@@ -21,13 +21,11 @@ namespace Logica
         //  VIAJES NACIONALES
 
         ViajesNacionales BuscarViaje(int pNumero);
+        
+        void Modificar(ViajesNacionales pViaje);
+        
+        void Agregar(ViajesNacionales pViaje);         
 
-        void ModificarViaje(ViajesNacionales pViaje);
-
-        void EliminarViaje(ViajesNacionales pViaje);
-
-        void AgregarViaje(ViajesNacionales pViaje);
-
-
+        void Eliminar(ViajesNacionales pViaje);
     }
 }
