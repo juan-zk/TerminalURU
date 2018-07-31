@@ -78,5 +78,17 @@ namespace Presentacion
             catch (Exception ex)
             { lblMsj.Text = ex.Message; }
         }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Limpiar();
+                Logica.FabricaLogica.GetLogicaCompania().Eliminar((Compania)Session["compania"]);
+
+            }
+            catch (Exception ex)
+            { lblMsj.Text = ex.Message; }
+        }
     }
 }

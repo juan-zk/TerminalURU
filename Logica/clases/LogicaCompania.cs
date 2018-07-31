@@ -30,5 +30,9 @@ namespace Logica
         {
             FabricaPersistencia.GetPersistenciaCompania().Modificar(pComp);
         }
+        public void Eliminar(Compania pComp)
+        {
+            FabricaPersistencia.GetPersistenciaCompania().Eliminar(pComp);
+        }
     }
 }

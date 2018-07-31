@@ -144,7 +144,7 @@
     <tr>
         <td class="style22" align="right">
             <asp:Button ID="btnEliminar" runat="server" CssClass="btns" Text="Eliminar" 
-                Enabled="False" />
+                Enabled="False" onclick="btnEliminar_Click" />
         </td>
         <td class="style16" align="center">
             <asp:Button ID="btnModificar" runat="server" CssClass="btns" Text="Modificar" 

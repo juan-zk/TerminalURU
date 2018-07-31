@@ -116,5 +116,34 @@ namespace Persistencia
             finally
             { cnn.Close(); }
         }
+
+        /*ELIMINAR*/
+        public void Eliminar(Compania pComp)
+        {
+            SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
+            SqlCommand cmd = new SqlCommand("eliminarCompania", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@nombre", pComp._Nombre);
+
+            SqlParameter resSQL = new SqlParameter();
+            resSQL.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add(resSQL);
+
+            try
+            {
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+
+                int res = (int)resSQL.Value;
+                if (res == -3)
+                    throw new Exception("Error al eliminar.");
+                if (res == 1)
+                    throw new Exception("Compañia eliminada correctamente");
+            }
+            catch (Exception ex)
+            { throw ex; }
+            finally
+            { cnn.Close(); }
+        }
     }
 }

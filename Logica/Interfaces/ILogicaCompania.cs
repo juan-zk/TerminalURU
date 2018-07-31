@@ -14,6 +14,8 @@ namespace Logica
 
         void Modificar(Compania pComp);
 
+        void Eliminar(Compania pComp);
+
 
     }
 }

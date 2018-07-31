@@ -132,7 +132,7 @@ create proc buscarCompania
 @nombre varchar(200)
 as
 begin
-	select * from Companias where nombre = @nombre;
+	select * from Companias where nombre = @nombre and baja=0;
 end
 go
 
@@ -166,7 +166,7 @@ begin
 	update Companias 
 	set direccion = @direccion,
 		telefono = @tel
-	where nombre = @nombre
+	where nombre = @nombre and baja=0
 	set @respuesta = @@ERROR
 	if @respuesta = 0
 		return 0;

@@ -13,5 +13,7 @@ namespace Persistencia
         void Agregar(Compania pComp);
 
         void Modificar(Compania pComp);
+
+        void Eliminar(Compania pComp);
     }
 }
