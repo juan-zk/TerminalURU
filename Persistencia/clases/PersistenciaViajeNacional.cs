@@ -25,7 +25,7 @@ namespace Persistencia
             ViajesNacionales resp = null;
             SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
 
-            SqlCommand cmd = new SqlCommand("buscarViajeNacional", cnn);
+            SqlCommand cmd = new SqlCommand("BuscarViajeNacional", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@numero", pNumero);
             try
@@ -61,7 +61,7 @@ namespace Persistencia
         {
             SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
 
-            SqlCommand cmd = new SqlCommand("agregarViajeInter", cnn);
+            SqlCommand cmd = new SqlCommand("AgregarViajeNacional", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@numero", pViaje._NumViaje);
             cmd.Parameters.AddWithValue("@nombreCompania", pViaje._Com._Nombre);
@@ -70,7 +70,7 @@ namespace Persistencia
             cmd.Parameters.AddWithValue("@fechaHoraArribo", pViaje._FechaArribo);
             cmd.Parameters.AddWithValue("@cantidadAsientos", pViaje._CantidadAsientos);
             cmd.Parameters.AddWithValue("@cedulaEmpleado", pViaje._Emp._Cedula);
-            cmd.Parameters.AddWithValue("ParadasIntermedias", pViaje._ParadasIntermedias);
+            cmd.Parameters.AddWithValue("@ParadasIntermedias", pViaje._ParadasIntermedias);
           
 
 
@@ -111,7 +111,7 @@ namespace Persistencia
         {
             SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
 
-            SqlCommand cmd = new SqlCommand("modificarViajeNacional", cnn);
+            SqlCommand cmd = new SqlCommand("ModificarViajeNacional", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@numero", pViaje._NumViaje);
             cmd.Parameters.AddWithValue("@nombreCompania", pViaje._Com._Nombre);
@@ -157,7 +157,7 @@ namespace Persistencia
         public void EliminarViaje(ViajesNacionales pViaje)
         {
             SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
-            SqlCommand cmd = new SqlCommand("eliminarViajeNacional", cnn);
+            SqlCommand cmd = new SqlCommand("EliminarViajeNacional", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@numero", pViaje._NumViaje);
 
@@ -186,5 +186,40 @@ namespace Persistencia
             { cnn.Close(); }
         }
 
+        public List<ViajesNacionales> ListarViaje()
+        {
+
+            List<ViajesNacionales> resp = new List<ViajesNacionales>();
+            ViajesNacionales viajenac;
+            SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
+            SqlCommand cmd = new SqlCommand("ListarViajesNacionales", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                cnn.Open();
+                SqlDataReader lector = cmd.ExecuteReader();
+                while (lector.Read())
+                {
+                    Compania compania = FabricaPersistencia.GetPersistenciaCompania().Buscar((string)lector["nomCompania"]);
+                    Terminal terminal = FabricaPersistencia.GetPersistenciaTerminal().Buscar((string)lector["codTerminal"]);
+                    Empleado empleado = FabricaPersistencia.GetPersistenciaEmpleado().Buscar((string)lector["cedulaEmpleado"]);
+
+                    viajenac = new ViajesNacionales((int)lector["numViaje"],
+                                        compania,
+                                        terminal,
+                                        (DateTime)lector["fechaHoraPartida"],
+                                        (DateTime)lector["fechaHoraArribo"],
+                                        (int)lector["cantidadAsientos"],
+                                        empleado,
+                                        (int)lector["ParadasIntermedias"]);
+                    resp.Add(viajenac);
+
+                }
+                lector.Close();
+            }
+            catch (Exception ex) { throw ex; }
+            finally { cnn.Close(); }
+            return resp;
+        }
     }
 }

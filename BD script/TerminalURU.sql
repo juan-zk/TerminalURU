@@ -101,19 +101,29 @@ begin
 end
 go
 Create Proc AgregarEmpleado  @Cedula varchar(200),@Contraseña varchar(200),@NombreCompleto varchar(200) as
-declare @aux int
-if exists(select cedula from Empleados where cedula = @Cedula)
-return -1
+begin
 
-insert into Empleados(cedula, nombreCompleto, pass) values(@Cedula,@NombreCompleto,@Contraseña)
-set @aux=@@ERROR
-	if @aux=0 
-	return 0;
-	else return -2
+if exists(select * from Empleados where cedula = @Cedula and baja = 0)
+return -1 --ya existe el empleado
+
+if not exists (select * from Empleados where cedula = @Cedula and baja = 1)
+
+insert into Empleados(cedula,nombreCompleto,pass) values(@Cedula,@NombreCompleto,@Contraseña)--agrego
+if (@@ERROR <> 0) -- si eso salio bien
+		return 1 --retornar 1 es que se agrego un empelado
+		
+if exists(select * from Empleados where cedula = @Cedula and baja =1)
+update Empleados set cedula= @Cedula, nombreCompleto = @NombreCompleto, pass= @Contraseña, baja = 0 where cedula = @Cedula
+if (@@ERROR <> 0)
+return 2
+end
 go
+
 Create Proc ModificarEmpleado @Cedula varchar(200), @Contraseña varchar(200), @NombreCompleto varchar(200) as
 begin
 declare @respuesta int
+if not exists (select * from Empleados where cedula=@Cedula and baja=0)
+		return -1 --no existe la terminal
 update Empleados set nombreCompleto = @NombreCompleto, pass = @Contraseña where cedula = @Cedula
 set @respuesta = @@ERROR
 	if @respuesta = 0
@@ -122,6 +132,39 @@ set @respuesta = @@ERROR
 
 end
 go
+
+Create Proc BajaEmpleado @Cedula varchar(200), @Contraseña varchar(200), @NombreCompleto varchar(200) as
+begin 
+	declare @respuesta int
+update Empleados set baja = 1 where cedula = @cedula
+set @respuesta = @@ERROR
+	if @respuesta = 0
+		return 0;
+	else return -1
+
+end
+go
+
+Create Proc BorrarEmpleado @Cedula varchar (200) as
+begin
+	declare @Error int
+	declare @Ced int
+	select @Ced = vi.cedulaEmpleado from Viajes vi where vi.cedulaEmpleado = @Cedula 
+	if @Ced is not null
+	return -2
+	set @Ced = null
+	select @Ced = cedula from Empleados where cedula = @Cedula
+	if @Ced is null
+	return -1
+	
+	delete Empleados where cedula = @Cedula
+	set @Error = @@ERROR
+	if @Error <> 0
+	return -3
+	return 0 
+end
+go
+
 
 /***********************
 	SP DE COMPAÑIAS
@@ -530,6 +573,163 @@ begin
 	on (v.numViaje = vn.numViaje)
 end
 go
+-----SP VIAJES NACIONALES
+Create Proc BuscarViajeNacional @numero int as
+begin
+	select	v.numViaje,
+			v.nomCompania,
+			v.codTerminal,
+			v.fechaHoraPartida,
+			v.fechaHoraArribo,
+			v.cantidadAsientos,
+			v.cedulaEmpleado,
+			vn.paradasIntermedias
+			
+		from viajes v join ViajesNacionales vn
+	on (v.numViaje = vn.numViaje) and vn.numViaje=@numero
+end
+go
+
+Create Proc AgregarViajeNacional 
+@numero int,
+@nombreCompania varchar(200),
+@codTerminal varchar(3),
+@fechaHoraPartida smalldatetime,
+@fechaHoraArribo smalldatetime,
+@cantidadAsientos int,
+@cedulaEmpleado varchar(8),
+@ParadasIntermedias int
+as
+begin
+declare @resultado int
+
+	if exists (select * from Viajes where numViaje=@numero)
+		return -1 -- error ya existe viaje
+		
+	if not exists (select * from Companias where nombre=@nombreCompania)
+		return -2 -- error no existe compañia
+		
+	if not exists (select * from Terminales where codigo=@codTerminal)
+		return -3 -- error no existe terminal
+		
+	if not exists (select * from Empleados where cedula=@cedulaEmpleado)
+		return -4 -- error no existe empleado
+		
+	begin tran
+		insert into Viajes values (@numero, @nombreCompania, @codTerminal, @fechaHoraPartida, @fechaHoraArribo, @cantidadAsientos, @cedulaEmpleado)
+		set @resultado = @@ERROR
+		if @resultado <> 0
+		begin
+			rollback
+			return -5 /*error al insertar viaje*/
+		end
+		insert into ViajesNacionales values(@numero, @ParadasIntermedias)
+		set @resultado = @@ERROR
+		if @resultado <> 0
+		begin
+			rollback
+			return -6 /*error al insertar viaje Nacional*/
+		end
+		else
+		begin
+			commit tran
+			return 1
+		end
+end
+go
+
+Create Proc ModificarViajeNacional
+@numero int,
+@nombreCompania varchar(200),
+@codTerminal varchar(3),
+@fechaHoraPartida smalldatetime,
+@fechaHoraArribo smalldatetime,
+@cantidadAsientos int,
+@cedulaEmpleado varchar(8),
+@ParadasIntermedias int
+as
+begin
+	
+	declare @resultado int
+		
+	if not exists (select * from Viajes where numViaje=@numero)
+	return -1--no existe el viaje
+	
+	if not exists (select * from Companias where nombre=@nombreCompania)and not exists(select * from Viajes where nomCompania=@nombreCompania)
+		return -2 -- error no existe compañia
+		
+	if not exists (select * from Terminales where codigo=@codTerminal)
+		return -3 -- error no existe terminal
+		
+	if not exists (select * from Empleados where cedula=@cedulaEmpleado)
+		return -4 -- error no existe empleado
+
+	begin tran
+		update Viajes set nomCompania=@nombreCompania,
+						  codTerminal = @codTerminal,
+						  fechaHoraPartida=@fechaHoraPartida,
+						  fechaHoraArribo=@fechaHoraArribo,
+						  cantidadAsientos=@cantidadAsientos,
+						  cedulaEmpleado=@cedulaEmpleado
+		set @resultado = @@ERROR
+		if @resultado <> 0
+		begin
+			rollback
+			return -5 /*error al modificar viaje*/
+		end
+		update ViajesNacionales set paradasIntermedias = @ParadasIntermedias  where numViaje = @numero
+		set @resultado = @@ERROR
+		if @resultado <> 0
+		begin
+			rollback
+			return -6 /*error al modificar viaje Nacional*/
+		end
+		else
+		begin
+			commit tran
+			return 1 --todo ok
+		end
+	end
+go
+
+
+Create Proc EliminarViajeNacional 
+@numero int
+as
+begin
+	
+	declare @resultado int
+	
+	if not exists (select * from Viajes where numViaje=@numero)
+	return -1 --no existe viaje
+		
+	begin tran
+		delete from ViajesNacionales where numViaje = @numero
+		set @resultado = @@ERROR
+		if @resultado <> 0
+		begin
+			rollback
+			return -2 /*error al eliminar un viaje Nacional*/
+		end
+		else
+		delete from Viajes where numViaje = @numero
+		set @resultado = @@ERROR
+		if @resultado <> 0
+		begin
+			rollback
+			return -3 /*error al eliminar un viaje*/
+		end
+		else
+		begin
+			commit tran
+			return 1 --todo ok
+		end
+end
+go
+
+
+
+-- RETORNA UN VIAJE INTER
 ----------------------------------------------------------
 
 insert into Empleados values ('49850767','Juan Acosta','123456', 0)
@@ -563,7 +763,7 @@ insert into ViajesInternacionales values (4, 1, 'Viaje Internacional chequeado')
 insert into ViajesInternacionales values (3, 1, 'Viaje Internacional chequeado')
 insert into ViajesInternacionales values (2, 0, 'Viaje Internacional chequeado')
 insert into ViajesInternacionales values (1, 0, 'Viaje Internacional chequeado')
-
+insert into ViajesNacionales values(5,2)
 --select * from Empleados
 --select * from Companias
 --select *from Viajes

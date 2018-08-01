@@ -21,6 +21,7 @@ namespace Logica
         //  VIAJES NACIONALES
 
         ViajesNacionales BuscarViaje(int pNumero);
+        List<ViajesNacionales> ListarViaje();
         
         void Modificar(ViajesNacionales pViaje);
         

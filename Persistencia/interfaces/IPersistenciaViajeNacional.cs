@@ -15,5 +15,7 @@ namespace Persistencia
        void EliminarViaje(ViajesNacionales pViaje);
 
        void AgregarViaje(ViajesNacionales pViaje);
+
+       List<ViajesNacionales> ListarViaje();
     }
 }

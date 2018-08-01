@@ -18,6 +18,33 @@ namespace Presentacion
             btnAgregar.Enabled = false;
             btnModificar.Enabled = false;
             btnEliminar.Enabled = false;
+            btnLimpiar.Enabled  = false;
+            btnBaja.Enabled = false;
+            btnBuscar.Enabled = true;
+            txtCedula.Enabled = true;
+            txtContraseña.Enabled = false;
+            txtNombreCompleto.Enabled = false;
+        }
+        void Agregar()
+        {
+            txtCedula.Enabled = false;
+            txtContraseña.Enabled = true;
+            txtNombreCompleto.Enabled = true;
+            btnAgregar.Enabled = true;
+            btnModificar.Enabled = false;
+            btnEliminar.Enabled = false;
+            btnBuscar.Enabled = false;
+        }
+        void BajaCampos()
+        {
+            txtCedula.Enabled = false;
+            txtContraseña.Enabled = true;
+            txtNombreCompleto.Enabled = true;
+            btnAgregar.Enabled = false;
+            btnModificar.Enabled = true;
+            btnEliminar.Enabled = true;
+            btnBuscar.Enabled = false;
+            btnBaja.Enabled = true;
         }
        
         protected void Page_Load(object sender, EventArgs e)
@@ -25,6 +52,10 @@ namespace Presentacion
             try
             {
                 lblMensaje.Text = "";
+                if (!IsPostBack)
+                {
+                    Limpiar();
+                }
             }
             catch (Exception ex)
             { lblMensaje.Text = ex.Message; }
@@ -44,15 +75,15 @@ namespace Presentacion
               
                if ((Empleado)Session["Empleado"] != null)
                 {
-                    txtContraseña.Text = ((Empleado)Session["Empleado"])._Contraseña;
+                    BajaCampos();
+                   txtContraseña.Text = ((Empleado)Session["Empleado"])._Contraseña;
                     txtNombreCompleto.Text = ((Empleado)Session["Empleado"])._NombreCompleto;
-                    btnEliminar.Enabled = true;
-                    btnModificar.Enabled = true;
+                    
 
                 }
                 else
                 {
-                    btnAgregar.Enabled = true;
+                    Agregar();
                     lblMensaje.Text = "No existe empleado con ese numero de cedula. Si desea puede agregarlo.";
                 }
             }
@@ -67,7 +98,7 @@ namespace Presentacion
                 if (string.IsNullOrEmpty(txtCedula.Text))
                     throw new Exception("Ingrese un numero de cedula.");
                 Logica.FabricaLogica.GetLogicaEmpleado().Borrar(txtCedula.Text);
-
+                Limpiar();
                 lblMensaje.Text = "El empleado fue elimiando correctamente.";
             }
             catch (Exception ex)
@@ -80,9 +111,12 @@ namespace Presentacion
             {
 
                 Empleado emp = new Empleado(txtCedula.Text, txtContraseña.Text, txtNombreCompleto.Text);
-            
 
+                Limpiar();
                 Logica.FabricaLogica.GetLogicaEmpleado().Modificar(emp);
+               
+                lblMensaje.Text = "El empleado fue modificado correctamente";
+                
             }
             catch (Exception ex)
             { lblMensaje.Text = ex.Message; }
@@ -98,9 +132,9 @@ namespace Presentacion
                     Empleado emp2 = new Empleado(txtCedula.Text, txtContraseña.Text, txtNombreCompleto.Text);
 
                     Logica.FabricaLogica.GetLogicaEmpleado().Agregar(emp2);
-                    txtCedula.Text = "";
-                    txtContraseña.Text = "";
-                    txtNombreCompleto.Text = "";
+
+                    Limpiar();
+                    lblMensaje.Text = "Empleado agregado correctamente";
                 
             }
             catch (Exception ex)
@@ -119,6 +153,7 @@ namespace Presentacion
                 Empleado emp = new Empleado(txtCedula.Text, txtContraseña.Text, txtNombreCompleto.Text);
 
                 Logica.FabricaLogica.GetLogicaEmpleado().Baja(emp);
+                Limpiar();
                 lblMensaje.Text = "Empleado dado de baja correctamente";
             }
             catch (Exception ex)
