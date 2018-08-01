@@ -774,7 +774,6 @@ insert into Viajes values (2,'CompañiaX','ABC', '30-09-2018 16:00:00', '25-10-20
 insert into Viajes values (3,'CompañiaC','ACT', '20-12-2018 19:00:00', '25-12-2018 20:00:00', 56, '52345678')
 insert into Viajes values (4,'CompañiaD','ABC', '05-10-2018 13:00:00', '07-10-2018 12:00:00', 56, '49345678')
 insert into Viajes values (5,'CompañiaD','ABC', '12-10-2018 17:30:00', '15-10-2018 16:30:00', 56, '49345678')
-insert into ViajesInternacionales values (5, 1, 'Viaje Internacional chequeado')
 insert into ViajesInternacionales values (4, 1, 'Viaje Internacional chequeado')
 insert into ViajesInternacionales values (3, 1, 'Viaje Internacional chequeado')
 insert into ViajesInternacionales values (2, 0, 'Viaje Internacional chequeado')
@@ -785,6 +784,4 @@ insert into ViajesNacionales values(5,2)
 --select * from Terminales
 --select *from Viajes
 go
-
-
 
