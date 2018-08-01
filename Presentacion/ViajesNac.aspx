@@ -82,7 +82,9 @@
             <td class="style22">
                 &nbsp;</td>
             <td class="style12">
-                &nbsp;</td>
+                <asp:Button ID="btnLimpiar" runat="server" CssClass="btns" 
+                    onclick="btnLimpiar_Click" Text="Limpiar" />
+            </td>
         </tr>
         <tr>
             <td class="style4" colspan="3">

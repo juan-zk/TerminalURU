@@ -18,11 +18,24 @@ namespace Presentacion
             btnModificar.Enabled = false;
             btnEliminar.Enabled = false;
         }
+        void LimpiarTodo()
+        {
+            txtDir.Text = "";
+            txtTel.Text = "";
+            txtNombre.Text = "";
+            btnAgregar.Enabled = false;
+            btnModificar.Enabled = false;
+            btnEliminar.Enabled = false;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
                 lblMsj.Text = "";
+                if (!IsPostBack)
+                {
+                    Limpiar();
+                }
             }
             catch (Exception ex)
             { lblMsj.Text = ex.Message; }
@@ -59,8 +72,8 @@ namespace Presentacion
             try
             {
                 Compania comp = new Compania(txtNombre.Text, txtDir.Text, txtTel.Text.Trim());
+                LimpiarTodo();
                 Logica.FabricaLogica.GetLogicaCompania().Agregar(comp);
-                Limpiar();
             }
             catch (Exception ex)
             { lblMsj.Text = ex.Message; }
@@ -73,7 +86,8 @@ namespace Presentacion
                 ((Compania)Session["compania"])._Nombre = txtNombre.Text;
                 ((Compania)Session["compania"])._Direccion = txtDir.Text;
                 ((Compania)Session["compania"])._Telefono = txtTel.Text.Trim();
-                Logica.FabricaLogica.GetLogicaCompania().Modificar((Compania)Session["compania"]);
+                LimpiarTodo();
+                Logica.FabricaLogica.GetLogicaCompania().Modificar((Compania)Session["compania"]);              
             }
             catch (Exception ex)
             { lblMsj.Text = ex.Message; }
@@ -83,7 +97,7 @@ namespace Presentacion
         {
             try
             {
-                Limpiar();
+                LimpiarTodo();
                 Logica.FabricaLogica.GetLogicaCompania().Eliminar((Compania)Session["compania"]);
 
             }
