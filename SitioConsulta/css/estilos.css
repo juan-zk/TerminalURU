@@ -1,0 +1,104 @@
+body 
+{
+    font-family: Segoe UI Light; 
+    letter-spacing: 1px;
+    margin: 40;
+    padding: 0;
+    background-color: #e2e2e2;
+}
+
+.navegacion{
+    margin: 30px auto;
+    width:80%;
+    background: #415C71;
+    color:#fff;
+}
+
+.navegacion ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tablaForm{
+    margin: -30px auto;
+    padding: 0;
+    width:80%;
+    background: #fff;
+}
+/*------------------------------------------------------------------*/
+/*-------FORMS -----------------------------------*/
+.title
+{
+    font-size: 20px;
+    font-family: Arial;
+    color: #415C71;
+}
+.btns
+{
+    color: White;
+    background: #4ebaab;
+    width: 230px;
+    height: 40px;
+    font-weight:bold;
+    font-size: 15px;
+    border: 0;
+    border-radius: 4px;
+}
+.btns:hover{
+    background: #6fcec1;
+    transition: all .3s;
+}
+.btns:disabled{
+    color: Black;
+    background: #dbdbdb;
+    width: 230px;
+    height: 40px;
+    font-weight:bold;
+    font-size: 15px;
+    border: 0;
+    border-radius: 4px;
+}
+.txt {
+    border:2px solid #deebf2;
+    border-radius:4px;
+    margin: 2px 0;
+    outline: none;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: .3s;
+    width: 100%;
+}
+.txt:focus{
+    border-color: #4ebaab;
+    box-shadow: 0 0 8px 0 dodgerBlue;
+}
+
+.btnA{
+    color: White;
+    margin: 2px 0;
+    border-radius:4px;
+    background: #4ebaab;
+    border: 0;
+    font-weight:bold;
+    font-size: 15px;
+    padding: 8px;
+}
+.btnA:hover{
+    background: #6fcec1;
+    transition: all .3s;
+}
+
+.btnQ{
+    color: White;
+    margin: 2px 0;
+    border-radius:4px;
+    background: #bf4444;
+    border: 0;
+    font-weight:bold;
+    font-size: 15px;
+}
+.btnQ:hover{
+    background: #d65959;
+    transition: all .3s
+}
