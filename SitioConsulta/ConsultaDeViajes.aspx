@@ -37,16 +37,51 @@
             </tr>
             <tr>
                 <td>
-                    &nbsp;
-                </td>
+                    &nbsp;</td>
                 <td>
-                    &nbsp;
-                </td>
+                    &nbsp;</td>
                 <td>
-                    &nbsp;
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <asp:Repeater ID="rptrViajes" runat="server">
+                     <ItemTemplate>
+                        <table width="100%">
+                            <tr bgcolor="#e2e2e2" class="tr">
+                                <td> </td>
+                                <td> Número:<asp:TextBox ID="txtNumero" runat="server"></asp:TextBox> </td>
+                                <td> Compañia:<asp:TextBox ID="txtCompania" runat="server"></asp:TextBox> </td>
+                                <td> Partida:<asp:TextBox ID="txtPartida" runat="server"></asp:TextBox> </td>
+                                <td> Llegada:<asp:TextBox ID="txtLlegada" runat="server"></asp:TextBox> </td>
+                                <td> <asp:Button ID="btnVerViaje" runat="server" Text="Ver Viaje" CssClass="btns" Width="100px" /> </td>
+                              </tr>
+                        </table>
+                    </ItemTemplate>
+                    <AlternatingItemTemplate>
+                        <table width="100%">
+                            <tr bgcolor="#fff">
+                                <td> </td>
+                                <td> Número:<asp:TextBox ID="txtNumero" runat="server"></asp:TextBox> </td>
+                                <td> Compañia:<asp:TextBox ID="txtCompania" runat="server"></asp:TextBox> </td>
+                                <td> Partida:<asp:TextBox ID="txtPartida" runat="server"></asp:TextBox> </td>
+                                <td> Llegada:<asp:TextBox ID="txtLlegada" runat="server"></asp:TextBox> </td>
+                                <td> <asp:Button ID="btnVerViaje" runat="server" Text="Ver Viaje" CssClass="btns" Width="100px" /> </td>
+                           </tr>
+                        </table>
+                    </AlternatingItemTemplate>
+                    </asp:Repeater>
                 </td>
             </tr>
-        </table>
+            </table>
     </div>
     </form>
 </body>
