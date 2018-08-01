@@ -24,6 +24,21 @@ namespace Presentacion
             btnModificar.Enabled = false;
             btnEliminar.Enabled = false;
         }
+        void LimpiarTodo()
+        {
+            txtNum.Text = "";
+            txtCompania.Text = "";
+            txtEmpleado.Text = "";
+            txtFechaPartida.Text = "";
+            txtFechaArribo.Text = "";
+            txtDocumentacion.Text = "";
+            txtTerminal.Text = "";
+            txtCantidadAsientos.Text = "";
+            chkServicioBordo.Checked = false;
+            btnAgregar.Enabled = false;
+            btnModificar.Enabled = false;
+            btnEliminar.Enabled = false;
+        }
         bool ControlVacio()
         {
             var vacio = false;
@@ -88,7 +103,7 @@ namespace Presentacion
                 ((ViajesInternacionales)Session["viajeInter"])._FechaArribo = Convert.ToDateTime(txtFechaArribo.Text);
                 ((ViajesInternacionales)Session["viajeInter"])._CantidadAsientos = Convert.ToInt32(txtCantidadAsientos.Text);
                 ((ViajesInternacionales)Session["viajeInter"])._Documentacion = txtDocumentacion.Text;
-                Limpiar();
+                LimpiarTodo();
                 Logica.FabricaLogica.GetLogicaViajes().Modificar((ViajesInternacionales)Session["viajeInter"]);
                 
             }
@@ -100,7 +115,7 @@ namespace Presentacion
         {
             try
             {
-                Limpiar();
+                LimpiarTodo();
                 Logica.FabricaLogica.GetLogicaViajes().Eliminar((ViajesInternacionales)Session["viajeInter"]);
 
             }
@@ -125,7 +140,7 @@ namespace Presentacion
                     throw new Exception("La terminal ingresada no se encuentra registrada");
                 ViajesInternacionales viajeInter = new ViajesInternacionales(Convert.ToInt32(txtNum.Text), compania, terminal, Convert.ToDateTime(txtFechaPartida.Text), Convert.ToDateTime(txtFechaArribo.Text), Convert.ToInt32(txtCantidadAsientos.Text), empleado, chkServicioBordo.Checked, txtDocumentacion.Text);
 
-                Limpiar();
+                LimpiarTodo();
                 Logica.FabricaLogica.GetLogicaViajes().Agregar(viajeInter);
 
             }

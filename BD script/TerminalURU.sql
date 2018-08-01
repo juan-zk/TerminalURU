@@ -187,14 +187,26 @@ create proc agregarCompania
 as
 begin
 	declare @aux int
-	if exists(select nombre from Companias where nombre = @nombre)
-		return -1 /* sale cuando ya existe la compañia */
-
-	insert into Companias(nombre, direccion, telefono) values(@nombre, @direccion, @tel)
-	set @aux=@@ERROR
-	if @aux=0 
-	return 0;
-	else return -2
+	if exists (select telefono from Companias where telefono=@tel and baja=0)
+		return -4 --telefono unico
+	if exists(select nombre from Companias where nombre = @nombre and baja=0)
+		return -1 /*ya existe la compañia */
+	if not exists(select * from Companias where nombre = @nombre and baja=1)
+	begin
+		insert into Companias(nombre, direccion, telefono) values(@nombre, @direccion, @tel)/* no existe la compañia baja, agrego registro*/
+		set @aux=@@ERROR
+		if (@aux<>0 )
+		return -3
+		else return 2
+	end
+	if exists(select * from Companias where nombre = @nombre and baja=1)  
+	begin
+		update Companias set nombre=@nombre, telefono=@tel, direccion=@direccion, baja=0 where nombre=@nombre /* ya existe la compañia pero baja, modifico registro*/
+		set @aux=@@ERROR
+		if (@aux<> 0) 
+		return -2
+		else return 1
+	end
 end
 go
 
@@ -206,6 +218,10 @@ create proc modificarCompania
 as
 begin 
 	declare @respuesta int
+	if not exists (select * from Companias where nombre=@nombre and baja=0)
+		return -2 --no existe la compania
+	if exists (select telefono from Companias where telefono=@tel and baja=0)
+		return -3 --telefono unico
 	update Companias 
 	set direccion = @direccion,
 		telefono = @tel
@@ -766,6 +782,7 @@ insert into ViajesInternacionales values (1, 0, 'Viaje Internacional chequeado')
 insert into ViajesNacionales values(5,2)
 --select * from Empleados
 --select * from Companias
+--select * from Terminales
 --select *from Viajes
 go
 
