@@ -45,19 +45,19 @@ namespace Presentacion
             {
                 if (String.IsNullOrEmpty(txtNum.Text))
                     throw new Exception("Debe completar el campo de busqueda");
-                Session["ViajesNacionales"] = FabricaLogica.GetLogicaViajes().BuscarViaje(Convert.ToInt32(txtNum.Text.Trim()));
+                Session["ViajesNac"] = FabricaLogica.GetLogicaViajes().BuscarViaje(Convert.ToInt32(txtNum.Text.Trim()));
 
 
-                if ((ViajesNac)Session["ViajesNacionales"] != null)
+                if ((ViajesNac)Session["ViajesNac"] != null)
                 {
-                    
-                    txtCompania.Text = ((ViajesNacionales)Session["ViajesNacional"])._Com._Nombre;
-                     txtTerminal.Text = ((ViajesNacionales)Session["ViajesNacional"])._Ter._Codigo;
-                     txtFechaPartida.Text = ((ViajesNacionales)Session["ViajesNacional"])._FechaPartida.ToString();
-                     txtFechaArribo.Text = ((ViajesNacionales)Session["ViajesNacional"])._FechaArribo.ToString();
-                     txtCantidadAsientos.Text = ((ViajesNacionales)Session["ViajesNacional"])._CantidadAsientos.ToString();
-                     txtEmpleado.Text = ((ViajesNacionales)Session["ViajesNacional"])._Emp._Cedula;
-                     ddParadas.Text =Convert.ToString(((ViajesNacionales)Session["ViajesNacional"])._ParadasIntermedias);
+
+                    txtCompania.Text = ((ViajesNacionales)Session["ViajesNac"])._Com._Nombre;
+                    txtTerminal.Text = ((ViajesNacionales)Session["ViajesNac"])._Ter._Codigo;
+                    txtFechaPartida.Text = ((ViajesNacionales)Session["ViajesNac"])._FechaPartida.ToString();
+                    txtFechaArribo.Text = ((ViajesNacionales)Session["ViajesNac"])._FechaArribo.ToString();
+                    txtCantidadAsientos.Text = ((ViajesNacionales)Session["ViajesNac"])._CantidadAsientos.ToString();
+                    txtEmpleado.Text = ((ViajesNacionales)Session["ViajesNac"])._Emp._Cedula;
+                    ddParadas.Text = Convert.ToString(((ViajesNacionales)Session["ViajesNac"])._ParadasIntermedias);
                      btnEliminar.Enabled = true;
                      btnModificar.Enabled = true;
                 }
@@ -102,15 +102,15 @@ namespace Presentacion
             {
                 if (ControlVacio())
                     throw new Exception("Debe completar todos los campos");
-                ((ViajesNacionales)Session["ViajesNacionales"])._Com = Logica.FabricaLogica.GetLogicaCompania().Buscar(txtCompania.Text);
-                ((ViajesNacionales)Session["ViajesNacionales"])._Emp = Logica.FabricaLogica.GetLogicaEmpleado().Buscar(txtEmpleado.Text);
-                ((ViajesNacionales)Session["ViajesNacionales"])._Ter = Logica.FabricaLogica.GetLogicaTerminales().Buscar(txtTerminal.Text);
-                ((ViajesNacionales)Session["ViajesNacionales"])._FechaPartida = Convert.ToDateTime(txtFechaPartida.Text);
-                ((ViajesNacionales)Session["ViajesNacionales"])._FechaArribo = Convert.ToDateTime(txtFechaArribo.Text);
-                ((ViajesNacionales)Session["ViajesNacionales"])._CantidadAsientos = Convert.ToInt32(txtCantidadAsientos.Text);
-                ((ViajesNacionales)Session["ViajesNacionales"])._ParadasIntermedias = Convert.ToInt32(ddParadas.SelectedValue);
+                ((ViajesNacionales)Session["ViajesNac"])._Com = Logica.FabricaLogica.GetLogicaCompania().Buscar(txtCompania.Text);
+                ((ViajesNacionales)Session["ViajesNac"])._Emp = Logica.FabricaLogica.GetLogicaEmpleado().Buscar(txtEmpleado.Text);
+                ((ViajesNacionales)Session["ViajesNac"])._Ter = Logica.FabricaLogica.GetLogicaTerminales().Buscar(txtTerminal.Text);
+                ((ViajesNacionales)Session["ViajesNac"])._FechaPartida = Convert.ToDateTime(txtFechaPartida.Text);
+                ((ViajesNacionales)Session["ViajesNac"])._FechaArribo = Convert.ToDateTime(txtFechaArribo.Text);
+                ((ViajesNacionales)Session["ViajesNac"])._CantidadAsientos = Convert.ToInt32(txtCantidadAsientos.Text);
+                ((ViajesNacionales)Session["ViajesNac"])._ParadasIntermedias = Convert.ToInt32(ddParadas.SelectedValue);
                 Limpiar();
-                Logica.FabricaLogica.GetLogicaViajes().Modificar((ViajesNacionales)Session["ViajesNacionales"]);
+                Logica.FabricaLogica.GetLogicaViajes().Modificar((ViajesNacionales)Session["ViajesNac"]);
                 
             }
             catch (Exception ex)
@@ -122,7 +122,7 @@ namespace Presentacion
             try
             {
                 Limpiar();
-                ViajesNacionales viaje = (ViajesNacionales)Session["ViajesNacionales"];
+                ViajesNacionales viaje = (ViajesNacionales)Session["ViajesNac"];
                 FabricaLogica.GetLogicaViajes().Eliminar(viaje);
 
 
