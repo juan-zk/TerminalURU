@@ -91,14 +91,6 @@
     </tr>
     <tr>
         <td class="style22" align="right">
-            </td>
-        <td class="style25" align="center">
-            &nbsp;</td>
-        <td class="style25" align="left">
-            &nbsp;</td>
-    </tr>
-    <tr>
-        <td class="style22" align="right">
             <asp:Label ID="lblTel" runat="server" Text="Teléfono"></asp:Label>
         </td>
         <td class="style25" align="center">
@@ -109,27 +101,11 @@
     </tr>
     <tr>
         <td class="style22" align="right">
-            &nbsp;</td>
-        <td class="style25" align="center">
-            &nbsp;</td>
-        <td class="style25" align="left">
-            &nbsp;</td>
-    </tr>
-    <tr>
-        <td class="style22" align="right">
             <asp:Label ID="lblDir" runat="server" Text="Dirección"></asp:Label>
         </td>
         <td class="style25" align="center">
             <asp:TextBox ID="txtDir" runat="server" CssClass="txt"></asp:TextBox>
         </td>
-        <td class="style25" align="left">
-            &nbsp;</td>
-    </tr>
-    <tr>
-        <td class="style22" align="right">
-            &nbsp;</td>
-        <td class="style25" align="center">
-            &nbsp;</td>
         <td class="style25" align="left">
             &nbsp;</td>
     </tr>

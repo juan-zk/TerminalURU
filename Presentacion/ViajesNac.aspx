@@ -49,14 +49,6 @@
             </td>
         </tr>
         <tr>
-            <td class="style17" align="right" width="33%">
-                &nbsp;</td>
-            <td class="style17" width="33%" align="center">
-                &nbsp;</td>
-            <td class="style17" width="33%">
-                &nbsp;</td>
-        </tr>
-        <tr>
             <td class="style4" align="right" width="33%">
                 <asp:Label ID="lblCom" runat="server" Text="Compañia"></asp:Label>
             </td>
@@ -65,14 +57,6 @@
             </td>
             <td class="style12" width="33%">
                 &nbsp;</td>
-        </tr>
-        <tr>
-            <td class="style1" align="right" width="33%">
-            </td>
-            <td class="style1" width="33%" align="center">
-            </td>
-            <td class="style1" width="33%">
-            </td>
         </tr>
         <tr>
             <td class="style2" align="right" width="33%">
@@ -85,14 +69,6 @@
             </td>
         </tr>
         <tr>
-            <td class="style17" align="right" width="33%">
-                &nbsp;</td>
-            <td class="style17" width="33%" align="center">
-                &nbsp;</td>
-            <td class="style12" width="33%">
-                &nbsp;</td>
-        </tr>
-        <tr>
             <td class="style4" align="right" width="33%">
                 <asp:Label ID="lblFPart" runat="server" style="text-align: left" 
                     Text="Fecha de Partida"></asp:Label>
@@ -100,14 +76,6 @@
             <td class="style4" width="33%" align="center">
                 <asp:TextBox ID="txtFechaPartida" runat="server" CssClass="txt"></asp:TextBox>
             </td>
-            <td class="style12" width="33%">
-                &nbsp;</td>
-        </tr>
-        <tr>
-            <td class="style17" align="right" width="33%">
-                &nbsp;</td>
-            <td class="style17" width="33%" align="center">
-                &nbsp;</td>
             <td class="style12" width="33%">
                 &nbsp;</td>
         </tr>
@@ -122,14 +90,6 @@
                 &nbsp;</td>
         </tr>
         <tr>
-            <td class="style17" align="right" width="33%">
-                &nbsp;</td>
-            <td class="style17" width="33%" align="center">
-                &nbsp;</td>
-            <td class="style12" width="33%">
-                &nbsp;</td>
-        </tr>
-        <tr>
             <td class="style4" align="right" width="33%">
                 <asp:Label ID="lblCAsientos" runat="server" Text="Cantidad de Asientos"></asp:Label>
             </td>
@@ -140,28 +100,12 @@
                 &nbsp;</td>
         </tr>
         <tr>
-            <td class="style17" align="right" width="33%">
-                &nbsp;</td>
-            <td class="style17" width="33%" align="center">
-                &nbsp;</td>
-            <td class="style12" width="33%">
-                &nbsp;</td>
-        </tr>
-        <tr>
             <td class="style4" align="right" width="33%">
                 <asp:Label ID="lblUltEmpleado" runat="server" Text="Último Empleado"></asp:Label>
             </td>
             <td class="style4" width="33%" align="center">
                 <asp:TextBox ID="txtEmpleado" runat="server" CssClass="txt"></asp:TextBox>
             </td>
-            <td class="style12" width="33%">
-                &nbsp;</td>
-        </tr>
-        <tr>
-            <td class="style4" align="right" width="33%">
-                &nbsp;</td>
-            <td class="style4" width="33%" align="center">
-                &nbsp;</td>
             <td class="style12" width="33%">
                 &nbsp;</td>
         </tr>
@@ -185,14 +129,6 @@
                     <asp:ListItem Value="10"></asp:ListItem>
                 </asp:DropDownList>
             </td>
-            <td class="style12" width="33%">
-                &nbsp;</td>
-        </tr>
-        <tr>
-            <td class="style11" align="right" width="33%">
-                &nbsp;</td>
-            <td class="style11" width="33%" align="center">
-                &nbsp;</td>
             <td class="style12" width="33%">
                 &nbsp;</td>
         </tr>

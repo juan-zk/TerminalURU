@@ -92,28 +92,12 @@
         </tr>
         <tr>
             <td align="right" width="33%">
-                &nbsp;</td>
-            <td align="center" class="style2">
-                &nbsp;</td>
-            <td width="33%">
-                &nbsp;</td>
-        </tr>
-        <tr>
-            <td align="right" width="33%">
                 <asp:Label ID="Label4" runat="server" Text="Ciudad:"></asp:Label>
             </td>
             <td align="center" class="style2">
                 <asp:TextBox ID="txtCiudad" runat="server" CssClass="txt" Width="100%" 
                     Enabled="False" ></asp:TextBox>
             </td>
-            <td width="33%">
-                &nbsp;</td>
-        </tr>
-        <tr>
-            <td align="right" width="33%">
-                &nbsp;</td>
-            <td align="center" class="style2">
-                &nbsp;</td>
             <td width="33%">
                 &nbsp;</td>
         </tr>
