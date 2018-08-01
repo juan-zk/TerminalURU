@@ -74,9 +74,11 @@ namespace Persistencia
 
                 if (respuesta == -1)
                     throw new Exception("Nombre de compañia ya existe");
-                if (respuesta == -2)
+                if (respuesta == -2 || respuesta == -3)
                     throw new Exception("ERROR SQL");
-                if (respuesta == 0)
+                if (respuesta == -4)
+                    throw new Exception("El teléfono debe ser único, el ingresado ya se encuentra registrado");
+                if (respuesta == 1 || respuesta == 2)
                     throw new Exception("Compañia agregada correctamente.");
 
             }
@@ -108,6 +110,8 @@ namespace Persistencia
                 int respuesta = (int)resSQL.Value;
                 if (respuesta == -1)
                     throw new Exception("ERROR SQL, no se pudo completar su petición");
+                if (respuesta == -3)
+                    throw new Exception("El teléfono debe ser único, el ingresado ya se encuentra registrado");
                 if (respuesta == 0)
                     throw new Exception("Compañia modificada correctamente.");
             }
