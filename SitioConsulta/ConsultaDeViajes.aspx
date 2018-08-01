@@ -14,10 +14,15 @@
             aca hay que poner algo</asp:Panel>
         <table class="tablaForm">
             <tr>
-                <td>
+                <td align="center" colspan="5">
+                    <asp:Label ID="lblMsj" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
                     &nbsp;
                 </td>
-                <td>
+                <td colspan="2">
                     &nbsp;
                 </td>
                 <td>
@@ -25,20 +30,9 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    &nbsp;
-                </td>
-                <td>
-                    &nbsp;
-                </td>
-                <td>
-                    &nbsp;
-                </td>
-            </tr>
-            <tr>
-                <td>
+                <td colspan="2">
                     &nbsp;</td>
-                <td>
+                <td colspan="2">
                     &nbsp;</td>
                 <td>
                     &nbsp;</td>
@@ -50,31 +44,34 @@
                     &nbsp;</td>
                 <td>
                     &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
             </tr>
             <tr>
-                <td colspan="3">
-                    <asp:Repeater ID="rptrViajes" runat="server">
+                <td colspan="5">
+                    <asp:Repeater ID="rptrViajes" runat="server" 
+                        onitemcommand="rptrViajes_ItemCommand">
                      <ItemTemplate>
                         <table width="100%">
-                            <tr bgcolor="#e2e2e2" class="tr">
-                                <td> </td>
-                                <td> Número:<asp:TextBox ID="txtNumero" runat="server"></asp:TextBox> </td>
-                                <td> Compañia:<asp:TextBox ID="txtCompania" runat="server"></asp:TextBox> </td>
-                                <td> Partida:<asp:TextBox ID="txtPartida" runat="server"></asp:TextBox> </td>
-                                <td> Llegada:<asp:TextBox ID="txtLlegada" runat="server"></asp:TextBox> </td>
-                                <td> <asp:Button ID="btnVerViaje" runat="server" Text="Ver Viaje" CssClass="btns" Width="100px" /> </td>
+                            <tr bgcolor="#e2e2e2" class="item">
+                                <td> Número:<asp:TextBox ID="txtNumero" runat="server" CssClass="txt" Text = '<%# Bind("_NumViaje") %>' Enabled="False"></asp:TextBox> </td>
+                                <td> Compañia:<asp:TextBox ID="txtCompania" runat="server" CssClass="txt" Text = '<%# Bind("_Com._Nombre") %>' Enabled="False"></asp:TextBox> </td>
+                                <td> Partida:<asp:TextBox ID="txtPartida" runat="server" CssClass="txt" Text = '<%# Bind("_FechaPartida") %>' Enabled="False"></asp:TextBox> </td>
+                                <td> Llegada:<asp:TextBox ID="txtLlegada" runat="server" CssClass="txt" Text = '<%# Bind("_FechaArribo") %>' Enabled="False"></asp:TextBox> </td>
+                                <td> <asp:Button ID="btnVerViaje" runat="server" CommandName="VerViaje" Text="Ver Viaje" CssClass="btns" Width="100px" /> </td>
                               </tr>
                         </table>
                     </ItemTemplate>
                     <AlternatingItemTemplate>
                         <table width="100%">
-                            <tr bgcolor="#fff">
-                                <td> </td>
-                                <td> Número:<asp:TextBox ID="txtNumero" runat="server"></asp:TextBox> </td>
-                                <td> Compañia:<asp:TextBox ID="txtCompania" runat="server"></asp:TextBox> </td>
-                                <td> Partida:<asp:TextBox ID="txtPartida" runat="server"></asp:TextBox> </td>
-                                <td> Llegada:<asp:TextBox ID="txtLlegada" runat="server"></asp:TextBox> </td>
-                                <td> <asp:Button ID="btnVerViaje" runat="server" Text="Ver Viaje" CssClass="btns" Width="100px" /> </td>
+                            <tr bgcolor="#fff" class="item">
+                                <td> Número:<asp:TextBox ID="txtNumero" runat="server" CssClass="txt" Text = '<%# Bind("_NumViaje") %>' Enabled="False"></asp:TextBox> </td>
+                                <td> Compañia:<asp:TextBox ID="txtCompania" runat="server" CssClass="txt" Text = '<%# Bind("_Com._Nombre") %>' Enabled="False"></asp:TextBox> </td>
+                                <td> Partida:<asp:TextBox ID="txtPartida" runat="server" CssClass="txt" Text = '<%# Bind("_FechaPartida") %>' Enabled="False"></asp:TextBox> </td>
+                                <td> Llegada:<asp:TextBox ID="txtLlegada" runat="server" CssClass="txt" Text = '<%# Bind("_FechaArribo") %>' Enabled="False"></asp:TextBox> </td>
+                                <td> <asp:Button ID="btnVerViaje" runat="server" CommandName="VerViaje" Text="Ver Viaje" CssClass="btns" Width="100px" /> </td>
                            </tr>
                         </table>
                     </AlternatingItemTemplate>

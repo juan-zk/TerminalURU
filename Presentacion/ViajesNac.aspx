@@ -1,50 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MPempleado.Master" AutoEventWireup="true" CodeBehind="ViajesNac.aspx.cs" Inherits="Presentacion.ViajesNac" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
 
-        .style1
-        {
-            width: 731px;
-            margin: 0 auto;
-        }
-        .style22
-        {
-            text-align: center;
-            width: 243px;
-        }
-        .style12
-        {
-            width: 243px;
-            text-align: left;
-        }
-        .style4
-        {
-            text-align: center;
-        }
-        .style17
-        {
-            text-align: center;
-        }
-        .style10
-        {
-            text-align: center;
-            height: 25px;
-        }
-        .style6
-        {
-            width: 243px;
-            text-align: left;
-            height: 25px;
-        }
-        .style11
-        {
-            text-align: center;
-        }
-        </style>
-</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <p>
-        Viajes nacionales<table class="style1" width="100%">
+    <table class="style1" width="100%">
         <tr>
             <td colspan="3" style="text-align: center">
                 <asp:Label ID="lblTitle" runat="server" CssClass="title" 
@@ -57,31 +14,31 @@
             </td>
         </tr>
         <tr>
-            <td class="style22">
+            <td class="style22" align="right" width="33%">
                 &nbsp;</td>
-            <td class="style22">
+            <td class="style22" width="33%">
                 &nbsp;</td>
-            <td class="style12">
+            <td class="style12" width="33%">
                 &nbsp;</td>
         </tr>
         <tr>
-            <td class="style22">
+            <td class="style22" align="right" width="33%">
                 <asp:Label ID="lblNum" runat="server" Text="Número"></asp:Label>
             </td>
-            <td class="style22">
+            <td class="style22" width="33%">
                 <asp:TextBox ID="txtNum" runat="server" CssClass="txt"></asp:TextBox>
             </td>
-            <td class="style12">
+            <td class="style12" width="33%">
                 <asp:Button ID="btnBuscar" runat="server" CssClass="btns" Text="Buscar" 
                     onclick="btnBuscar_Click" />
             </td>
         </tr>
         <tr>
-            <td class="style22">
+            <td class="style22" align="right" width="33%">
                 &nbsp;</td>
-            <td class="style22">
+            <td class="style22" width="33%">
                 &nbsp;</td>
-            <td class="style12">
+            <td class="style12" width="33%">
                 <asp:Button ID="btnLimpiar" runat="server" CssClass="btns" 
                     onclick="btnLimpiar_Click" Text="Limpiar" />
             </td>
@@ -92,100 +49,129 @@
             </td>
         </tr>
         <tr>
-            <td class="style17" colspan="3">
+            <td class="style17" align="right" width="33%">
+                &nbsp;</td>
+            <td class="style17" width="33%">
+                &nbsp;</td>
+            <td class="style17" width="33%">
                 &nbsp;</td>
         </tr>
         <tr>
-            <td class="style4" colspan="2">
+            <td class="style4" align="right" width="33%">
                 <asp:Label ID="lblCom" runat="server" Text="Compañia"></asp:Label>
             </td>
-            <td class="style12">
+            <td class="style4" width="33%">
                 <asp:TextBox ID="txtCompania" runat="server" CssClass="txt"></asp:TextBox>
             </td>
+            <td class="style12" width="33%">
+                &nbsp;</td>
         </tr>
         <tr>
-            <td class="style10" colspan="2">
+            <td class="style1" align="right" width="33%">
             </td>
-            <td class="style6">
+            <td class="style1" width="33%">
+            </td>
+            <td class="style1" width="33%">
             </td>
         </tr>
         <tr>
-            <td class="style4" colspan="2">
+            <td class="style2" align="right" width="33%">
                 <asp:Label ID="lblDestino" runat="server" Text="Destino"></asp:Label>
             </td>
-            <td class="style12">
+            <td class="style2" width="33%">
                 <asp:TextBox ID="txtTerminal" runat="server" CssClass="txt"></asp:TextBox>
+            </td>
+            <td class="style2" width="33%">
             </td>
         </tr>
         <tr>
-            <td class="style17" colspan="2">
+            <td class="style17" align="right" width="33%">
                 &nbsp;</td>
-            <td class="style12">
+            <td class="style17" width="33%">
+                &nbsp;</td>
+            <td class="style12" width="33%">
                 &nbsp;</td>
         </tr>
         <tr>
-            <td class="style4" colspan="2">
+            <td class="style4" align="right" width="33%">
                 <asp:Label ID="lblFPart" runat="server" style="text-align: left" 
                     Text="Fecha de Partida"></asp:Label>
             </td>
-            <td class="style12">
+            <td class="style4" width="33%">
                 <asp:TextBox ID="txtFechaPartida" runat="server" CssClass="txt"></asp:TextBox>
             </td>
-        </tr>
-        <tr>
-            <td class="style17" colspan="2">
-                &nbsp;</td>
-            <td class="style12">
+            <td class="style12" width="33%">
                 &nbsp;</td>
         </tr>
         <tr>
-            <td class="style4" colspan="2">
+            <td class="style17" align="right" width="33%">
+                &nbsp;</td>
+            <td class="style17" width="33%">
+                &nbsp;</td>
+            <td class="style12" width="33%">
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style4" align="right" width="33%">
                 <asp:Label ID="lblFarribo" runat="server" Text="Fecha de Arribo"></asp:Label>
             </td>
-            <td class="style12">
+            <td class="style4" width="33%">
                 <asp:TextBox ID="txtFechaArribo" runat="server" CssClass="txt"></asp:TextBox>
             </td>
-        </tr>
-        <tr>
-            <td class="style17" colspan="2">
-                &nbsp;</td>
-            <td class="style12">
+            <td class="style12" width="33%">
                 &nbsp;</td>
         </tr>
         <tr>
-            <td class="style4" colspan="2">
+            <td class="style17" align="right" width="33%">
+                &nbsp;</td>
+            <td class="style17" width="33%">
+                &nbsp;</td>
+            <td class="style12" width="33%">
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style4" align="right" width="33%">
                 <asp:Label ID="lblCAsientos" runat="server" Text="Cantidad de Asientos"></asp:Label>
             </td>
-            <td class="style12">
+            <td class="style4" width="33%">
                 <asp:TextBox ID="txtCantidadAsientos" runat="server" CssClass="txt"></asp:TextBox>
             </td>
-        </tr>
-        <tr>
-            <td class="style17" colspan="2">
-                &nbsp;</td>
-            <td class="style12">
+            <td class="style12" width="33%">
                 &nbsp;</td>
         </tr>
         <tr>
-            <td class="style4" colspan="2">
+            <td class="style17" align="right" width="33%">
+                &nbsp;</td>
+            <td class="style17" width="33%">
+                &nbsp;</td>
+            <td class="style12" width="33%">
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style4" align="right" width="33%">
                 <asp:Label ID="lblUltEmpleado" runat="server" Text="Último Empleado"></asp:Label>
             </td>
-            <td class="style12">
+            <td class="style4" width="33%">
                 <asp:TextBox ID="txtEmpleado" runat="server" CssClass="txt"></asp:TextBox>
             </td>
+            <td class="style12" width="33%">
+                &nbsp;</td>
         </tr>
         <tr>
-            <td class="style10" colspan="2">
+            <td class="style10" align="right" width="33%">
             </td>
-            <td class="style6">
+            <td class="style10" width="33%">
+            </td>
+            <td class="style6" width="33%">
             </td>
         </tr>
         <tr>
-            <td class="style4" colspan="2">
+            <td class="style4" align="right" width="33%">
                 <asp:Label ID="lblDoc" runat="server" Text="Paradas Intermedias"></asp:Label>
             </td>
-            <td class="style12">
-                <asp:DropDownList ID="ddParadas" runat="server" Height="20px" Width="60px">
+            <td class="style4" width="33%">
+                <asp:DropDownList ID="ddParadas" runat="server" Height="20px" Width="100%" 
+                    CssClass="txt">
                     <asp:ListItem Value="0"></asp:ListItem>
                     <asp:ListItem Value="1"></asp:ListItem>
                     <asp:ListItem Value="2"></asp:ListItem>
@@ -199,17 +185,23 @@
                     <asp:ListItem Value="10"></asp:ListItem>
                 </asp:DropDownList>
             </td>
-        </tr>
-        <tr>
-            <td class="style11" colspan="2">
-                &nbsp;</td>
-            <td class="style12">
+            <td class="style12" width="33%">
                 &nbsp;</td>
         </tr>
         <tr>
-            <td class="style4" colspan="2">
+            <td class="style11" align="right" width="33%">
                 &nbsp;</td>
-            <td class="style12">
+            <td class="style11" width="33%">
+                &nbsp;</td>
+            <td class="style12" width="33%">
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style4" align="right" width="33%">
+                &nbsp;</td>
+            <td class="style4" width="33%">
+                &nbsp;</td>
+            <td class="style12" width="33%">
                 &nbsp;</td>
         </tr>
         <tr>
@@ -231,5 +223,17 @@
             </td>
         </tr>
     </table>
-    </p>
 </asp:Content>
+<asp:Content ID="Content3" runat="server" contentplaceholderid="head">
+    <style type="text/css">
+        .style1
+        {
+            height: 32px;
+        }
+        .style2
+        {
+            height: 47px;
+        }
+    </style>
+</asp:Content>
+

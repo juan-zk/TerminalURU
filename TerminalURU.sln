@@ -12,6 +12,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SitioConsulta", "SitioConsulta\", "{7FF16A2D-9976-4975-BB43-6B353860B283}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		ProjectReferences = "{0A9A30AC-9EBE-4DAD-A41D-7499E8F221B7}|EntidadesCompartidas.dll;{B480B823-9CF3-4C3D-99AF-34AF5EB3BE11}|Logica.dll;{9CF347AA-5077-4435-8662-B70EF4C3751A}|Persistencia.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/SitioConsulta"
 		Debug.AspNetCompiler.PhysicalPath = "SitioConsulta\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\SitioConsulta\"
