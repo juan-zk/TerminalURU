@@ -134,6 +134,8 @@ namespace Persistencia
                     throw new Exception("ERROR al modificar el viaje");
                 if (respuesta == -6)
                     throw new Exception("ERROR al modificar el viaje internacional");
+                if (respuesta == -7)
+                    throw new Exception("No puede haber un viaje al mismo destino con la misma hora de salida, al menos 2 hrs de diferencia.");
                 if (respuesta == 1)
                     throw new Exception("Viaje modificado correctamente.");
             }
@@ -217,6 +219,8 @@ namespace Persistencia
                     throw new Exception("ERROR al modificar el viaje");
                 if (respuesta == -6)
                     throw new Exception("ERROR al modificar el viaje internacional");
+                if (respuesta == -7)
+                    throw new Exception("No puede haber un viaje al mismo destino con la misma hora de salida, al menos 2 hrs de diferencia.");
                 if (respuesta == 1)
                     throw new Exception("Viaje agregado correctamente.");
 
