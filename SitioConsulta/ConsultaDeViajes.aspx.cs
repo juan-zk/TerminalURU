@@ -77,7 +77,7 @@ public partial class ConsultaDeViajes : System.Web.UI.Page
              }
              //filtro por destino y rango de fechas
 
-             else if (calPartida.SelectedDate != null && calLLegada.SelectedDate != null)
+             else if (calPartida.SelectedDate != null && calLLegada.SelectedDate != null && ddlDestino.SelectedValue != null)
              {
                    List<Viaje> _Resultado = (from UnDes in FiltroViajes
                                           where (UnDes._Ter._Ciudad == ddlDestino.SelectedValue) && (UnDes._FechaPartida == calPartida.SelectedDate) && (UnDes._FechaArribo == calLLegada.SelectedDate) 
@@ -86,6 +86,9 @@ public partial class ConsultaDeViajes : System.Web.UI.Page
                 rptrViajes.DataBind();
              
              }
+             else if (ddlDestino.SelectedValue == null)
+             { lblMsj.Text = "No selecciono destino. Si desea filtrar por destino u otro filtro, Porfavor seleccione el destino y los demas filtros que desea"; }
+            
         }
         catch (Exception ex) { lblMsj.Text = ex.Message; }
     }
