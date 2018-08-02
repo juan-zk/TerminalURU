@@ -6,32 +6,78 @@
 <head runat="server">
     <link href="css/estilos.css" type="text/css" rel="Stylesheet" />
     <title>Consulta de Viajes</title>
+    <style type="text/css">
+        .style1
+        {
+            height: 32px;
+        }
+    </style>
 </head>
 <body>
     <form id="form2" runat="server">
     <div>
-        <asp:Panel ID="Panel1" runat="server" CssClass="navegacion">
-            aca hay que poner algo</asp:Panel>
+        <asp:Panel ID="Panel1" runat="server" CssClass="navegacion" Height="40px">
+        <table>
+            <tr>
+                <td align="center" height="40px" valign="middle" width="100%">
+                    <asp:Label ID="Label4" runat="server" Font-Size="Large" 
+                        Text="Consulta de Viajes"></asp:Label>
+                </td>
+            </tr>
+        </table>
+        
+        </asp:Panel>
         <table class="tablaForm">
             <tr>
-                <td align="center" colspan="5">
+                <td align="center" colspan="3">
                     <asp:Label ID="lblMsj" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
-                <td>
-                    &nbsp;</td>
-                <td>
-                    &nbsp;</td>
-                <td>
-                    &nbsp;</td>
-                <td>
-                    &nbsp;</td>
-                <td>
-                    &nbsp;</td>
+                <td width="50%">
+                    <asp:Label ID="Label1" runat="server" Text="Filtrar por:"></asp:Label>
+                </td>
+                <td align="center" colspan="2">
+                    <asp:Label ID="Label5" runat="server" Text="Filtrar por rango de fechas:"></asp:Label>
+                </td>
             </tr>
             <tr>
-                <td colspan="5">
+                <td width="50%">
+                    <asp:Label ID="Label2" runat="server" Text="Destino:"></asp:Label>
+                    <asp:DropDownList ID="ddlDestino" runat="server">
+                        <asp:ListItem>Seleccione uno</asp:ListItem>
+                    </asp:DropDownList>
+                </td>
+                <td rowspan="4" align="center">
+                    <asp:Calendar ID="calPartida" runat="server" Height="200px" Width="200px">
+                    </asp:Calendar>
+&nbsp;</td>
+                <td rowspan="4">
+                    <asp:Calendar ID="calLLegada" runat="server" Height="200px" Width="200px">
+                    </asp:Calendar>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <asp:Label ID="Label3" runat="server" Text="Compañia:"></asp:Label>
+                    <asp:DropDownList ID="ddlCompañia" runat="server">
+                        <asp:ListItem>Seleccione una</asp:ListItem>
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
+                <td class="style1" width="50%">
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <asp:Button ID="btnAplicar" runat="server" CssClass="btns" 
+                        Text="Aplicar Filtro" />
+&nbsp;<asp:Button ID="btnQuitar" runat="server" CssClass="btns" Text="Quitar todos los filtros" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
                     <asp:Repeater ID="rptrViajes" runat="server" 
                         onitemcommand="rptrViajes_ItemCommand">
                      <ItemTemplate>
@@ -40,7 +86,8 @@
                                 <td> Número:<asp:TextBox ID="txtNumero" runat="server" CssClass="txt" Text = '<%# Bind("_NumViaje") %>' Enabled="False"></asp:TextBox> </td>
                                 <td> Compañia:<asp:TextBox ID="txtCompania" runat="server" CssClass="txt" Text = '<%# Bind("_Com._Nombre") %>' Enabled="False"></asp:TextBox> </td>
                                 <td> Partida:<asp:TextBox ID="txtPartida" runat="server" CssClass="txt" Text = '<%# Bind("_FechaPartida") %>' Enabled="False"></asp:TextBox> </td>
-                                <td> Llegada:<asp:TextBox ID="txtLlegada" runat="server" CssClass="txt" Text = '<%# Bind("_FechaArribo") %>' Enabled="False"></asp:TextBox> </td>
+                                <td> Llegada:<asp:TextBox ID="txtLlegada" runat="server" CssClass="txt" Text = '<%# Bind("_FechaArribo") %>' Enabled="False"></asp:TextBox> </td>                                
+                                <td> Destino:<asp:TextBox ID="TextBox1" runat="server" CssClass="txt" Text = '<%# Bind("_Ter._Ciudad") %>' Enabled="False"></asp:TextBox> </td>
                                 <td> <asp:Button ID="btnVerViaje" runat="server" CommandName="VerViaje" Text="Ver Viaje" CssClass="btns" Width="100px" /> </td>
                               </tr>
                         </table>
@@ -52,7 +99,8 @@
                                 <td> Compañia:<asp:TextBox ID="txtCompania" runat="server" CssClass="txt" Text = '<%# Bind("_Com._Nombre") %>' Enabled="False"></asp:TextBox> </td>
                                 <td> Partida:<asp:TextBox ID="txtPartida" runat="server" CssClass="txt" Text = '<%# Bind("_FechaPartida") %>' Enabled="False"></asp:TextBox> </td>
                                 <td> Llegada:<asp:TextBox ID="txtLlegada" runat="server" CssClass="txt" Text = '<%# Bind("_FechaArribo") %>' Enabled="False"></asp:TextBox> </td>
-                                <td> <asp:Button ID="btnVerViaje" runat="server" CommandName="VerViaje" Text="Ver Viaje" CssClass="btns" Width="100px" /> </td>
+                                <td> Destino:<asp:TextBox ID="TextBox1" runat="server" CssClass="txt" Text = '<%# Bind("_Ter._Ciudad") %>' Enabled="False"></asp:TextBox> </td>
+                                <td> <asp:Button ID="btnVerViaje" runat="server" CommandName="VerViaje" Text="Ver Viaje" CssClass="btns" Width="100px" /> </td>                                
                            </tr>
                         </table>
                     </AlternatingItemTemplate>
