@@ -72,8 +72,9 @@
             <tr>
                 <td width="50%">
                     <asp:Button ID="btnAplicar" runat="server" CssClass="btns" 
-                        Text="Aplicar Filtro" />
-&nbsp;<asp:Button ID="btnQuitar" runat="server" CssClass="btns" Text="Quitar todos los filtros" />
+                        Text="Aplicar Filtro" onclick="btnAplicar_Click" />
+&nbsp;<asp:Button ID="btnQuitar" runat="server" CssClass="btns" Text="Quitar todos los filtros" 
+                        onclick="btnQuitar_Click" />
                 </td>
             </tr>
             <tr>
