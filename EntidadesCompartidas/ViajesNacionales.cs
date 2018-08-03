@@ -15,7 +15,12 @@ namespace EntidadesCompartidas
        public int _ParadasIntermedias
        {
            get { return ParadasIntermedias; }
-           set { ParadasIntermedias = value; }
+           set 
+           {
+               if (value >= 0)
+                   ParadasIntermedias = value;
+               else throw new Exception("Paradas intermedias debe ser mayor o igual a 0");
+           }
        }
 
        //Constructor 
