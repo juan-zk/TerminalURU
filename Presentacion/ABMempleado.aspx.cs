@@ -95,6 +95,9 @@ namespace Presentacion
         {
             try
             {
+                if (((Empleado)Session["Empleado"])._Cedula == ((Empleado)Session["Usuario"])._Cedula)
+                    throw new Exception("No puede borrar el usuario actualmente logueado");
+
                 if (string.IsNullOrEmpty(txtCedula.Text))
                     throw new Exception("Ingrese un numero de cedula.");
                 Logica.FabricaLogica.GetLogicaEmpleado().Borrar(txtCedula.Text);
@@ -109,7 +112,7 @@ namespace Presentacion
         {
             try
             {
-
+                
                 Empleado emp = new Empleado(txtCedula.Text, txtContraseña.Text, txtNombreCompleto.Text);
 
                 Limpiar();

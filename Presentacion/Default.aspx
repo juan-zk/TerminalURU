@@ -73,7 +73,7 @@
                                     <td align="center" class="style1">
                                         <asp:Button ID="LoginButton" runat="server" 
                                             CommandName="Login" Text="Login" ValidationGroup="Login1"  
-                                            CssClass="btnLogueo" />
+                                            CssClass="btnLogueo"/>
                                     </td>
                                 </tr>
                                 <tr>
