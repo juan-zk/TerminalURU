@@ -102,19 +102,19 @@
                         </tr>
                         <tr>
                             <td class="style17">
-                                <asp:Label ID="Label1" runat="server" Text="Número"></asp:Label>
+                                <asp:Label ID="lblNumero" runat="server" Text="Número"></asp:Label>
                             </td>
                             <td class="style17">
                                 <asp:TextBox ID="txtNumero" runat="server" CssClass="txt"></asp:TextBox>
                             </td>
                             <td class="style17">
-                                <asp:Label ID="Label3" runat="server" Text="Terminal"></asp:Label>
+                                <asp:Label ID="lblTerminal" runat="server" Text="Terminal"></asp:Label>
                             </td>
                             <td class="style17">
                                 <asp:TextBox ID="txtTerminal" runat="server" CssClass="txt"></asp:TextBox>
                             </td>
                             <td class="style17">
-                                <asp:Label ID="Label5" runat="server" Text="Fecha de Arribo"></asp:Label>
+                                <asp:Label ID="lblArribo" runat="server" Text="Fecha de Arribo"></asp:Label>
                             </td>
                             <td class="style17">
                                 <asp:TextBox ID="txtFechaArribo" runat="server" CssClass="txt"></asp:TextBox>
@@ -136,19 +136,19 @@
                         </tr>
                         <tr>
                             <td class="style17">
-                                <asp:Label ID="Label2" runat="server" Text="Compañia"></asp:Label>
+                                <asp:Label ID="lblCompania" runat="server" Text="Compañia"></asp:Label>
                             </td>
                             <td class="style17">
                                 <asp:TextBox ID="txtCompania" runat="server" CssClass="txt"></asp:TextBox>
                             </td>
                             <td class="style17">
-                                <asp:Label ID="Label4" runat="server" Text="Fecha de Partida"></asp:Label>
+                                <asp:Label ID="lblPartida" runat="server" Text="Fecha de Partida"></asp:Label>
                             </td>
                             <td class="style17">
                                 <asp:TextBox ID="txtFechaPartida" runat="server" CssClass="txt"></asp:TextBox>
                             </td>
                             <td class="style17">
-                                <asp:Label ID="Label6" runat="server" Text="Asientos"></asp:Label>
+                                <asp:Label ID="lblAsientos" runat="server" Text="Asientos"></asp:Label>
                             </td>
                             <td class="style17">
                                 <asp:TextBox ID="txtAsientos" runat="server" CssClass="txt"></asp:TextBox>
@@ -170,22 +170,25 @@
                         </tr>
                         <tr>
                             <td class="style17">
-                                <asp:Label ID="Label7" runat="server" Text="Empleado"></asp:Label>
+                                <asp:Label ID="lblEmpleado" runat="server" Text="Empleado"></asp:Label>
                             </td>
                             <td class="style17">
                                 <asp:TextBox ID="txtEmpleado" runat="server" CssClass="txt"></asp:TextBox>
                             </td>
                             <td class="style17">
-                                <asp:Label ID="Label21" runat="server" Text="Servicio a Bordo"></asp:Label>
+                                <asp:Label ID="lblServicio" runat="server" Text="Servicio a Bordo" 
+                                    Visible="False"></asp:Label>
                             </td>
                             <td class="style17">
-                                <asp:CheckBox ID="CheckBox1" runat="server" />
+                                <asp:CheckBox ID="chkServicio" runat="server" Visible="False" />
                             </td>
                             <td class="style17">
-                                <asp:Label ID="Label20" runat="server" Text="Documentación"></asp:Label>
+                                <asp:Label ID="lblDocumentacion" runat="server" Text="Documentación" 
+                                    Visible="False"></asp:Label>
                             </td>
                             <td class="style17">
-                                <asp:TextBox ID="txtDocumentacion" runat="server" CssClass="txt"></asp:TextBox>
+                                <asp:TextBox ID="txtDocumentacion" runat="server" CssClass="txt" 
+                                    Visible="False"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -204,10 +207,11 @@
                         </tr>
                         <tr>
                             <td class="style17">
-                                <asp:Label ID="Label19" runat="server" Text="Paradas Intermedias"></asp:Label>
+                                <asp:Label ID="lblParadas" runat="server" Text="Paradas Intermedias" 
+                                    Visible="False"></asp:Label>
                             </td>
                             <td class="style17">
-                                <asp:TextBox ID="txtParadas" runat="server" CssClass="txt"></asp:TextBox>
+                                <asp:TextBox ID="txtParadas" runat="server" CssClass="txt" Visible="False"></asp:TextBox>
                             </td>
                             <td class="style17">
                                 &nbsp;</td>
@@ -254,19 +258,19 @@
                         </tr>
                         <tr>
                             <td class="style17">
-                                <asp:Label ID="Label11" runat="server" Text="Nombre"></asp:Label>
+                                <asp:Label ID="lblNombre" runat="server" Text="Nombre"></asp:Label>
                             </td>
                             <td class="style17">
                                 <asp:TextBox ID="txtNombre" runat="server" CssClass="txt"></asp:TextBox>
                             </td>
                             <td class="style17">
-                                <asp:Label ID="Label12" runat="server" Text="Dirección"></asp:Label>
+                                <asp:Label ID="lblDir" runat="server" Text="Dirección"></asp:Label>
                             </td>
                             <td class="style17">
                                 <asp:TextBox ID="txtDireccion" runat="server" CssClass="txt"></asp:TextBox>
                             </td>
                             <td class="style17">
-                                <asp:Label ID="Label13" runat="server" Text="Teléfono"></asp:Label>
+                                <asp:Label ID="lblTel" runat="server" Text="Teléfono"></asp:Label>
                             </td>
                             <td class="style17">
                                 <asp:TextBox ID="txtTelefono" runat="server" CssClass="txt"></asp:TextBox>
@@ -308,19 +312,19 @@
                         </tr>
                         <tr>
                             <td class="style17">
-                                <asp:Label ID="Label15" runat="server" Text="Código"></asp:Label>
+                                <asp:Label ID="lblCodigo" runat="server" Text="Código"></asp:Label>
                             </td>
                             <td class="style17">
                                 <asp:TextBox ID="txtCodigo" runat="server" CssClass="txt"></asp:TextBox>
                             </td>
                             <td class="style17">
-                                <asp:Label ID="Label16" runat="server" Text="Ciudad"></asp:Label>
+                                <asp:Label ID="lblCiudad" runat="server" Text="Ciudad"></asp:Label>
                             </td>
                             <td class="style17">
                                 <asp:TextBox ID="txtCiudad" runat="server" CssClass="txt"></asp:TextBox>
                             </td>
                             <td class="style17">
-                                <asp:Label ID="Label17" runat="server" Text="País"></asp:Label>
+                                <asp:Label ID="lblPais" runat="server" Text="País"></asp:Label>
                             </td>
                             <td class="style17">
                                 <asp:TextBox ID="txtPais" runat="server" CssClass="txt"></asp:TextBox>
@@ -342,10 +346,10 @@
                         </tr>
                         <tr>
                             <td class="style17">
-                                <asp:Label ID="Label18" runat="server" Text="Facilidades"></asp:Label>
+                                <asp:Label ID="lblFacilidades" runat="server" Text="Facilidades"></asp:Label>
                             </td>
                             <td class="style17">
-                                <asp:ListBox ID="ListBox1" runat="server" CssClass="txt"></asp:ListBox>
+                                <asp:ListBox ID="lstFacilidades" runat="server" CssClass="txt"></asp:ListBox>
                             </td>
                             <td class="style17">
                                 &nbsp;</td>
