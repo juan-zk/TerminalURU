@@ -52,13 +52,13 @@ public partial class ConsultaDeViajes : System.Web.UI.Page
             }
             catch (Exception ex) { lblMsj.Text = ex.Message; }
         }
-        
+
 
     }
     protected void rptrViajes_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
-        
-        if (e.CommandName == "VerViaje") 
+
+        if (e.CommandName == "VerViaje")
         {
             try
             {
@@ -78,43 +78,41 @@ public partial class ConsultaDeViajes : System.Web.UI.Page
     }
     protected void btnAplicar_Click(object sender, EventArgs e)
     {
-        List<Viaje> FiltroViajes =  (List<Viaje>)Session["ListaDeViajes"];
-        try 
+        List<Viaje> Filtrada = (List<Viaje>)Session["ListaDeViajes"];
+        
+        try
         {
             //filtro por destino
-             if (ddlDestino.SelectedValue != null)
-             {
-                List<Viaje> _Resultado = (from UnDes in FiltroViajes
-                                          where UnDes._Ter._Ciudad == ddlDestino.SelectedValue
-                                          select UnDes).ToList<Viaje>();
-                rptrViajes.DataSource = _Resultado;
-                rptrViajes.DataBind();
-             }
-            //filtro por destino y compañia
-             else if (ddlCompania.SelectedValue != null && ddlDestino.SelectedValue != null )
-             {
-                 List<Viaje> _Resultado = (from UnDes in FiltroViajes
-                                           where ((UnDes._Ter._Ciudad == ddlDestino.SelectedValue) && (UnDes._Com._Nombre == ddlCompania.SelectedValue))
-                                           select UnDes).ToList<Viaje>();
-                 rptrViajes.DataSource = _Resultado;
-                 rptrViajes.DataBind();
-             }
-             //filtro por destino y rango de fechas
-
-             else if (calPartida.SelectedDate != null && calLLegada.SelectedDate != null && ddlDestino.SelectedValue != null)
-             {
-                   List<Viaje> _Resultado = (from UnDes in FiltroViajes
-                                          where (UnDes._Ter._Ciudad == ddlDestino.SelectedValue) && (UnDes._FechaPartida == calPartida.SelectedDate) && (UnDes._FechaArribo == calLLegada.SelectedDate) 
-                                          select UnDes).ToList<Viaje>();
-                rptrViajes.DataSource = _Resultado;
-                rptrViajes.DataBind();
-             
-             }
-             else if (ddlDestino.SelectedValue == null)
-             { lblMsj.Text = "No selecciono destino. Si desea filtrar por destino u otro filtro, Porfavor seleccione el destino y los demas filtros que desea"; }
+            if (ddlDestino.SelectedValue != "Todos")
+            {
+                Filtrada = (from unViaje in Filtrada
+                              where unViaje._Ter._Codigo == ddlDestino.SelectedValue
+                              select unViaje).ToList<Viaje>();
+            }
+            //filtro por compañia
+            if (ddlCompania.SelectedValue != "Todas")
+            {
+                Filtrada = (from unViaje in Filtrada
+                              where ((unViaje._Com._Nombre == ddlCompania.SelectedValue))
+                              select unViaje).ToList<Viaje>();
+                
+            }
+            //filtro por rango de fechas
+            /*
+            if (calPartida.SelectedDate != null && calLLegada.SelectedDate != null && ddlDestino.SelectedValue != null)
+            {
+                Filtrada = (from UnDes in Filtrada
+                              where (UnDes._Ter._Ciudad == ddlDestino.SelectedValue) && (UnDes._FechaPartida == calPartida.SelectedDate) && (UnDes._FechaArribo == calLLegada.SelectedDate)
+                              select UnDes).ToList<Viaje>();
+            }
+             * */
             
+            rptrViajes.DataSource = Filtrada;
+            rptrViajes.DataBind();
+
         }
         catch (Exception ex) { lblMsj.Text = ex.Message; }
+
     }
     protected void btnQuitar_Click(object sender, EventArgs e)
     {
@@ -126,5 +124,9 @@ public partial class ConsultaDeViajes : System.Web.UI.Page
 
         rptrViajes.DataSource = viajes;
         rptrViajes.DataBind();
+
+        ddlCompania.SelectedValue = "Todas";
+        ddlDestino.SelectedValue = "Todos";
+        
     }
 }

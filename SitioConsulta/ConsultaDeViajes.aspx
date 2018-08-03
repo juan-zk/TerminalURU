@@ -21,7 +21,7 @@
             <tr>
                 <td align="center" height="40px" valign="middle" width="100%">
                     <asp:Label ID="Label4" runat="server" Font-Size="Large" 
-                        Text="Consulta de Viajes"></asp:Label>
+                        Text="Consulta de Viajes" Font-Bold="True"></asp:Label>
                 </td>
             </tr>
         </table>
