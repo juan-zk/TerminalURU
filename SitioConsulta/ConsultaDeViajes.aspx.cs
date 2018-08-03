@@ -98,14 +98,17 @@ public partial class ConsultaDeViajes : System.Web.UI.Page
                 
             }
             //filtro por rango de fechas
-            /*
-            if (calPartida.SelectedDate != null && calLLegada.SelectedDate != null && ddlDestino.SelectedValue != null)
+            
+            if (chkPorFecha.Checked)
             {
-                Filtrada = (from UnDes in Filtrada
-                              where (UnDes._Ter._Ciudad == ddlDestino.SelectedValue) && (UnDes._FechaPartida == calPartida.SelectedDate) && (UnDes._FechaArribo == calLLegada.SelectedDate)
-                              select UnDes).ToList<Viaje>();
+                DateTime partida = calPartida.SelectedDate;
+                DateTime llegada = calLLegada.SelectedDate;
+                
+                Filtrada = (from unViaje in Filtrada
+                            where (unViaje._FechaPartida >= partida) && (unViaje._FechaArribo <= llegada)
+                            select unViaje).ToList<Viaje>();
             }
-             * */
+             
             
             rptrViajes.DataSource = Filtrada;
             rptrViajes.DataBind();
@@ -127,6 +130,20 @@ public partial class ConsultaDeViajes : System.Web.UI.Page
 
         ddlCompania.SelectedValue = "Todas";
         ddlDestino.SelectedValue = "Todos";
+        chkPorFecha.Checked = false;
         
+    }
+    protected void chkPorFecha_CheckedChanged(object sender, EventArgs e)
+    {
+        if (chkPorFecha.Checked)
+        {
+            calLLegada.Enabled = true;
+            calPartida.Enabled = true;
+        }
+        else
+        {
+            calPartida.Enabled = false;
+            calPartida.Enabled = false;
+        }
     }
 }

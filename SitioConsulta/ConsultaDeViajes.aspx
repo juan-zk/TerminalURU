@@ -39,6 +39,8 @@
                 </td>
                 <td align="center" colspan="2">
                     <asp:Label ID="Label5" runat="server" Text="Filtrar por rango de fechas:"></asp:Label>
+                    <asp:CheckBox ID="chkPorFecha" runat="server" AutoPostBack="True" 
+                        oncheckedchanged="chkPorFecha_CheckedChanged" />
                 </td>
             </tr>
             <tr>
@@ -57,11 +59,13 @@
                     </asp:DropDownList>
                 </td>
                 <td rowspan="6" align="center">
-                    <asp:Calendar ID="calPartida" runat="server" Height="200px" Width="200px">
+                    <asp:Calendar ID="calPartida" runat="server" Height="200px" Width="200px" 
+                        Enabled="False">
                     </asp:Calendar>
                 </td>
                 <td rowspan="6" align="center">
-                    <asp:Calendar ID="calLLegada" runat="server" Height="200px" Width="200px">
+                    <asp:Calendar ID="calLLegada" runat="server" Height="200px" Width="200px" 
+                        Enabled="False">
                     </asp:Calendar>
                 </td>
             </tr>
@@ -100,11 +104,11 @@
                      <ItemTemplate>
                         <table width="100%">
                             <tr bgcolor="#e2e2e2" class="item">
-                                <td> Número:<asp:TextBox ID="txtNumero" runat="server" CssClass="txt" Text = '<%# Bind("_NumViaje") %>' Enabled="False"></asp:TextBox> </td>
+                                <td> Número:<asp:TextBox ID="txtNumero" Width="50px" runat="server" CssClass="txt" Text = '<%# Bind("_NumViaje") %>' Enabled="False"></asp:TextBox> </td>
                                 <td> Compañia:<asp:TextBox ID="txtCompania" runat="server" CssClass="txt" Text = '<%# Bind("_Com._Nombre") %>' Enabled="False"></asp:TextBox> </td>
                                 <td> Partida:<asp:TextBox ID="txtPartida" runat="server" CssClass="txt" Text = '<%# Bind("_FechaPartida") %>' Enabled="False"></asp:TextBox> </td>
                                 <td> Llegada:<asp:TextBox ID="txtLlegada" runat="server" CssClass="txt" Text = '<%# Bind("_FechaArribo") %>' Enabled="False"></asp:TextBox> </td>                                
-                                <td> Destino:<asp:TextBox ID="TextBox1" runat="server" CssClass="txt" Text = '<%# Bind("_Ter._Ciudad") %>' Enabled="False"></asp:TextBox> </td>
+                                <td> Destino:<asp:TextBox ID="TextBox1" runat="server" CssClass="txt" Width="50px" Text = '<%# Bind("_Ter._Codigo") %>' Enabled="False"></asp:TextBox> <asp:TextBox ID="TextBox2" runat="server" Width="100px" CssClass="txt" Text = '<%# Bind("_Ter._Ciudad") %>' Enabled="False"></asp:TextBox> </td>
                                 <td> <asp:Button ID="btnVerViaje" runat="server" CommandName="VerViaje" Text="Ver Viaje" CssClass="btns" Width="100px" /> </td>
                               </tr>
                         </table>
@@ -112,11 +116,11 @@
                     <AlternatingItemTemplate>
                         <table width="100%">
                             <tr bgcolor="#fff" class="item">
-                                <td> Número:<asp:TextBox ID="txtNumero" runat="server" CssClass="txt" Text = '<%# Bind("_NumViaje") %>' Enabled="False"></asp:TextBox> </td>
+                                <td> Número:<asp:TextBox ID="txtNumero" Width="50px" runat="server" CssClass="txt" Text = '<%# Bind("_NumViaje") %>' Enabled="False"></asp:TextBox> </td>
                                 <td> Compañia:<asp:TextBox ID="txtCompania" runat="server" CssClass="txt" Text = '<%# Bind("_Com._Nombre") %>' Enabled="False"></asp:TextBox> </td>
                                 <td> Partida:<asp:TextBox ID="txtPartida" runat="server" CssClass="txt" Text = '<%# Bind("_FechaPartida") %>' Enabled="False"></asp:TextBox> </td>
                                 <td> Llegada:<asp:TextBox ID="txtLlegada" runat="server" CssClass="txt" Text = '<%# Bind("_FechaArribo") %>' Enabled="False"></asp:TextBox> </td>
-                                <td> Destino:<asp:TextBox ID="TextBox1" runat="server" CssClass="txt" Text = '<%# Bind("_Ter._Ciudad") %>' Enabled="False"></asp:TextBox> </td>
+                                <td> Destino:<asp:TextBox ID="TextBox1" runat="server" CssClass="txt" Width="50px" Text = '<%# Bind("_Ter._Codigo") %>' Enabled="False"></asp:TextBox> <asp:TextBox ID="TextBox2" runat="server" Width="100px" CssClass="txt" Text = '<%# Bind("_Ter._Ciudad") %>' Enabled="False"></asp:TextBox> </td>
                                 <td> <asp:Button ID="btnVerViaje" runat="server" CommandName="VerViaje" Text="Ver Viaje" CssClass="btns" Width="100px" /> </td>                                
                            </tr>
                         </table>
