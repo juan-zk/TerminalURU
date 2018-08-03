@@ -12,6 +12,7 @@ namespace Persistencia
         void Eliminar(Terminal t);
         void Modificar(Terminal t);
         Terminal Buscar(string cod);
+        List<Terminal> Listar();
 
     }
 }

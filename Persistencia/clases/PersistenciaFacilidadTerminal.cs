@@ -83,6 +83,7 @@ namespace Persistencia
                         f.Add((string)dr[0]);
                     }
                 }
+                
             }
             catch (Exception ex) { throw ex; }
             finally { cnn.Close(); }

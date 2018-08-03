@@ -16,6 +16,8 @@ namespace Logica
 
         void Eliminar(Compania pComp);
 
+        List<Compania> Listar();
+
 
     }
 }

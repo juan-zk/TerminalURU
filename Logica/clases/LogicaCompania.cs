@@ -34,5 +34,9 @@ namespace Logica
         {
             FabricaPersistencia.GetPersistenciaCompania().Eliminar(pComp);
         }
+        public List<Compania> Listar()
+        {
+            return FabricaPersistencia.GetPersistenciaCompania().Listar();
+        }
     }
 }

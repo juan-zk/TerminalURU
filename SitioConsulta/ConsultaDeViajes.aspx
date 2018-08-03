@@ -43,31 +43,43 @@
             </tr>
             <tr>
                 <td width="50%">
+                    &nbsp;</td>
+                <td align="center">
+                    Partida:</td>
+                <td align="center">
+                    LLegada:</td>
+            </tr>
+            <tr>
+                <td class="style1" width="50%">
                     <asp:Label ID="Label2" runat="server" Text="Destino:"></asp:Label>
-                    <asp:DropDownList ID="ddlDestino" runat="server">
+                    <asp:DropDownList ID="ddlDestino" runat="server" CssClass="txt">
                         <asp:ListItem>Seleccione uno</asp:ListItem>
                     </asp:DropDownList>
                 </td>
-                <td rowspan="4" align="center">
+                <td rowspan="6" align="center">
                     <asp:Calendar ID="calPartida" runat="server" Height="200px" Width="200px">
                     </asp:Calendar>
-&nbsp;</td>
-                <td rowspan="4">
+                </td>
+                <td rowspan="6" align="center">
                     <asp:Calendar ID="calLLegada" runat="server" Height="200px" Width="200px">
                     </asp:Calendar>
                 </td>
             </tr>
             <tr>
-                <td width="50%">
+                <td class="style1" width="50%">
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td class="style1" width="50%">
                     <asp:Label ID="Label3" runat="server" Text="Compañia:"></asp:Label>
-                    <asp:DropDownList ID="ddlCompañia" runat="server">
+                    <asp:DropDownList ID="ddlCompania" runat="server" CssClass="txt">
                         <asp:ListItem>Seleccione una</asp:ListItem>
                     </asp:DropDownList>
                 </td>
             </tr>
             <tr>
                 <td class="style1" width="50%">
-                </td>
+                    &nbsp;</td>
             </tr>
             <tr>
                 <td width="50%">
@@ -76,6 +88,10 @@
 &nbsp;<asp:Button ID="btnQuitar" runat="server" CssClass="btns" Text="Quitar todos los filtros" 
                         onclick="btnQuitar_Click" />
                 </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    &nbsp;</td>
             </tr>
             <tr>
                 <td colspan="3">

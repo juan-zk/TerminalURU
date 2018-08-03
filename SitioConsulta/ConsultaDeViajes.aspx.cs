@@ -10,6 +10,27 @@ using EntidadesCompartidas;
 
 public partial class ConsultaDeViajes : System.Web.UI.Page
 {
+    void LlenarDDL()
+    {
+        List<Terminal> terminales = FabricaLogica.GetLogicaTerminales().Listar();
+        ddlDestino.Items.Clear();
+        ddlDestino.Items.Add("Todos");
+        foreach (Terminal ter in terminales)
+        {
+            ListItem l = new ListItem(string.Format(ter._Codigo + " " + ter._Ciudad), ter._Codigo);
+            ddlDestino.Items.Add(l);
+        }
+
+        List<Compania> companias = FabricaLogica.GetLogicaCompania().Listar();
+        ddlCompania.Items.Clear();
+        ddlCompania.Items.Add("Todas");
+        foreach (Compania c in companias)
+        {
+            ListItem l = new ListItem(c._Nombre, c._Nombre);
+            ddlCompania.Items.Add(l);
+        }
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         lblMsj.Text = "";
@@ -25,6 +46,9 @@ public partial class ConsultaDeViajes : System.Web.UI.Page
 
                 rptrViajes.DataSource = viajes;
                 rptrViajes.DataBind();
+
+                LlenarDDL();
+
             }
             catch (Exception ex) { lblMsj.Text = ex.Message; }
         }
@@ -67,10 +91,10 @@ public partial class ConsultaDeViajes : System.Web.UI.Page
                 rptrViajes.DataBind();
              }
             //filtro por destino y compañia
-             else if (ddlCompañia.SelectedValue != null && ddlDestino.SelectedValue != null )
+             else if (ddlCompania.SelectedValue != null && ddlDestino.SelectedValue != null )
              {
                  List<Viaje> _Resultado = (from UnDes in FiltroViajes
-                                           where ((UnDes._Ter._Ciudad == ddlDestino.SelectedValue) && (UnDes._Com._Nombre == ddlCompañia.SelectedValue))
+                                           where ((UnDes._Ter._Ciudad == ddlDestino.SelectedValue) && (UnDes._Com._Nombre == ddlCompania.SelectedValue))
                                            select UnDes).ToList<Viaje>();
                  rptrViajes.DataSource = _Resultado;
                  rptrViajes.DataBind();

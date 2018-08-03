@@ -166,5 +166,41 @@ namespace Persistencia
             return terminal;
         }
 
+        //------listar----------------------------------
+        public List<Terminal> Listar()
+        {
+            List<Terminal> resp = null;
+            SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
+            SqlCommand cmd = new SqlCommand("ListarTerminales", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            
+            try
+            {
+                cnn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    resp = new List<Terminal>();
+                    Terminal ter = null;
+                    while (dr.Read())
+                    {
+                        string codigo = (string)dr[0];
+                        string ciudad = (string)dr[1];
+                        string pais = (string)dr[2];
+                        List<string> facilidades = PersistenciaFacilidadTerminal.CargarFacilidades((string)dr[0]);
+
+                        ter = new Terminal(codigo, ciudad, pais, facilidades);
+                        resp.Add(ter);
+                    }
+                }
+                dr.Close();
+            }
+            catch (Exception ex) { throw ex; }
+            finally { cnn.Close(); }
+            
+            
+            return resp;
+        }
     }
 }

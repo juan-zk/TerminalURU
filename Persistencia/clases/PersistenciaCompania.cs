@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace Persistencia
 {
-    internal class PersistenciaCompania: IPersistenciaCompania
+    internal class PersistenciaCompania : IPersistenciaCompania
     {
         //singleton
         private static PersistenciaCompania _instancia = null;
@@ -98,7 +98,7 @@ namespace Persistencia
             cmd.Parameters.AddWithValue("@nombre", pComp._Nombre);
             cmd.Parameters.AddWithValue("@direccion", pComp._Direccion);
             cmd.Parameters.AddWithValue("@tel", pComp._Telefono);
-   
+
 
             SqlParameter resSQL = new SqlParameter();
             resSQL.Direction = ParameterDirection.ReturnValue;
@@ -149,5 +149,40 @@ namespace Persistencia
             finally
             { cnn.Close(); }
         }
+
+        //--------LISTAR---------------------
+        public List<Compania> Listar()
+        {
+            List<Compania> resp = null;
+            SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
+            SqlCommand cmd = new SqlCommand("ListarCompanias", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            try
+            {
+                cnn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    Compania c = null;
+                    resp = new List<Compania>();
+                    while (dr.Read())
+                    {
+                        string nombre = (string)dr[0];
+                        string direccion = (string)dr[1];
+                        string telefono = (string)dr[2];
+
+                        c = new Compania(nombre, direccion, telefono);
+                        resp.Add(c);
+                    }
+                }
+                dr.Close();
+            }
+            catch (Exception ex) { throw ex; }
+            finally { cnn.Close(); }
+
+            return resp;
+        }
+
     }
 }

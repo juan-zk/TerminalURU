@@ -15,5 +15,7 @@ namespace Logica
         void Eliminar(Terminal pTerminal);
 
         void Modificar(Terminal pTerminal);
+
+        List<Terminal> Listar();
     }
 }

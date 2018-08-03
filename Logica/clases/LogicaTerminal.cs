@@ -36,5 +36,10 @@ namespace Logica
             return FabricaPersistencia.GetPersistenciaTerminal().Buscar(pCodigo);
         }
 
+        public List<Terminal> Listar()
+        {
+            return FabricaPersistencia.GetPersistenciaTerminal().Listar();
+        }
+
     }
 }

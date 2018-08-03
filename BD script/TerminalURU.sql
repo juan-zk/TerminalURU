@@ -270,6 +270,16 @@ begin
 end
 go
 
+---listar compañias---------------------------------------------
+
+create proc ListarCompanias
+as
+begin
+	select nombre, direccion, telefono from Companias where baja=0
+end
+go
+
+----------------------------------------------------------------
 ---MANEJO DE TERMINALES-----------------------------------
 
 create proc AgregarTerminal
@@ -351,8 +361,6 @@ begin
 end
 go
 
---exec EliminarTerminal 'abc'
-
 create proc BuscarTerminal
 @codigo varchar(3)
 as
@@ -391,6 +399,13 @@ create proc ListarFacilidades
 as
 begin
 	select servicio from FacilidadTerminales where codigoTerminal=@codigo
+end
+go
+
+create proc ListarTerminales
+as
+begin
+	select codigo, ciudad, pais from Terminales where baja=0
 end
 go
 

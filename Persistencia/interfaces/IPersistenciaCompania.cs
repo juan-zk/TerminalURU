@@ -15,5 +15,7 @@ namespace Persistencia
         void Modificar(Compania pComp);
 
         void Eliminar(Compania pComp);
+
+        List<Compania> Listar();
     }
 }
