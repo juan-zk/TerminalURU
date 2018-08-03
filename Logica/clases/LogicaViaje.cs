@@ -30,6 +30,21 @@ namespace Logica
 
         public void Modificar(ViajesInternacionales pViaje)
         {
+            var list = Listar();
+            TimeSpan dif;
+            if(pViaje._FechaArribo<pViaje._FechaPartida)
+            {
+                throw new Exception("La fecha de arribo debe ser posterior a la fecha de partida");
+            }
+            foreach (ViajesInternacionales vi in list)
+            {
+                if (vi._Ter._Codigo == pViaje._Ter._Codigo && vi._FechaPartida.Date == pViaje._FechaPartida.Date)
+                {
+                    dif = vi._FechaPartida.TimeOfDay.Subtract(pViaje._FechaPartida.TimeOfDay);
+                    if (dif.TotalHours < 2 && dif.TotalHours > -2)
+                        throw new Exception("No puede haber un viaje al mismo destino con la misma hora de salida, al menos 2 hrs de diferencia.");
+                }
+            }
             FabricaPersistencia.GetPersistenciaViajeInternacional().Modificar(pViaje);
         }
 
@@ -42,6 +57,10 @@ namespace Logica
         {
             var list = Listar();
             TimeSpan dif;
+            if(pViaje._FechaArribo<pViaje._FechaPartida)
+            {
+                throw new Exception("La fecha de arribo debe ser posterior a la fecha de partida");
+            }
             foreach (ViajesInternacionales vi in list)
             {
                 if (vi._Ter._Codigo == pViaje._Ter._Codigo && vi._FechaPartida.Date == pViaje._FechaPartida.Date)
@@ -66,6 +85,10 @@ namespace Logica
         {
             var list = ListarViaje();
             TimeSpan dif;
+            if(pViaje._FechaArribo<pViaje._FechaPartida)
+            {
+                throw new Exception("La fecha de arribo debe ser posterior a la fecha de partida");
+            }
             foreach (ViajesNacionales vi in list)
             {
                 if (vi._Ter._Codigo == pViaje._Ter._Codigo && vi._FechaPartida.Date == pViaje._FechaPartida.Date)
@@ -81,6 +104,21 @@ namespace Logica
 
         public void Modificar(ViajesNacionales pViaje)
         {
+            var list = ListarViaje();
+            TimeSpan dif;
+            if(pViaje._FechaArribo<pViaje._FechaPartida)
+            {
+                throw new Exception("La fecha de arribo debe ser posterior a la fecha de partida");
+            }
+            foreach (ViajesNacionales vi in list)
+            {
+                if (vi._Ter._Codigo == pViaje._Ter._Codigo && vi._FechaPartida.Date == pViaje._FechaPartida.Date)
+                {
+                    dif = vi._FechaPartida.TimeOfDay.Subtract(pViaje._FechaPartida.TimeOfDay);
+                    if (dif.TotalHours < 2 && dif.TotalHours > -2)
+                        throw new Exception("No puede haber un viaje al mismo destino con la misma hora de salida, al menos 2 hrs de diferencia.");
+                }
+            }
             FabricaPersistencia.GetPersistenciaViajeNacional().ModificarViaje(pViaje);
         }
 

@@ -473,6 +473,9 @@ begin
 	if not exists (select * from Empleados where cedula=@cedulaEmpleado)
 		return -4 -- error no existe empleado
 		
+	if exists (select NumViaje from Viajes where cast(fechaHoraPartida as date)=cast(@fechaHoraPartida as date) and codTerminal=@codTerminal and DATEDIFF(hh,@fechaHoraPartida,fechaHoraPartida)<2)
+		return -7
+		
 	begin tran
 		insert into Viajes values (@numero, @nombreCompania, @codTerminal, @fechaHoraPartida, @fechaHoraArribo, @cantidadAsientos, @cedulaEmpleado)
 		set @resultado = @@ERROR
@@ -495,7 +498,13 @@ begin
 		end
 end
 go
-
+/*
+declare @resp int
+exec @resp=agregarViajeInter 21, 'CompañiaA', 'ABC', '13-10-2018 17:30', '13-10-2018 14:30', 20, '49850767', 0, 'test'
+IF @resp=-7
+     PRINT 'Ehora no va.'
+go
+select*from Viajes*/
 -- MODIFICA UN VIAJE INTER
 create proc modificarViajeInter
 @numero int,
@@ -523,6 +532,9 @@ begin
 		
 	if not exists (select * from Empleados where cedula=@cedulaEmpleado)
 		return -4 -- error no existe empleado
+		
+	if exists (select NumViaje from Viajes where cast(fechaHoraPartida as date)=cast(@fechaHoraPartida as date) and codTerminal=@codTerminal and DATEDIFF(hh,@fechaHoraPartida,fechaHoraPartida)<2)
+		return -7
 
 	begin tran
 		update Viajes set nomCompania=@nombreCompania,
@@ -646,6 +658,9 @@ declare @resultado int
 	if not exists (select * from Empleados where cedula=@cedulaEmpleado)
 		return -4 -- error no existe empleado
 		
+	if exists (select NumViaje from Viajes where cast(fechaHoraPartida as date)=cast(@fechaHoraPartida as date) and codTerminal=@codTerminal and DATEDIFF(hh,@fechaHoraPartida,fechaHoraPartida)<2)
+		return -7
+		
 	begin tran
 		insert into Viajes values (@numero, @nombreCompania, @codTerminal, @fechaHoraPartida, @fechaHoraArribo, @cantidadAsientos, @cedulaEmpleado)
 		set @resultado = @@ERROR
@@ -694,6 +709,9 @@ begin
 		
 	if not exists (select * from Empleados where cedula=@cedulaEmpleado)
 		return -4 -- error no existe empleado
+		
+	if exists (select NumViaje from Viajes where cast(fechaHoraPartida as date)=cast(@fechaHoraPartida as date) and codTerminal=@codTerminal and DATEDIFF(hh,@fechaHoraPartida,fechaHoraPartida)<2)
+		return -7
 
 	begin tran
 		update Viajes set nomCompania=@nombreCompania,
