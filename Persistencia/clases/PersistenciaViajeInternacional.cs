@@ -227,6 +227,10 @@ namespace Persistencia
                     throw new Exception("ERROR al modificar el viaje internacional");
                 if (respuesta == -7)
                     throw new Exception("No puede haber un viaje al mismo destino con la misma hora de salida, al menos 2 hrs de diferencia..");
+                if (respuesta == -8)
+                    throw new Exception("Las fechas deben ser posteriores a la actual");
+                if (respuesta == -9)
+                    throw new Exception("La fecha de arribo debe ser posterior a la de partida..");
                 if (respuesta == 1)
                     throw new Exception("Viaje agregado correctamente.");
 

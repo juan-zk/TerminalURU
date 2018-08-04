@@ -65,6 +65,7 @@ namespace Presentacion
                     
                 if ((ViajesInternacionales)Session["viajeInter"] != null)
                 {
+                    btnAgregar.Enabled = false;
                     txtCompania.Text = ((ViajesInternacionales)Session["viajeInter"])._Com._Nombre;
                     txtTerminal.Text = ((ViajesInternacionales)Session["viajeInter"])._Ter._Codigo;
                     txtFechaPartida.Text = ((ViajesInternacionales)Session["viajeInter"])._FechaPartida.ToString();

@@ -99,6 +99,10 @@ namespace Persistencia
                     throw new Exception("ERROR al modificar el viaje Nacional");
                 if (respuesta == -7)
                     throw new Exception("No puede haber un viaje al mismo destino con la misma hora de salida, al menos 2 hrs de diferencia.");
+                if (respuesta == -8)
+                    throw new Exception("Las fechas deben ser posteriores a la actual");
+                if (respuesta == -9)
+                    throw new Exception("La fecha de arribo debe ser posterior a la de partida..");
                 if (respuesta == 1)
                     throw new Exception("Viaje modificado correctamente.");
 
@@ -149,6 +153,12 @@ namespace Persistencia
                     throw new Exception("ERROR al modificar el viaje nacional");
                 if (respuesta == -7)
                     throw new Exception("No puede haber un viaje al mismo destino con la misma hora de salida, al menos 2 hrs de diferencia.");
+                if (respuesta == -8)
+                    throw new Exception("La compañia ingresada ya se encuentra baja, intente con otra porfavor.");
+                if (respuesta == -9)
+                    throw new Exception("El empleado ingresado ya se encuentra dado de baja, intente con otro porfavor.");
+                if (respuesta == -10)
+                    throw new Exception("La terminal ingresada ya se encuentra baja, intente con otra porfavor.");
                 if (respuesta == 1)
                     throw new Exception("Viaje modificado correctamente.");
             }

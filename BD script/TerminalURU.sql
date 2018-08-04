@@ -503,6 +503,13 @@ begin
 	if not exists (select * from Empleados where cedula=@cedulaEmpleado)
 		return -4 -- error no existe empleado
 		
+	if(GETDATE()>@fechaHoraPartida or GETDATE()>@fechaHoraArribo)
+		return -8
+		
+	if(@fechaHoraPartida>@fechaHoraArribo)
+		return -9
+
+		
 	if exists (select NumViaje from Viajes where cast(fechaHoraPartida as date)=cast(@fechaHoraPartida as date) and codTerminal=@codTerminal and DATEDIFF(hh,@fechaHoraPartida,fechaHoraPartida)<2)
 		return -7
 		
@@ -530,11 +537,15 @@ end
 go
 /*
 declare @resp int
-exec @resp=agregarViajeInter 21, 'CompañiaA', 'ABC', '13-10-2018 17:30', '13-10-2018 14:30', 20, '49850767', 0, 'test'
+exec @resp=agregarViajeInter 22, 'CompañiaA', 'ABC', '13-10-2018 13:30', '13-10-2018 14:30', 20, '49850767', 0, 'test'
 IF @resp=-7
-     PRINT 'Ehora no va.'
-go
-select*from Viajes*/
+     PRINT 'Existe otro viaje que no cumple con las 2 hrs.'
+IF @resp=-8
+     PRINT 'Las fechas deben ser posteriores a la actual.'
+IF @resp=-9
+     PRINT 'Fecha de arribo debe ser mayor a la fecha de partida.'
+go*/
+--select*from viajes
 -- MODIFICA UN VIAJE INTER
 create proc modificarViajeInter
 @numero int,
@@ -704,6 +715,12 @@ declare @resultado int
 	if not exists (select * from Empleados where cedula=@cedulaEmpleado)
 		return -4 -- error no existe empleado
 		
+	if(GETDATE()>@fechaHoraPartida or GETDATE()>@fechaHoraArribo)
+		return -8
+		
+	if(@fechaHoraPartida>@fechaHoraArribo)
+		return -9
+		
 	if exists (select NumViaje from Viajes where cast(fechaHoraPartida as date)=cast(@fechaHoraPartida as date) and codTerminal=@codTerminal and DATEDIFF(hh,@fechaHoraPartida,fechaHoraPartida)<2)
 		return -7
 		
@@ -743,11 +760,26 @@ as
 begin
 	
 	declare @resultado int
+	declare @nomCompActual varchar(200)
+	declare @ciEmpActual varchar(8)
+	declare @codTerminalActual varchar(3)
+	select @nomCompActual=nomCompania from viajes where @numero=numViaje
+	select @ciEmpActual=cedulaEmpleado from viajes where @numero=numViaje
+	select @codTerminalActual=codTerminal from viajes where @numero=numViaje
+	
+	if exists (select * from companias where nombre=@nombreCompania and baja=1 and nombre<>@nomCompActual)
+	return -8 --controlo que si la compañia ingresada esta baja sea igual al nombre actual sino no permito modificar ya que se esta intentando modificar con una compañia que ya se bajo
+	
+	if exists (select * from empleados where cedula=@cedulaEmpleado and baja=1 and cedula<>@ciEmpActual)
+	return -9
+	
+	if exists (select * from terminales where codigo=@codTerminal and baja=1 and codigo<>@codTerminalActual)
+	return -10
 		
 	if not exists (select * from Viajes where numViaje=@numero)
 	return -1--no existe el viaje
 	
-	if not exists (select * from Companias where nombre=@nombreCompania)and not exists(select * from Viajes where nomCompania=@nombreCompania)
+	if not exists (select * from Companias where nombre=@nombreCompania)
 		return -2 -- error no existe compañia
 		
 	if not exists (select * from Terminales where codigo=@codTerminal)
