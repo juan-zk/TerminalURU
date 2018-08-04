@@ -22,6 +22,10 @@ namespace Logica
         public Compania Buscar(string pNombre) {
             return FabricaPersistencia.GetPersistenciaCompania().Buscar(pNombre);
         }
+        public Compania BuscarParaViaje(string pNombre)
+        {
+            return FabricaPersistencia.GetPersistenciaCompania().BuscarParaViaje(pNombre);
+        }
         public void Agregar(Compania pComp)
         {
             FabricaPersistencia.GetPersistenciaCompania().Agregar(pComp);

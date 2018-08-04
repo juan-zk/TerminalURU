@@ -95,9 +95,9 @@ namespace Presentacion
             {
                 if (ControlVacio())
                     throw new Exception("Debe completar todos los campos");
-                ((ViajesInternacionales)Session["viajeInter"])._Com = Logica.FabricaLogica.GetLogicaCompania().Buscar(txtCompania.Text);
-                ((ViajesInternacionales)Session["viajeInter"])._Emp = Logica.FabricaLogica.GetLogicaEmpleado().Buscar(txtEmpleado.Text);
-                ((ViajesInternacionales)Session["viajeInter"])._Ter = Logica.FabricaLogica.GetLogicaTerminales().Buscar(txtTerminal.Text);
+                ((ViajesInternacionales)Session["viajeInter"])._Com = Logica.FabricaLogica.GetLogicaCompania().BuscarParaViaje(txtCompania.Text);
+                ((ViajesInternacionales)Session["viajeInter"])._Emp = Logica.FabricaLogica.GetLogicaEmpleado().BuscarParaViaje(txtEmpleado.Text);
+                ((ViajesInternacionales)Session["viajeInter"])._Ter = Logica.FabricaLogica.GetLogicaTerminales().BuscarParaViaje(txtTerminal.Text);
                 ((ViajesInternacionales)Session["viajeInter"])._ServicioBordo = chkServicioBordo.Checked;
                 ((ViajesInternacionales)Session["viajeInter"])._FechaPartida = Convert.ToDateTime(txtFechaPartida.Text.ToString());
                 ((ViajesInternacionales)Session["viajeInter"])._FechaArribo = Convert.ToDateTime(txtFechaArribo.Text);

@@ -166,6 +166,39 @@ namespace Persistencia
             return terminal;
         }
 
+        //--------BUSCAR PARA VIAJE--------------------------------------------------------------
+        public Terminal BuscarParaViaje(string cod)
+        {
+
+            SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
+            SqlCommand cmd = new SqlCommand("BuscarTerminalParaViaje", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@codigo", cod);
+
+            Terminal terminal = null;
+
+            try
+            {
+                cnn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    dr.Read();
+                    string codigo = (string)dr[0];
+                    string ciudad = (string)dr[1];
+                    string pais = (string)dr[2];
+                    List<string> facilidades = PersistenciaFacilidadTerminal.CargarFacilidades((string)dr[0]);
+
+                    terminal = new Terminal(codigo, ciudad, pais, facilidades);
+                }
+                dr.Close();
+            }
+            catch (Exception ex) { throw ex; }
+            finally { cnn.Close(); }
+
+            return terminal;
+        }
+
         //------listar----------------------------------
         public List<Terminal> Listar()
         {

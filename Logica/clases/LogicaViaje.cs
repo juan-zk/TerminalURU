@@ -32,11 +32,8 @@ namespace Logica
         {
             var list = Listar();
             TimeSpan dif;
-            if (pViaje._FechaArribo.Date <= DateTime.Now || pViaje._FechaPartida.Date <= DateTime.Now)
-            {
-                throw new Exception("La fecha de arribo y de partida deben ser posteriores a la fecha actual");
-            }
-            if(pViaje._FechaArribo<pViaje._FechaPartida)
+
+            if(pViaje._FechaArribo<=pViaje._FechaPartida)
             {
                 throw new Exception("La fecha de arribo debe ser posterior a la fecha de partida");
             }
@@ -65,7 +62,7 @@ namespace Logica
             {
                 throw new Exception("La fecha de arribo y de partida deben ser posteriores a la fecha actual");
             }
-            if(pViaje._FechaArribo<pViaje._FechaPartida)
+            if(pViaje._FechaArribo<=pViaje._FechaPartida)
             {
                 throw new Exception("La fecha de arribo debe ser posterior a la fecha de partida");
             }
@@ -97,7 +94,7 @@ namespace Logica
             {
                 throw new Exception("La fecha de arribo y de partida deben ser posteriores a la fecha actual");
             }
-            if(pViaje._FechaArribo<pViaje._FechaPartida)
+            if(pViaje._FechaArribo<=pViaje._FechaPartida)
             {
                 throw new Exception("La fecha de arribo debe ser posterior a la fecha de partida");
             }
@@ -118,11 +115,8 @@ namespace Logica
         {
             var list = ListarViaje();
             TimeSpan dif;
-            if (pViaje._FechaArribo.Date <= DateTime.Now || pViaje._FechaPartida.Date <= DateTime.Now)
-            {
-                throw new Exception("La fecha de arribo y de partida deben ser posteriores a la fecha actual");
-            }
-            if(pViaje._FechaArribo<pViaje._FechaPartida)
+
+            if(pViaje._FechaArribo<=pViaje._FechaPartida)
             {
                 throw new Exception("La fecha de arribo debe ser posterior a la fecha de partida");
             }

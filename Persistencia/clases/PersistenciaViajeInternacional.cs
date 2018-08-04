@@ -34,9 +34,9 @@ namespace Persistencia
                 SqlDataReader lector = cmd.ExecuteReader(); 
                 while (lector.Read()) 
                 {
-                    Compania compania = FabricaPersistencia.GetPersistenciaCompania().Buscar((string)lector["nomCompania"]);
-                    Terminal terminal = FabricaPersistencia.GetPersistenciaTerminal().Buscar((string)lector["codTerminal"]);
-                    Empleado empleado = FabricaPersistencia.GetPersistenciaEmpleado().Buscar((string)lector["cedulaEmpleado"]);
+                    Compania compania = FabricaPersistencia.GetPersistenciaCompania().BuscarParaViaje((string)lector["nomCompania"]);
+                    Terminal terminal = FabricaPersistencia.GetPersistenciaTerminal().BuscarParaViaje((string)lector["codTerminal"]);
+                    Empleado empleado = FabricaPersistencia.GetPersistenciaEmpleado().BuscarParaViaje((string)lector["cedulaEmpleado"]);
 
                     viajeInter = new ViajesInternacionales((int)lector["numViaje"],
                                         compania,
@@ -74,9 +74,9 @@ namespace Persistencia
 
                 while (lector.Read())
                 {
-                    Compania compania = FabricaPersistencia.GetPersistenciaCompania().Buscar((string)lector["nomCompania"]);
-                    Terminal terminal = FabricaPersistencia.GetPersistenciaTerminal().Buscar((string)lector["codTerminal"]);
-                    Empleado empleado = FabricaPersistencia.GetPersistenciaEmpleado().Buscar((string)lector["cedulaEmpleado"]);
+                    Compania compania = FabricaPersistencia.GetPersistenciaCompania().BuscarParaViaje((string)lector["nomCompania"]);
+                    Terminal terminal = FabricaPersistencia.GetPersistenciaTerminal().BuscarParaViaje((string)lector["codTerminal"]);
+                    Empleado empleado = FabricaPersistencia.GetPersistenciaEmpleado().BuscarParaViaje((string)lector["cedulaEmpleado"]);
                    
                     viajeInter = new ViajesInternacionales((int)lector["numViaje"],
                                         compania,
@@ -135,7 +135,13 @@ namespace Persistencia
                 if (respuesta == -6)
                     throw new Exception("ERROR al modificar el viaje internacional");
                 if (respuesta == -7)
-                    throw new Exception("No puede haber un viaje al mismo destino con la misma hora de salida, al menos 2 hrs de diferencia.");
+                    throw new Exception("No puede haber un viaje al mismo destino con la misma hora de salida, al menos 2 hrs de diferencia..");
+                if (respuesta == -8)
+                    throw new Exception("La compañia ingresada ya se encuentra baja, intente con otra porfavor.");
+                if (respuesta == -9)
+                    throw new Exception("El empleado ingresado ya se encuentra dado de baja, intente con otro porfavor.");
+                if (respuesta == -10)
+                    throw new Exception("La terminal ingresada ya se encuentra baja, intente con otra porfavor.");
                 if (respuesta == 1)
                     throw new Exception("Viaje modificado correctamente.");
             }
@@ -220,7 +226,7 @@ namespace Persistencia
                 if (respuesta == -6)
                     throw new Exception("ERROR al modificar el viaje internacional");
                 if (respuesta == -7)
-                    throw new Exception("No puede haber un viaje al mismo destino con la misma hora de salida, al menos 2 hrs de diferencia.");
+                    throw new Exception("No puede haber un viaje al mismo destino con la misma hora de salida, al menos 2 hrs de diferencia..");
                 if (respuesta == 1)
                     throw new Exception("Viaje agregado correctamente.");
 

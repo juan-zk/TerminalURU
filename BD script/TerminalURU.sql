@@ -100,6 +100,14 @@ begin
 	select * from Empleados where cedula = @Cedula and baja =0
 end
 go
+--buscar empleado para armar viaje
+create proc buscarEmpleadoParaViaje
+@Cedula varchar(8)
+as
+begin
+	select * from Empleados where cedula = @Cedula
+end
+go
 Create Proc AgregarEmpleado  @Cedula varchar(200),@Contraseña varchar(200),@NombreCompleto varchar(200) as
 begin
 
@@ -181,7 +189,19 @@ begin
 	select * from Companias where nombre = @nombre and baja=0;
 end
 go
-
+--buscar compañia para armar viaje
+create proc buscarCompaniaParaViaje
+@nombre varchar(200)
+as
+begin
+	select * from Companias where nombre = @nombre;
+	/*select	c.nombre,
+			c.direccion,
+			c.telefono
+	from companias c join viajes v
+	on (v.nomCompania = c.nombre) and v.numViaje=@num*/
+end
+go
 -- INSERTA UNA COMPAÑIA
 create proc agregarCompania
 @nombre varchar(200),
@@ -371,7 +391,14 @@ begin
 	select codigo,ciudad,pais from Terminales where codigo=@codigo and baja=0
 end
 go
-
+--buscar terminal para armar viaje
+create proc buscarTerminalParaViaje
+@codigo varchar(3)
+as
+begin
+	select * from Terminales where codigo = @codigo;
+end
+go
 create proc AgregarFacilidad
 @codigo varchar(3),
 @servicio varchar(100)
@@ -523,11 +550,26 @@ as
 begin
 	
 	declare @resultado int
+	declare @nomCompActual varchar(200)
+	declare @ciEmpActual varchar(8)
+	declare @codTerminalActual varchar(3)
+	select @nomCompActual=nomCompania from viajes where @numero=numViaje
+	select @ciEmpActual=cedulaEmpleado from viajes where @numero=numViaje
+	select @codTerminalActual=codTerminal from viajes where @numero=numViaje
+	
+	if exists (select * from companias where nombre=@nombreCompania and baja=1 and nombre<>@nomCompActual)
+	return -8 --controlo que si la compañia ingresada esta baja sea igual al nombre actual sino no permito modificar ya que se esta intentando modificar con una compañia que ya se bajo
+	
+	if exists (select * from empleados where cedula=@cedulaEmpleado and baja=1 and cedula<>@ciEmpActual)
+	return -9
+	
+	if exists (select * from terminales where codigo=@codTerminal and baja=1 and codigo<>@codTerminalActual)
+	return -10
 		
 	if not exists (select * from Viajes where numViaje=@numero)
 	return -1--no existe el viaje
 	
-	if not exists (select * from Companias where nombre=@nombreCompania)and not exists(select * from Viajes where nomCompania=@nombreCompania)
+	if not exists (select * from Companias where nombre=@nombreCompania)
 		return -2 -- error no existe compañia
 		
 	if not exists (select * from Terminales where codigo=@codTerminal)
@@ -546,6 +588,7 @@ begin
 						  fechaHoraArribo=@fechaHoraArribo,
 						  cantidadAsientos=@cantidadAsientos,
 						  cedulaEmpleado=@cedulaEmpleado
+						  where numViaje=@numero
 		set @resultado = @@ERROR
 		if @resultado <> 0
 		begin
@@ -723,6 +766,7 @@ begin
 						  fechaHoraArribo=@fechaHoraArribo,
 						  cantidadAsientos=@cantidadAsientos,
 						  cedulaEmpleado=@cedulaEmpleado
+						  where numViaje=@numero
 		set @resultado = @@ERROR
 		if @resultado <> 0
 		begin
@@ -787,8 +831,8 @@ go
 insert into Empleados values ('49850767','Juan Acosta','123456', 0)
 insert into Empleados values ('12345678','Jose Gervasio Artigas','123456', 0)
 insert into Empleados values ('12336678','Enrique Perez','123456', 0)
-insert into Empleados values ('52345678','Laura Perez','123456', 0)
-insert into Empleados values ('49345678','Cinthia Acosta','123456', 0)
+insert into Empleados values ('22222222','Laura Perez','123456', 0)
+insert into Empleados values ('11111111','Cinthia Acosta','123456', 0)
 insert into Companias values ('CompañiaX','Atenea 1526',22003659, 0)
 insert into Companias values ('CompañiaA','Asencio 1523',22006659, 0)
 insert into Companias values ('CompañiaB','Agraciada 1526',22009659, 0)
@@ -807,14 +851,22 @@ insert into FacilidadTerminales values ('ABD','emails')
 insert into FacilidadTerminales values ('Abf','emails')
 insert into Viajes values (1,'CompañiaA','ABD', '15-09-2018 13:00', '25-09-2018 14:00', 46, '12336678')
 insert into Viajes values (2,'CompañiaX','ABC', '30-09-2018 16:00:00', '25-10-2018 17:00:00', 26, '49850767')
-insert into Viajes values (3,'CompañiaC','ACT', '20-12-2018 19:00:00', '25-12-2018 20:00:00', 56, '52345678')
-insert into Viajes values (4,'CompañiaD','ABC', '05-10-2018 13:00:00', '07-10-2018 12:00:00', 56, '49345678')
-insert into Viajes values (5,'CompañiaD','ABC', '12-10-2018 17:30:00', '15-10-2018 16:30:00', 56, '49345678')
+insert into Viajes values (3,'CompañiaC','ACT', '20-12-2018 19:00:00', '25-12-2018 20:00:00', 56, '11111111')
+insert into Viajes values (4,'CompañiaD','ABC', '05-10-2018 13:00:00', '07-10-2018 12:00:00', 56, '22222222')
+insert into Viajes values (5,'CompañiaD','ABC', '12-10-2018 17:30:00', '15-10-2018 16:30:00', 56, '11111111')
+insert into Viajes values (6,'CompañiaD','ABC', '03-08-2018 17:30:00', '02-08-2018 16:30:00', 56, '22222222')
+insert into Viajes values (7,'CompañiaD','ABC', '20-10-2018 17:30:00', '21-10-2018 16:30:00', 56, '11111111')
+insert into Viajes values (8,'CompañiaD','ABC', '21-10-2018 17:30:00', '22-10-2018 16:30:00', 56, '22222222')
+
+insert into ViajesInternacionales values (6, 1, 'Viaje Internacional chequeado')
 insert into ViajesInternacionales values (4, 1, 'Viaje Internacional chequeado')
 insert into ViajesInternacionales values (3, 1, 'Viaje Internacional chequeado')
 insert into ViajesInternacionales values (2, 0, 'Viaje Internacional chequeado')
 insert into ViajesInternacionales values (1, 0, 'Viaje Internacional chequeado')
 insert into ViajesNacionales values(5,2)
+insert into ViajesNacionales values(7,3)
+insert into ViajesNacionales values(8,3)
+
 --select * from Empleados
 --select * from Companias
 --select * from Terminales

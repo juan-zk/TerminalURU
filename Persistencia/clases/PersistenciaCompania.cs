@@ -49,6 +49,36 @@ namespace Persistencia
             return compania;
         }
 
+        /*BUSCAR PARA ARMAR VIAJE*/
+        public Compania BuscarParaViaje(string nombre)
+        {
+            Compania compania = null;
+
+            SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
+
+            SqlCommand cmd = new SqlCommand("buscarCompaniaParaViaje", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@nombre", nombre);
+
+            try
+            {
+                cnn.Open();
+                SqlDataReader lector = cmd.ExecuteReader();
+
+                while (lector.Read())
+                {
+                    compania = new Compania((string)lector["nombre"],
+                                        (string)lector["direccion"],
+                                        (string)lector["telefono"]);
+                }
+                lector.Close();
+            }
+            catch (Exception ex)
+            { throw ex; }
+            finally { cnn.Close(); }
+            return compania;
+        }
+
         /*AGREGAR*/
         public void Agregar(Compania compania)
         {

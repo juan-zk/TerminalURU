@@ -74,6 +74,34 @@ namespace Persistencia
             return resp;
         }
 
+        public Empleado BuscarParaViaje(string pCedula)
+        {
+            Empleado resp = null;
+            SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
+            SqlCommand cmd = new SqlCommand("BuscarEmpleadoParaViaje", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Cedula", pCedula);
+            try
+            {
+                cnn.Open();
+                SqlDataReader lector = cmd.ExecuteReader();
+                if (lector.Read())
+                {
+                    string cedula = (string)lector[0];
+                    string NombreCompleto = (string)lector[1];
+                    string Contraseña = (string)lector[2];
+
+
+                    resp = new Empleado(cedula, Contraseña, NombreCompleto);
+                }
+                lector.Close();
+            }
+            catch (Exception ex)
+            { throw ex; }
+            finally { cnn.Close(); }
+            return resp;
+        }
+
         public  void Agregar(Empleado emp)
         {
             SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
