@@ -55,7 +55,6 @@
     <Content Include="ABMterminales.aspx" />
     <Content Include="css\estilos.css" />
     <Content Include="Default.aspx" />
-    <Content Include="Inicio.aspx" />
     <Content Include="img\menu-icon.png" />
     <Content Include="ViajesInter.aspx" />
     <Content Include="ViajesNac.aspx" />
@@ -95,13 +94,6 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Inicio.aspx.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Inicio.aspx.designer.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="MPempleado.Master.cs">
       <DependentUpon>MPempleado.Master</DependentUpon>

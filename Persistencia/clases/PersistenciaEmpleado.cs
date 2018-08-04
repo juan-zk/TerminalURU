@@ -144,38 +144,7 @@ namespace Persistencia
 
         }
 
-        public void Baja(Empleado emp)
-        {
-
-            SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
-            SqlCommand cmd = new SqlCommand("BajaEmpleado", cnn);
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.Parameters.AddWithValue("@Cedula", emp._Cedula);
-            cmd.Parameters.AddWithValue("@Contraseña", emp._Contraseña);
-            cmd.Parameters.AddWithValue("@NombreCompleto", emp._NombreCompleto);
-
-            SqlParameter ret = new SqlParameter();
-            ret.Direction = ParameterDirection.ReturnValue;
-            cmd.Parameters.Add(ret);
-            try
-            {
-                cnn.Open();
-                cmd.ExecuteNonQuery();
-                int resultado = (int)ret.Value;
-                if (resultado == -1)
-                {
-                    throw new Exception("erro sql.");
-                }
-               
-            }
-            catch (Exception ex)
-            { throw ex; }
-            finally
-            { cnn.Close(); }
-        }
-
-      
+       
         public void Borrar(string pCedula)
         {
             SqlConnection cnn = new SqlConnection(Conexion.CONEXION);
@@ -194,7 +163,7 @@ namespace Persistencia
                 if (ret == -1)
                     throw new Exception("No existe empleado ingresado con esa ceudla.");
                 if (ret == -2)
-                    throw new Exception("El empleado que desea borrar tinen viajes realizados o modificados. Si desea puede darlo de baja. ");
+                    throw new Exception("Error eliminar");
                 if (ret == -3)
                     throw new Exception("Error SQL.");
             }
