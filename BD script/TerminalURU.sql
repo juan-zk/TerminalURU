@@ -533,7 +533,7 @@ begin
 	if not exists (select * from Empleados where cedula=@cedulaEmpleado)
 		return -4 -- error no existe empleado
 		
-	if exists (select NumViaje from Viajes where cast(fechaHoraPartida as date)=cast(@fechaHoraPartida as date) and codTerminal=@codTerminal and DATEDIFF(hh,@fechaHoraPartida,fechaHoraPartida)<2)
+	if exists (select NumViaje from Viajes where cast(fechaHoraPartida as date)=cast(@fechaHoraPartida as date) and codTerminal=@codTerminal and DATEDIFF(hh,@fechaHoraPartida,fechaHoraPartida)<2 and NumViaje <> @numero)
 		return -7
 
 	begin tran
@@ -710,7 +710,7 @@ begin
 	if not exists (select * from Empleados where cedula=@cedulaEmpleado)
 		return -4 -- error no existe empleado
 		
-	if exists (select NumViaje from Viajes where cast(fechaHoraPartida as date)=cast(@fechaHoraPartida as date) and codTerminal=@codTerminal and DATEDIFF(hh,@fechaHoraPartida,fechaHoraPartida)<2)
+	if exists (select NumViaje from Viajes where cast(fechaHoraPartida as date)=cast(@fechaHoraPartida as date) and codTerminal=@codTerminal and DATEDIFF(hh,@fechaHoraPartida,fechaHoraPartida)<2 and NumViaje <> @numero)
 		return -7
 
 	begin tran

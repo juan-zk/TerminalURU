@@ -32,13 +32,17 @@ namespace Logica
         {
             var list = Listar();
             TimeSpan dif;
+            if (pViaje._FechaArribo.Date <= DateTime.Now || pViaje._FechaPartida.Date <= DateTime.Now)
+            {
+                throw new Exception("La fecha de arribo y de partida deben ser posteriores a la fecha actual");
+            }
             if(pViaje._FechaArribo<pViaje._FechaPartida)
             {
                 throw new Exception("La fecha de arribo debe ser posterior a la fecha de partida");
             }
             foreach (ViajesInternacionales vi in list)
             {
-                if (vi._Ter._Codigo == pViaje._Ter._Codigo && vi._FechaPartida.Date == pViaje._FechaPartida.Date)
+                if (vi._NumViaje != pViaje._NumViaje && vi._Ter._Codigo == pViaje._Ter._Codigo && vi._FechaPartida.Date == pViaje._FechaPartida.Date)
                 {
                     dif = vi._FechaPartida.TimeOfDay.Subtract(pViaje._FechaPartida.TimeOfDay);
                     if (dif.TotalHours < 2 && dif.TotalHours > -2)
@@ -57,6 +61,10 @@ namespace Logica
         {
             var list = Listar();
             TimeSpan dif;
+            if (pViaje._FechaArribo.Date <= DateTime.Now || pViaje._FechaPartida.Date<=DateTime.Now)
+            {
+                throw new Exception("La fecha de arribo y de partida deben ser posteriores a la fecha actual");
+            }
             if(pViaje._FechaArribo<pViaje._FechaPartida)
             {
                 throw new Exception("La fecha de arribo debe ser posterior a la fecha de partida");
@@ -85,6 +93,10 @@ namespace Logica
         {
             var list = ListarViaje();
             TimeSpan dif;
+            if (pViaje._FechaArribo.Date <= DateTime.Now || pViaje._FechaPartida.Date <= DateTime.Now)
+            {
+                throw new Exception("La fecha de arribo y de partida deben ser posteriores a la fecha actual");
+            }
             if(pViaje._FechaArribo<pViaje._FechaPartida)
             {
                 throw new Exception("La fecha de arribo debe ser posterior a la fecha de partida");
@@ -106,13 +118,18 @@ namespace Logica
         {
             var list = ListarViaje();
             TimeSpan dif;
+            if (pViaje._FechaArribo.Date <= DateTime.Now || pViaje._FechaPartida.Date <= DateTime.Now)
+            {
+                throw new Exception("La fecha de arribo y de partida deben ser posteriores a la fecha actual");
+            }
             if(pViaje._FechaArribo<pViaje._FechaPartida)
             {
                 throw new Exception("La fecha de arribo debe ser posterior a la fecha de partida");
             }
+       
             foreach (ViajesNacionales vi in list)
             {
-                if (vi._Ter._Codigo == pViaje._Ter._Codigo && vi._FechaPartida.Date == pViaje._FechaPartida.Date)
+                if (vi._NumViaje!=pViaje._NumViaje && vi._Ter._Codigo == pViaje._Ter._Codigo && vi._FechaPartida.Date == pViaje._FechaPartida.Date)
                 {
                     dif = vi._FechaPartida.TimeOfDay.Subtract(pViaje._FechaPartida.TimeOfDay);
                     if (dif.TotalHours < 2 && dif.TotalHours > -2)

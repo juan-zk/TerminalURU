@@ -25,3 +25,12 @@ C:\Users\fer\Documents\GitHub\TerminalURU\Logica\bin\Debug\Persistencia.dll
 C:\Users\fer\Documents\GitHub\TerminalURU\Logica\bin\Debug\EntidadesCompartidas.pdb
 C:\Users\fer\Documents\GitHub\TerminalURU\Logica\bin\Debug\Persistencia.pdb
 C:\Users\fer\Documents\GitHub\TerminalURU\Logica\obj\Debug\Logica.pdb
+C:\Users\sistemas\Documents\GitHub\TerminalURU\Logica\bin\Debug\Logica.dll
+C:\Users\sistemas\Documents\GitHub\TerminalURU\Logica\bin\Debug\Logica.pdb
+C:\Users\sistemas\Documents\GitHub\TerminalURU\Logica\bin\Debug\EntidadesCompartidas.dll
+C:\Users\sistemas\Documents\GitHub\TerminalURU\Logica\bin\Debug\Persistencia.dll
+C:\Users\sistemas\Documents\GitHub\TerminalURU\Logica\bin\Debug\EntidadesCompartidas.pdb
+C:\Users\sistemas\Documents\GitHub\TerminalURU\Logica\bin\Debug\Persistencia.pdb
+C:\Users\sistemas\Documents\GitHub\TerminalURU\Logica\obj\Debug\Logica.csprojResolveAssemblyReference.cache
+C:\Users\sistemas\Documents\GitHub\TerminalURU\Logica\obj\Debug\Logica.dll
+C:\Users\sistemas\Documents\GitHub\TerminalURU\Logica\obj\Debug\Logica.pdb

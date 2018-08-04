@@ -31,3 +31,14 @@ C:\Users\fer\Documents\GitHub\TerminalURU\Presentacion\bin\EntidadesCompartidas.
 C:\Users\fer\Documents\GitHub\TerminalURU\Presentacion\bin\Logica.pdb
 C:\Users\fer\Documents\GitHub\TerminalURU\Presentacion\bin\Persistencia.pdb
 C:\Users\fer\Documents\GitHub\TerminalURU\Presentacion\obj\Debug\Presentacion.pdb
+C:\Users\sistemas\Documents\GitHub\TerminalURU\Presentacion\bin\Presentacion.dll
+C:\Users\sistemas\Documents\GitHub\TerminalURU\Presentacion\bin\Presentacion.pdb
+C:\Users\sistemas\Documents\GitHub\TerminalURU\Presentacion\bin\EntidadesCompartidas.dll
+C:\Users\sistemas\Documents\GitHub\TerminalURU\Presentacion\bin\Logica.dll
+C:\Users\sistemas\Documents\GitHub\TerminalURU\Presentacion\bin\Persistencia.dll
+C:\Users\sistemas\Documents\GitHub\TerminalURU\Presentacion\bin\EntidadesCompartidas.pdb
+C:\Users\sistemas\Documents\GitHub\TerminalURU\Presentacion\bin\Logica.pdb
+C:\Users\sistemas\Documents\GitHub\TerminalURU\Presentacion\bin\Persistencia.pdb
+C:\Users\sistemas\Documents\GitHub\TerminalURU\Presentacion\obj\Debug\Presentacion.csprojResolveAssemblyReference.cache
+C:\Users\sistemas\Documents\GitHub\TerminalURU\Presentacion\obj\Debug\Presentacion.dll
+C:\Users\sistemas\Documents\GitHub\TerminalURU\Presentacion\obj\Debug\Presentacion.pdb
