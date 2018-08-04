@@ -44,7 +44,7 @@ Create Table Terminales
 (
 	codigo varchar(3) Not Null Primary Key constraint CHK_codigo check (codigo like '[Aa-Zz][Aa-Zz][Aa-Zz]'),--buscar 
 	ciudad varchar(100),
-	pais varchar(100),
+	pais varchar(100)constraint Chk_pais check (pais = 'Uruguay' or pais='Argentina' or pais='Brasil' or pais='Paraguay'),
 	baja bit default 0
 )
 go
@@ -133,35 +133,38 @@ set @respuesta = @@ERROR
 end
 go
 
-Create Proc BajaEmpleado @Cedula varchar(200), @Contraseña varchar(200), @NombreCompleto varchar(200) as
-begin 
-	declare @respuesta int
-update Empleados set baja = 1 where cedula = @cedula
-set @respuesta = @@ERROR
-	if @respuesta = 0
-		return 0;
-	else return -1
-
-end
-go
 
 Create Proc BorrarEmpleado @Cedula varchar (200) as
 begin
-	declare @Error int
-	declare @Ced int
-	select @Ced = vi.cedulaEmpleado from Viajes vi where vi.cedulaEmpleado = @Cedula 
-	if @Ced is not null
-	return -2
-	set @Ced = null
-	select @Ced = cedula from Empleados where cedula = @Cedula
-	if @Ced is null
-	return -1
+	if not exists (select * from Empleados where cedula=@Cedula)
+		return -1 --no existe empleado
+	if exists (select * from Empleados where cedula=@Cedula and baja=1)
+		return -1-- existe pero bajado, es lo mismo que no existiera
+		
+	begin tran		
+		if exists (select * from Viajes where cedulaEmpleado=@Cedula)
+			begin
+				update Empleados set baja=1 where cedula=@Cedula
+				if (@@ERROR <> 0)
+					begin
+					rollback
+					return -2 --error al borrar logicamente
+					end
+			end
+			
+		if not exists (select * from Viajes where cedulaEmpleado=@Cedula)
+			begin
+			delete from Empleados where cedula=@Cedula
+			if (@@ERROR <> 0)
+					begin
+					rollback
+					return -3 --error al borrar logicamente
+					end
+			end
+			
+			commit
+			return 1 --borrado correctamente
 	
-	delete Empleados where cedula = @Cedula
-	set @Error = @@ERROR
-	if @Error <> 0
-	return -3
-	return 0 
 end
 go
 

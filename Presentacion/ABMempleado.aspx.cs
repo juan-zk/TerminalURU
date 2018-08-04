@@ -18,8 +18,7 @@ namespace Presentacion
             btnAgregar.Enabled = false;
             btnModificar.Enabled = false;
             btnEliminar.Enabled = false;
-            btnLimpiar.Enabled  = false;
-            btnBaja.Enabled = false;
+            btnLimpiar.Enabled = false;
             btnBuscar.Enabled = true;
             txtCedula.Enabled = true;
             txtContraseña.Enabled = false;
@@ -43,10 +42,9 @@ namespace Presentacion
             btnAgregar.Enabled = false;
             btnModificar.Enabled = true;
             btnEliminar.Enabled = true;
-            btnBuscar.Enabled = false;
-            btnBaja.Enabled = true;
+            btnBuscar.Enabled = false;            
         }
-       
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -65,20 +63,20 @@ namespace Presentacion
         {
             try
             {
-               
-                if (string.IsNullOrEmpty(txtCedula.Text))
-                 throw new Exception("Ingrese un numero de cedula para comenzar a buscar");
-                Session["Empleado"] = Logica.FabricaLogica.GetLogicaEmpleado().Buscar(txtCedula.Text.Trim());
-                
 
-               
-              
-               if ((Empleado)Session["Empleado"] != null)
+                if (string.IsNullOrEmpty(txtCedula.Text))
+                    throw new Exception("Ingrese un numero de cedula para comenzar a buscar");
+                Session["Empleado"] = Logica.FabricaLogica.GetLogicaEmpleado().Buscar(txtCedula.Text.Trim());
+
+
+
+
+                if ((Empleado)Session["Empleado"] != null)
                 {
                     BajaCampos();
-                   txtContraseña.Text = ((Empleado)Session["Empleado"])._Contraseña;
+                    txtContraseña.Text = ((Empleado)Session["Empleado"])._Contraseña;
                     txtNombreCompleto.Text = ((Empleado)Session["Empleado"])._NombreCompleto;
-                    
+
 
                 }
                 else
@@ -112,14 +110,14 @@ namespace Presentacion
         {
             try
             {
-                
+
                 Empleado emp = new Empleado(txtCedula.Text, txtContraseña.Text, txtNombreCompleto.Text);
 
                 Limpiar();
                 Logica.FabricaLogica.GetLogicaEmpleado().Modificar(emp);
-               
+
                 lblMensaje.Text = "El empleado fue modificado correctamente";
-                
+
             }
             catch (Exception ex)
             { lblMensaje.Text = ex.Message; }
@@ -129,16 +127,13 @@ namespace Presentacion
         {
             try
             {
-               
-             
-               
-                    Empleado emp2 = new Empleado(txtCedula.Text, txtContraseña.Text, txtNombreCompleto.Text);
+                Empleado emp2 = new Empleado(txtCedula.Text, txtContraseña.Text, txtNombreCompleto.Text);
 
-                    Logica.FabricaLogica.GetLogicaEmpleado().Agregar(emp2);
+                Logica.FabricaLogica.GetLogicaEmpleado().Agregar(emp2);
 
-                    Limpiar();
-                    lblMensaje.Text = "Empleado agregado correctamente";
-                
+                Limpiar();
+                lblMensaje.Text = "Empleado agregado correctamente";
+
             }
             catch (Exception ex)
             { lblMensaje.Text = ex.Message; }
@@ -149,18 +144,6 @@ namespace Presentacion
             Limpiar();
         }
 
-        protected void btnBaja_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Empleado emp = new Empleado(txtCedula.Text, txtContraseña.Text, txtNombreCompleto.Text);
-
-                Logica.FabricaLogica.GetLogicaEmpleado().Baja(emp);
-                Limpiar();
-                lblMensaje.Text = "Empleado dado de baja correctamente";
-            }
-            catch (Exception ex)
-            { lblMensaje.Text = ex.Message; }
-        }
+        
     }
 }

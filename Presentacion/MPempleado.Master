@@ -25,7 +25,6 @@
                     VerticalPadding="15px" HorizontalPadding="15px" />
                 <DynamicMenuStyle BackColor="#415C71" />
                 <Items>
-                    <asp:MenuItem Text="Inicio" Value="Inicio" NavigateUrl="~/Inicio.aspx"></asp:MenuItem>
                     <asp:MenuItem Text="Viajes" Value="Viajes">
                         <asp:MenuItem Text="Internacionales" Value="Internacionales" 
                             NavigateUrl="~/ViajesInter.aspx"></asp:MenuItem>

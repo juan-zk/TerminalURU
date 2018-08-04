@@ -16,8 +16,6 @@ namespace Persistencia
 
         void Modificar(Empleado pEmp);
 
-        void Baja(Empleado pEmp);
-
         void Borrar(string pCedula);
     }
 }

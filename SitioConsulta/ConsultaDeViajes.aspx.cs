@@ -14,7 +14,6 @@ public partial class ConsultaDeViajes : System.Web.UI.Page
     {
         List<Terminal> terminales = FabricaLogica.GetLogicaTerminales().Listar();
         ddlDestino.Items.Clear();
-        ddlDestino.Items.Add("Todos");
         foreach (Terminal ter in terminales)
         {
             ListItem l = new ListItem(string.Format(ter._Codigo + " " + ter._Ciudad), ter._Codigo);
@@ -82,13 +81,10 @@ public partial class ConsultaDeViajes : System.Web.UI.Page
         
         try
         {
-            //filtro por destino
-            if (ddlDestino.SelectedValue != "Todos")
-            {
-                Filtrada = (from unViaje in Filtrada
-                              where unViaje._Ter._Codigo == ddlDestino.SelectedValue
-                              select unViaje).ToList<Viaje>();
-            }
+            Filtrada = (from unViaje in Filtrada
+                        where unViaje._Ter._Codigo == ddlDestino.SelectedValue
+                        select unViaje).ToList<Viaje>();
+            
             //filtro por compañia
             if (ddlCompania.SelectedValue != "Todas")
             {
@@ -105,7 +101,7 @@ public partial class ConsultaDeViajes : System.Web.UI.Page
                 DateTime llegada = calLLegada.SelectedDate;
                 
                 Filtrada = (from unViaje in Filtrada
-                            where (unViaje._FechaPartida >= partida) && (unViaje._FechaArribo <= llegada)
+                            where (unViaje._FechaPartida.Date >= partida.Date) && (unViaje._FechaArribo.Date <= llegada.Date)
                             select unViaje).ToList<Viaje>();
             }
              
