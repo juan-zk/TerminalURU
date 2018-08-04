@@ -95,7 +95,6 @@ namespace Presentacion
                 if (string.IsNullOrEmpty(txtCedula.Text))
                     throw new Exception("Ingrese un numero de cedula.");
                 Logica.FabricaLogica.GetLogicaEmpleado().Borrar(txtCedula.Text);
-                Limpiar();
                 lblMensaje.Text = "El empleado fue elimiando correctamente.";
                 Limpiar();
             }

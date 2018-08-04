@@ -108,7 +108,7 @@
                                 <td> Compañia:<asp:TextBox ID="txtCompania" runat="server" CssClass="txt" Text = '<%# Bind("_Com._Nombre") %>' Enabled="False"></asp:TextBox> </td>
                                 <td> Partida:<asp:TextBox ID="txtPartida" runat="server" CssClass="txt" Text = '<%# Bind("_FechaPartida") %>' Enabled="False"></asp:TextBox> </td>
                                 <td> Llegada:<asp:TextBox ID="txtLlegada" runat="server" CssClass="txt" Text = '<%# Bind("_FechaArribo") %>' Enabled="False"></asp:TextBox> </td>                                
-                                <td> Destino:<asp:TextBox ID="TextBox1" runat="server" CssClass="txt" Width="50px" Text = '<%# Bind("_Ter._Codigo") %>' Enabled="False"></asp:TextBox> <asp:TextBox ID="TextBox2" runat="server" Width="100px" CssClass="txt" Text = '<%# Bind("_Ter._Ciudad") %>' Enabled="False"></asp:TextBox> </td>
+                                <td> Destino:<asp:TextBox ID="TextBox1" runat="server" CssClass="txt" Text = '<%# Bind("_Ter._Destino") %>' Enabled="False"></asp:TextBox> </td>
                                 <td> <asp:Button ID="btnVerViaje" runat="server" CommandName="VerViaje" Text="Ver Viaje" CssClass="btns" Width="100px" /> </td>
                               </tr>
                         </table>
@@ -120,7 +120,7 @@
                                 <td> Compañia:<asp:TextBox ID="txtCompania" runat="server" CssClass="txt" Text = '<%# Bind("_Com._Nombre") %>' Enabled="False"></asp:TextBox> </td>
                                 <td> Partida:<asp:TextBox ID="txtPartida" runat="server" CssClass="txt" Text = '<%# Bind("_FechaPartida") %>' Enabled="False"></asp:TextBox> </td>
                                 <td> Llegada:<asp:TextBox ID="txtLlegada" runat="server" CssClass="txt" Text = '<%# Bind("_FechaArribo") %>' Enabled="False"></asp:TextBox> </td>
-                                <td> Destino:<asp:TextBox ID="TextBox1" runat="server" CssClass="txt" Width="50px" Text = '<%# Bind("_Ter._Codigo") %>' Enabled="False"></asp:TextBox> <asp:TextBox ID="TextBox2" runat="server" Width="100px" CssClass="txt" Text = '<%# Bind("_Ter._Ciudad") %>' Enabled="False"></asp:TextBox> </td>
+                                <td> Destino:<asp:TextBox ID="TextBox1" runat="server" CssClass="txt" Text = '<%# Bind("_Ter._Destino") %>' Enabled="False"></asp:TextBox> </td>
                                 <td> <asp:Button ID="btnVerViaje" runat="server" CommandName="VerViaje" Text="Ver Viaje" CssClass="btns" Width="100px" /> </td>                                
                            </tr>
                         </table>
