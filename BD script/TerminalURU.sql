@@ -352,13 +352,6 @@ begin
 		return -1-- existe pero bajado, es lo mismo que no existiera
 		
 	begin tran
-		delete from FacilidadTerminales where codigoTerminal=@codigo
-		if (@@error<>0)
-			begin
-			rollback
-			return -2 --no se puede borrar lista de facilidades
-			end
-		
 		if exists (select * from Viajes where codTerminal=@codigo)
 			begin
 				update Terminales set baja=1 where codigo=@codigo
@@ -371,6 +364,13 @@ begin
 			
 		if not exists (select * from Viajes where codTerminal=@codigo)
 			begin
+			delete from FacilidadTerminales where codigoTerminal=@codigo
+			if (@@error<>0)
+				begin
+				rollback
+				return -2 --no se puede borrar lista de facilidades
+			end
+			
 			delete from Terminales where codigo=@codigo
 			if (@@ERROR <> 0)
 					begin
