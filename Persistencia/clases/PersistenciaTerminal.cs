@@ -154,7 +154,7 @@ namespace Persistencia
                     string codigo = (string)dr[0];
                     string ciudad = (string)dr[1];
                     string pais = (string)dr[2];
-                    List<string> facilidades = PersistenciaFacilidadTerminal.CargarFacilidades((string)dr[0]);
+                    List<string> facilidades = PersistenciaFacilidadTerminal.CargarFacilidades(codigo);
 
                     terminal = new Terminal(codigo, ciudad, pais, facilidades);
                 }
@@ -187,7 +187,7 @@ namespace Persistencia
                     string codigo = (string)dr[0];
                     string ciudad = (string)dr[1];
                     string pais = (string)dr[2];
-                    List<string> facilidades = PersistenciaFacilidadTerminal.CargarFacilidades((string)dr[0]);
+                    List<string> facilidades = PersistenciaFacilidadTerminal.CargarFacilidades(codigo);
 
                     terminal = new Terminal(codigo, ciudad, pais, facilidades);
                 }
