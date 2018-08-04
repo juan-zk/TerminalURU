@@ -59,7 +59,7 @@
         </td>
         <td class="style25" align="center" width="33%">
             <asp:TextBox ID="txtContraseña" runat="server" style="text-align: left" 
-                CssClass="txt"></asp:TextBox>
+                CssClass="txt" Enabled="False"></asp:TextBox>
         </td>
         <td class="style25" align="left" width="33%">
             &nbsp;</td>
@@ -69,7 +69,8 @@
             <asp:Label ID="lblDir" runat="server" Text="Nombre Completo:"></asp:Label>
         </td>
         <td class="style25" align="center" width="33%">
-            <asp:TextBox ID="txtNombreCompleto" runat="server" CssClass="txt"></asp:TextBox>
+            <asp:TextBox ID="txtNombreCompleto" runat="server" CssClass="txt" 
+                Enabled="False"></asp:TextBox>
         </td>
         <td class="style25" align="left" width="33%">
             &nbsp;</td>

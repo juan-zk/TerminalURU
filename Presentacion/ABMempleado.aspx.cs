@@ -18,11 +18,11 @@ namespace Presentacion
             btnAgregar.Enabled = false;
             btnModificar.Enabled = false;
             btnEliminar.Enabled = false;
-            btnLimpiar.Enabled = false;
             btnBuscar.Enabled = true;
             txtCedula.Enabled = true;
             txtContraseña.Enabled = false;
             txtNombreCompleto.Enabled = false;
+            Session["Empleado"] = null;
         }
         void Agregar()
         {
@@ -64,20 +64,16 @@ namespace Presentacion
             try
             {
 
-                if (string.IsNullOrEmpty(txtCedula.Text))
-                    throw new Exception("Ingrese un numero de cedula para comenzar a buscar");
+                if (string.IsNullOrEmpty(txtCedula.Text) || txtCedula.Text.Length != 8)
+                    throw new Exception("Ingrese un numero de cedula valido(12345678) para comenzar a buscar");
+
                 Session["Empleado"] = Logica.FabricaLogica.GetLogicaEmpleado().Buscar(txtCedula.Text.Trim());
-
-
-
-
+                
                 if ((Empleado)Session["Empleado"] != null)
                 {
                     BajaCampos();
                     txtContraseña.Text = ((Empleado)Session["Empleado"])._Contraseña;
                     txtNombreCompleto.Text = ((Empleado)Session["Empleado"])._NombreCompleto;
-
-
                 }
                 else
                 {
@@ -101,6 +97,7 @@ namespace Presentacion
                 Logica.FabricaLogica.GetLogicaEmpleado().Borrar(txtCedula.Text);
                 Limpiar();
                 lblMensaje.Text = "El empleado fue elimiando correctamente.";
+                Limpiar();
             }
             catch (Exception ex)
             { lblMensaje.Text = ex.Message; }
@@ -110,14 +107,11 @@ namespace Presentacion
         {
             try
             {
-
-                Empleado emp = new Empleado(txtCedula.Text, txtContraseña.Text, txtNombreCompleto.Text);
-
-                Limpiar();
+                Empleado emp = new Empleado(txtCedula.Text, txtContraseña.Text, txtNombreCompleto.Text);               
                 Logica.FabricaLogica.GetLogicaEmpleado().Modificar(emp);
 
                 lblMensaje.Text = "El empleado fue modificado correctamente";
-
+                Limpiar();
             }
             catch (Exception ex)
             { lblMensaje.Text = ex.Message; }
@@ -130,9 +124,9 @@ namespace Presentacion
                 Empleado emp2 = new Empleado(txtCedula.Text, txtContraseña.Text, txtNombreCompleto.Text);
 
                 Logica.FabricaLogica.GetLogicaEmpleado().Agregar(emp2);
-
-                Limpiar();
+                
                 lblMensaje.Text = "Empleado agregado correctamente";
+                Limpiar();
 
             }
             catch (Exception ex)
