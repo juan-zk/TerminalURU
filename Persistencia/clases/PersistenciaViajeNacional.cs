@@ -35,9 +35,9 @@ namespace Persistencia
 
                 while (lector.Read())
                 {
-                    Compania compania = FabricaPersistencia.GetPersistenciaCompania().Buscar((string)lector["nomCompania"]);
-                    Terminal terminal = FabricaPersistencia.GetPersistenciaTerminal().Buscar((string)lector["codTerminal"]);
-                    Empleado empleado = FabricaPersistencia.GetPersistenciaEmpleado().Buscar((string)lector["cedulaEmpleado"]);
+                    Compania compania = FabricaPersistencia.GetPersistenciaCompania().BuscarParaViaje((string)lector["nomCompania"]);
+                    Terminal terminal = FabricaPersistencia.GetPersistenciaTerminal().BuscarParaViaje((string)lector["codTerminal"]);
+                    Empleado empleado = FabricaPersistencia.GetPersistenciaEmpleado().BuscarParaViaje((string)lector["cedulaEmpleado"]);
 
                     resp = new ViajesNacionales((int)lector["numViaje"],
                                         compania,
@@ -94,9 +94,9 @@ namespace Persistencia
                 if (respuesta == -4)
                     throw new Exception("No existe el empleado ingresado");
                 if (respuesta == -5)
-                    throw new Exception("ERROR al modificar el viaje");
+                    throw new Exception("ERROR al agregar el viaje");
                 if (respuesta == -6)
-                    throw new Exception("ERROR al modificar el viaje Nacional");
+                    throw new Exception("ERROR al agregar el viaje Nacional");
                 if (respuesta == -7)
                     throw new Exception("No puede haber un viaje al mismo destino con la misma hora de salida, al menos 2 hrs de diferencia.");
                 if (respuesta == -8)
@@ -104,7 +104,7 @@ namespace Persistencia
                 if (respuesta == -9)
                     throw new Exception("La fecha de arribo debe ser posterior a la de partida..");
                 if (respuesta == 1)
-                    throw new Exception("Viaje modificado correctamente.");
+                    throw new Exception("Viaje agregado correctamente.");
 
             }
             catch (Exception ex)
@@ -214,9 +214,9 @@ namespace Persistencia
                 SqlDataReader lector = cmd.ExecuteReader();
                 while (lector.Read())
                 {
-                    Compania compania = FabricaPersistencia.GetPersistenciaCompania().Buscar((string)lector["nomCompania"]);
-                    Terminal terminal = FabricaPersistencia.GetPersistenciaTerminal().Buscar((string)lector["codTerminal"]);
-                    Empleado empleado = FabricaPersistencia.GetPersistenciaEmpleado().Buscar((string)lector["cedulaEmpleado"]);
+                    Compania compania = FabricaPersistencia.GetPersistenciaCompania().BuscarParaViaje((string)lector["nomCompania"]);
+                    Terminal terminal = FabricaPersistencia.GetPersistenciaTerminal().BuscarParaViaje((string)lector["codTerminal"]);
+                    Empleado empleado = FabricaPersistencia.GetPersistenciaEmpleado().BuscarParaViaje((string)lector["cedulaEmpleado"]);
 
                     viajenac = new ViajesNacionales((int)lector["numViaje"],
                                         compania,

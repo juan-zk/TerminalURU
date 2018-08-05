@@ -222,9 +222,9 @@ namespace Persistencia
                 if (respuesta == -4)
                     throw new Exception("No existe el empleado ingresado");
                 if (respuesta == -5)
-                    throw new Exception("ERROR al modificar el viaje");
+                    throw new Exception("ERROR al agregar el viaje");
                 if (respuesta == -6)
-                    throw new Exception("ERROR al modificar el viaje internacional");
+                    throw new Exception("ERROR al agregar el viaje internacional");
                 if (respuesta == -7)
                     throw new Exception("No puede haber un viaje al mismo destino con la misma hora de salida, al menos 2 hrs de diferencia..");
                 if (respuesta == -8)
