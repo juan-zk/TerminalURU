@@ -30,14 +30,16 @@ namespace Logica
 
         public void Modificar(ViajesInternacionales pViaje)
         {
-            var list = Listar();
+            List<Viaje> viajes = new List<Viaje>();
+            viajes.AddRange(Listar());
+            viajes.AddRange(ListarViaje());
             TimeSpan dif;
 
             if(pViaje._FechaArribo<=pViaje._FechaPartida)
             {
                 throw new Exception("La fecha de arribo debe ser posterior a la fecha de partida");
             }
-            foreach (ViajesInternacionales vi in list)
+            foreach (Viaje vi in viajes)
             {
                 if (vi._NumViaje != pViaje._NumViaje && vi._Ter._Codigo == pViaje._Ter._Codigo && vi._FechaPartida.Date == pViaje._FechaPartida.Date)
                 {
@@ -56,7 +58,9 @@ namespace Logica
 
         public void Agregar(ViajesInternacionales pViaje)
         {
-            var list = Listar();
+            List<Viaje> viajes = new List<Viaje>();
+            viajes.AddRange(Listar());
+            viajes.AddRange(ListarViaje());
             TimeSpan dif;
             if (pViaje._FechaArribo < DateTime.Now || pViaje._FechaPartida < DateTime.Now)
             {
@@ -66,7 +70,7 @@ namespace Logica
             {
                 throw new Exception("La fecha de arribo debe ser posterior a la fecha de partida");
             }
-            foreach (ViajesInternacionales vi in list)
+            foreach (Viaje vi in viajes)
             {
                 if (vi._Ter._Codigo == pViaje._Ter._Codigo && vi._FechaPartida.Date == pViaje._FechaPartida.Date)
                 {
@@ -88,7 +92,9 @@ namespace Logica
         
         public void Agregar(ViajesNacionales pViaje)
         {
-            var list = ListarViaje();
+            List<Viaje> viajes = new List<Viaje>();
+            viajes.AddRange(Listar());
+            viajes.AddRange(ListarViaje());
             TimeSpan dif;
             if (pViaje._FechaArribo < DateTime.Now || pViaje._FechaPartida < DateTime.Now)
             {
@@ -98,7 +104,7 @@ namespace Logica
             {
                 throw new Exception("La fecha de arribo debe ser posterior a la fecha de partida");
             }
-            foreach (ViajesNacionales vi in list)
+            foreach (Viaje vi in viajes)
             {
                 if (vi._Ter._Codigo == pViaje._Ter._Codigo && vi._FechaPartida.Date == pViaje._FechaPartida.Date)
                 {
@@ -113,7 +119,9 @@ namespace Logica
 
         public void Modificar(ViajesNacionales pViaje)
         {
-            var list = ListarViaje();
+            List<Viaje> viajes = new List<Viaje>();
+            viajes.AddRange(Listar());
+            viajes.AddRange(ListarViaje());
             TimeSpan dif;
 
             if(pViaje._FechaArribo<=pViaje._FechaPartida)
@@ -121,7 +129,7 @@ namespace Logica
                 throw new Exception("La fecha de arribo debe ser posterior a la fecha de partida");
             }
        
-            foreach (ViajesNacionales vi in list)
+            foreach (Viaje vi in viajes)
             {
                 if (vi._NumViaje!=pViaje._NumViaje && vi._Ter._Codigo == pViaje._Ter._Codigo && vi._FechaPartida.Date == pViaje._FechaPartida.Date)
                 {
