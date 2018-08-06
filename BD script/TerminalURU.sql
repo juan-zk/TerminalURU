@@ -295,10 +295,10 @@ go
 
 ---listar compañias---------------------------------------------
 
-create proc ListarCompanias
+create proc ListarCompanias-- da las que estan con baja porque solo se usa para armar objetos viaje
 as
 begin
-	select nombre, direccion, telefono from Companias where baja=0
+	select nombre, direccion, telefono from Companias
 end
 go
 
@@ -432,10 +432,10 @@ begin
 end
 go
 
-create proc ListarTerminales
+create proc ListarTerminales -- da las que estan con baja porque solo es para armar viajes para mostrar
 as
 begin
-	select codigo, ciudad, pais from Terminales where baja=0
+	select codigo, ciudad, pais from Terminales
 end
 go
 

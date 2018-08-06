@@ -115,18 +115,21 @@ public partial class ConsultaDeViajes : System.Web.UI.Page
     }
     protected void btnQuitar_Click(object sender, EventArgs e)
     {
-        List<Viaje> viajes = new List<Viaje>();
-        viajes.AddRange(FabricaLogica.GetLogicaViajes().Listar());
-        viajes.AddRange(FabricaLogica.GetLogicaViajes().ListarViaje());
+        try
+        {
+            List<Viaje> viajes = new List<Viaje>();
+            viajes.AddRange(FabricaLogica.GetLogicaViajes().Listar());
+            viajes.AddRange(FabricaLogica.GetLogicaViajes().ListarViaje());
 
-        Session["ListaDeViajes"] = viajes;
+            Session["ListaDeViajes"] = viajes;
 
-        rptrViajes.DataSource = viajes;
-        rptrViajes.DataBind();
+            rptrViajes.DataSource = viajes;
+            rptrViajes.DataBind();
 
-        ddlCompania.SelectedValue = "Todas";
-        ddlDestino.SelectedValue = "Todos";
-        chkPorFecha.Checked = false;
+            ddlCompania.SelectedValue = "Todas";
+            chkPorFecha.Checked = false;
+        }
+        catch (Exception ex) { lblMsj.Text = ex.Message;   }
         
     }
     protected void chkPorFecha_CheckedChanged(object sender, EventArgs e)
