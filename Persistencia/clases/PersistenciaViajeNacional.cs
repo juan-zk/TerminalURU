@@ -159,6 +159,8 @@ namespace Persistencia
                     throw new Exception("El empleado ingresado ya se encuentra dado de baja, intente con otro porfavor.");
                 if (respuesta == -10)
                     throw new Exception("La terminal ingresada ya se encuentra baja, intente con otra porfavor.");
+                if (respuesta == -11)
+                    throw new Exception("La fecha de arribo debe ser posterior a la fecha de partida.");
                 if (respuesta == 1)
                     throw new Exception("Viaje modificado correctamente.");
             }
