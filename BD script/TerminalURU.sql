@@ -506,7 +506,7 @@ begin
 	if(GETDATE()>@fechaHoraPartida or GETDATE()>@fechaHoraArribo)
 		return -8
 		
-	if(@fechaHoraPartida>@fechaHoraArribo)
+	if(@fechaHoraPartida>=@fechaHoraArribo)
 		return -9
 
 		
@@ -591,6 +591,9 @@ begin
 		
 	if exists (select NumViaje from Viajes where cast(fechaHoraPartida as date)=cast(@fechaHoraPartida as date) and codTerminal=@codTerminal and DATEDIFF(hh,@fechaHoraPartida,fechaHoraPartida)<2 and NumViaje <> @numero)
 		return -7
+		
+	if(@fechaHoraPartida>=@fechaHoraArribo)
+		return -11
 
 	begin tran
 		update Viajes set nomCompania=@nombreCompania,
@@ -718,7 +721,7 @@ declare @resultado int
 	if(GETDATE()>@fechaHoraPartida or GETDATE()>@fechaHoraArribo)
 		return -8
 		
-	if(@fechaHoraPartida>@fechaHoraArribo)
+	if(@fechaHoraPartida>=@fechaHoraArribo)
 		return -9
 		
 	if exists (select NumViaje from Viajes where cast(fechaHoraPartida as date)=cast(@fechaHoraPartida as date) and codTerminal=@codTerminal and DATEDIFF(hh,@fechaHoraPartida,fechaHoraPartida)<2)
@@ -775,6 +778,9 @@ begin
 	
 	if exists (select * from terminales where codigo=@codTerminal and baja=1 and codigo<>@codTerminalActual)
 	return -10
+	
+	if(@fechaHoraPartida>=@fechaHoraArribo)
+		return -11
 		
 	if not exists (select * from Viajes where numViaje=@numero)
 	return -1--no existe el viaje
