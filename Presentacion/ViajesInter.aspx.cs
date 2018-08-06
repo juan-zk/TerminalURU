@@ -13,7 +13,6 @@ namespace Presentacion
         void Limpiar()
         {
             txtCompania.Text = "";
-            txtEmpleado.Text = "";
             txtFechaPartida.Text = "";
             txtFechaArribo.Text = "";
             txtDocumentacion.Text = "";
@@ -28,7 +27,6 @@ namespace Presentacion
         {
             txtNum.Text = "";
             txtCompania.Text = "";
-            txtEmpleado.Text = "";
             txtFechaPartida.Text = "";
             txtFechaArribo.Text = "";
             txtDocumentacion.Text = "";
@@ -42,7 +40,7 @@ namespace Presentacion
         bool ControlVacio()
         {
             var vacio = false;
-            if (String.IsNullOrEmpty(txtCompania.Text) || String.IsNullOrEmpty(txtEmpleado.Text) || String.IsNullOrEmpty(txtFechaPartida.Text) || String.IsNullOrEmpty(txtFechaArribo.Text) || String.IsNullOrEmpty(txtDocumentacion.Text) || String.IsNullOrEmpty(txtTerminal.Text) || String.IsNullOrEmpty(txtCantidadAsientos.Text))
+            if (String.IsNullOrEmpty(txtCompania.Text) || String.IsNullOrEmpty(txtFechaPartida.Text) || String.IsNullOrEmpty(txtFechaArribo.Text) || String.IsNullOrEmpty(txtDocumentacion.Text) || String.IsNullOrEmpty(txtTerminal.Text) || String.IsNullOrEmpty(txtCantidadAsientos.Text))
                 vacio = true;
             return vacio;
         }
@@ -71,7 +69,6 @@ namespace Presentacion
                     txtFechaPartida.Text = ((ViajesInternacionales)Session["viajeInter"])._FechaPartida.ToString();
                     txtFechaArribo.Text = ((ViajesInternacionales)Session["viajeInter"])._FechaArribo.ToString();
                     txtCantidadAsientos.Text = ((ViajesInternacionales)Session["viajeInter"])._CantidadAsientos.ToString();
-                    txtEmpleado.Text = ((ViajesInternacionales)Session["viajeInter"])._Emp._Cedula;
                     txtDocumentacion.Text = ((ViajesInternacionales)Session["viajeInter"])._Documentacion;
                     if (((ViajesInternacionales)Session["viajeInter"])._ServicioBordo == true)
                     { chkServicioBordo.Checked = true; }
@@ -97,7 +94,7 @@ namespace Presentacion
                 if (ControlVacio())
                     throw new Exception("Debe completar todos los campos");
                 ((ViajesInternacionales)Session["viajeInter"])._Com = Logica.FabricaLogica.GetLogicaCompania().BuscarParaViaje(txtCompania.Text);
-                ((ViajesInternacionales)Session["viajeInter"])._Emp = Logica.FabricaLogica.GetLogicaEmpleado().BuscarParaViaje(txtEmpleado.Text);
+                ((ViajesInternacionales)Session["viajeInter"])._Emp = (Empleado)Session["Usuario"];
                 ((ViajesInternacionales)Session["viajeInter"])._Ter = Logica.FabricaLogica.GetLogicaTerminales().BuscarParaViaje(txtTerminal.Text);
                 ((ViajesInternacionales)Session["viajeInter"])._ServicioBordo = chkServicioBordo.Checked;
                 ((ViajesInternacionales)Session["viajeInter"])._FechaPartida = Convert.ToDateTime(txtFechaPartida.Text.ToString());
@@ -132,14 +129,11 @@ namespace Presentacion
                     throw new Exception("Debe completar todos los campos");
                 Compania compania = Logica.FabricaLogica.GetLogicaCompania().Buscar(txtCompania.Text);
                 if (compania == null)
-                    throw new Exception("La compañia ingresada no se encuentra registrada");
-                Empleado empleado = Logica.FabricaLogica.GetLogicaEmpleado().Buscar(txtEmpleado.Text);
-                if (empleado == null)
-                    throw new Exception("El empleado ingresado no se encuentra registrado");
+                    throw new Exception("La compañia ingresada no se encuentra registrada");                                    
                 Terminal terminal = Logica.FabricaLogica.GetLogicaTerminales().Buscar(txtTerminal.Text);
                 if (terminal == null)
                     throw new Exception("La terminal ingresada no se encuentra registrada");
-                ViajesInternacionales viajeInter = new ViajesInternacionales(Convert.ToInt32(txtNum.Text), compania, terminal, Convert.ToDateTime(txtFechaPartida.Text), Convert.ToDateTime(txtFechaArribo.Text), Convert.ToInt32(txtCantidadAsientos.Text), empleado, chkServicioBordo.Checked, txtDocumentacion.Text);
+                ViajesInternacionales viajeInter = new ViajesInternacionales(Convert.ToInt32(txtNum.Text), compania, terminal, Convert.ToDateTime(txtFechaPartida.Text), Convert.ToDateTime(txtFechaArribo.Text), Convert.ToInt32(txtCantidadAsientos.Text), (Empleado)Session["Usuario"], chkServicioBordo.Checked, txtDocumentacion.Text);
 
                 LimpiarTodo();
                 Logica.FabricaLogica.GetLogicaViajes().Agregar(viajeInter);

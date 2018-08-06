@@ -100,16 +100,6 @@
         </tr>
         <tr>
             <td class="style4" align="right" width="33%">
-                <asp:Label ID="lblUltEmpleado" runat="server" Text="Último Empleado"></asp:Label>
-            </td>
-            <td class="style4" align="center" width="33%">
-                <asp:TextBox ID="txtEmpleado" runat="server" CssClass="txt"></asp:TextBox>
-            </td>
-            <td class="style12" width="33%">
-                &nbsp;</td>
-        </tr>
-        <tr>
-            <td class="style4" align="right" width="33%">
                 <asp:Label ID="lblDoc" runat="server" Text="Documentación"></asp:Label>
             </td>
             <td class="style4" align="center" width="33%">
@@ -122,7 +112,7 @@
             <td class="style4" align="right" width="33%">
                 <asp:Label ID="lblSB" runat="server" Text="Servicio a Bordo"></asp:Label>
             </td>
-            <td class="style4" align="left" width="33%">
+            <td class="style4" align="center" width="33%">
                 <asp:CheckBox ID="chkServicioBordo" runat="server" />
             </td>
             <td class="style12" width="33%">

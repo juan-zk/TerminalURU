@@ -101,16 +101,6 @@
         </tr>
         <tr>
             <td class="style4" align="right" width="33%">
-                <asp:Label ID="lblUltEmpleado" runat="server" Text="Último Empleado"></asp:Label>
-            </td>
-            <td class="style4" width="33%" align="center">
-                <asp:TextBox ID="txtEmpleado" runat="server" CssClass="txt"></asp:TextBox>
-            </td>
-            <td class="style12" width="33%">
-                &nbsp;</td>
-        </tr>
-        <tr>
-            <td class="style4" align="right" width="33%">
                 <asp:Label ID="lblDoc" runat="server" Text="Paradas Intermedias"></asp:Label>
             </td>
             <td class="style4" width="33%" align="center">
